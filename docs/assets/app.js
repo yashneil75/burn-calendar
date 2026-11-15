@@ -208,9 +208,10 @@ async function loadForecast() {
     const data = await response.json();
     const today = new Date().toISOString().slice(0, 10);
     const yesterday = new Date(Date.parse(`${today}T00:00:00Z`) - 86400000).toISOString().slice(0, 10);
+    const dayBefore = new Date(Date.parse(`${today}T00:00:00Z`) - 2 * 86400000).toISOString().slice(0, 10);
     const age = Date.now() - Date.parse(data.generated_utc);
     // Fail closed if a refresh is missed or the file is malformed.
-    if (data.kind !== "experimental_forecast" || data.origin_utc_date !== yesterday ||
+    if (data.kind !== "experimental_forecast" || ![yesterday, dayBefore].includes(data.origin_utc_date) ||
         !data.calendar_generated_utc || data.calendar_generated_utc !== state.data.generated_utc ||
         !Number.isFinite(age) || age < -300000 || age > 36 * 3600000 || !Array.isArray(data.predictions)) return;
     const bias = data.validation?.pooled?.timestral?.bias;
