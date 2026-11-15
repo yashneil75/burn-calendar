@@ -85,6 +85,21 @@ class HarmonizationTests(unittest.TestCase):
         map_data = next(c.args[1] for c in write.call_args_list if c.args[0] == build_calendar.MAP_PATH)
         self.assertGreater(len(map_data["cells"]), 0)
 
+    def test_refresh_checks_prior_year_for_standard_processing_upgrade(self):
+        class FixedDatetime(datetime):
+            @classmethod
+            def now(cls, tz=None):
+                return cls(2027, 1, 15, tzinfo=tz)
+        with patch.object(build_calendar, "fetch_rows", return_value=[]) as fetch, \
+             patch.object(build_calendar, "load_state", return_value={}), \
+             patch.object(build_calendar, "load_map_state", return_value={}), \
+             patch.object(build_calendar, "atomic_write_json"), \
+             patch.object(build_calendar, "datetime", FixedDatetime), \
+             patch.object(sys, "argv", ["build_calendar.py"]):
+            build_calendar.main()
+        starts = [call.args[3] for call in fetch.call_args_list if call.args[0] == "VIIRS_NOAA20_SP"]
+        self.assertLess(min(starts).year, 2027)
+
     def test_map_and_calendar_upgrade_together(self):
         days = {"2026-11-05": {"status": "sp", "activity": 5}}
         grids = {"2026-11-05": [[1, 2, -121, 38, 5]]}

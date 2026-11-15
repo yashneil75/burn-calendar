@@ -35,7 +35,7 @@ pipeline/              Everything that runs ahead of time (Python + numpy)
 
 ## Daily refresh mechanics
 
-1. Pull the relevant S-NPP and NOAA-20 standard-processing data year-to-date in 5-day chunks, respecting the sensor transition date.
+1. Pull the relevant S-NPP and NOAA-20 standard-processing data for the current year and at least the trailing 120 days in 5-day chunks, respecting the sensor transition date.
 2. Pull the relevant near-real-time data for a trailing 120-day window to cover the SP lag.
 3. Filter detection centres to California, then aggregate to 10-minute overpasses on a 1 km cylindrical equal-area grid.
 4. Score each pass with `pipeline/model/ca_model.json`; NOAA-20 estimates are provisional.

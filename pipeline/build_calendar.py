@@ -240,18 +240,19 @@ def main() -> None:
             map_sp: dict[str, list] = {}
             transition = date.fromisoformat(CONFIG["noaa20_start"])
             snpp_end = min(today, transition - timedelta(days=1))
-            for start, n in chunked_windows(date(today.year, 1, 1), snpp_end, CONFIG["sp_chunk_days"]):
+            nrt_start = today - timedelta(days=CONFIG["nrt_trailing_days"] - 1)
+            sp_start = min(date(today.year, 1, 1), nrt_start)
+            for start, n in chunked_windows(sp_start, snpp_end, CONFIG["sp_chunk_days"]):
                 rows = fetch_rows(CONFIG["sources"]["sp"], CONFIG["bbox"], n, start)
                 entries, grids = entries_and_map_from_rows(rows, CONFIG["sources"]["sp"], CONFIG["region_id"])
                 fresh_sp.update(entries); map_sp.update(grids)
-            nrt_start = today - timedelta(days=CONFIG["nrt_trailing_days"] - 1)
             fresh_nrt: dict[str, dict] = {}
             map_nrt: dict[str, list] = {}
             for start, n in chunked_windows(nrt_start, snpp_end, CONFIG["nrt_chunk_days"]):
                 rows = fetch_rows(CONFIG["sources"]["nrt"], CONFIG["bbox"], n, start)
                 entries, grids = entries_and_map_from_rows(rows, CONFIG["sources"]["nrt"], CONFIG["region_id"])
                 fresh_nrt.update(entries); map_nrt.update(grids)
-            noaa_start = max(date(today.year, 1, 1), transition)
+            noaa_start = max(sp_start, transition)
             for start, n in chunked_windows(noaa_start, today, CONFIG["sp_chunk_days"]):
                 rows = fetch_rows(CONFIG["sources"]["noaa20_sp"], CONFIG["bbox"], n, start)
                 entries, grids = entries_and_map_from_rows(rows, CONFIG["sources"]["noaa20_sp"], CONFIG["region_id"])

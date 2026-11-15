@@ -83,7 +83,7 @@
       <p>The deployed model is fitted on all available training years. A stronger assessment would require coverage-aware sensor masks, including observable MODIS-zero cases.</p>
 
       <h2>Updates</h2>
-      <p>Every day at 07:23&nbsp;UTC, a GitHub Actions job pulls the current year's SP window in 5-day chunks plus a trailing 120-day NRT window for the relevant sensor, then rebuilds the calendar and map together. Pass activity is allocated across 5 km map cells in proportion to their occupied 1 km cells. The site is fully static; all scoring happens ahead of time.</p>
+      <p>Every day at 07:23&nbsp;UTC, a GitHub Actions job pulls SP data for the current year and at least the trailing 120 days, plus a trailing 120-day NRT window for the relevant sensor, then rebuilds the calendar and map together. Pass activity is allocated across 5 km map cells in proportion to their occupied 1 km cells. The site is fully static; all scoring happens ahead of time.</p>
 
       <h2>Fine print</h2>
       <ul>
