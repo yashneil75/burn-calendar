@@ -13,7 +13,7 @@
  },
  "unit": "MODIS-Aqua-equivalent occupied 1 km² grid cells",
  "timezone": "UTC",
- "generated_utc": "2026-11-15T22:22:02+00:00",
+ "generated_utc": "2026-11-15T23:03:24+00:00",
  "model": {
   "name": "california-modis-aqua-poisson-glm",
   "target": "MODIS-Aqua occupied 1 km cells per co-detected overpass",
@@ -229457,7 +229457,7 @@
    "status": "nrt",
    "sensor": "NOAA20",
    "activity": 0.644,
-   "frp_mw": 118.9,
+   "frp_mw": 119.0,
    "viirs_cells": 30,
    "viirs_detections": 43,
    "day": {
@@ -229475,8 +229475,7 @@
     "viirs_detections": 41
    },
    "epochs": [
-    "2.0NRT",
-    "2.1URT"
+    "2.0NRT"
    ]
   }
  ]
