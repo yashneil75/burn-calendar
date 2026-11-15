@@ -2,8 +2,7 @@
  "schema_version": 1,
  "region_id": "california-state",
  "model": "california-modis-aqua-poisson-glm",
- "updated_utc": "2026-11-15T22:09:54+00:00",
- "missing_west_years": [],
+ "updated_utc": "2026-11-15T22:14:20+00:00",
  "days": {
   "2000-11-01": {
    "date": "2000-11-01",
@@ -219319,54 +219318,54 @@
   },
   "2026-05-01": {
    "date": "2026-05-01",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 1.519,
-   "frp_mw": 145.7,
-   "viirs_cells": 36,
-   "viirs_detections": 42,
+   "activity": 1.316,
+   "frp_mw": 134.4,
+   "viirs_cells": 24,
+   "viirs_detections": 30,
    "day": {
-    "activity": 0.955,
+    "activity": 0.962,
     "passes": 2,
     "frp_mw": 125.9,
     "viirs_cells": 11,
     "viirs_detections": 16
    },
    "night": {
-    "activity": 0.564,
+    "activity": 0.354,
     "passes": 1,
-    "frp_mw": 19.8,
-    "viirs_cells": 25,
-    "viirs_detections": 26
+    "frp_mw": 8.5,
+    "viirs_cells": 13,
+    "viirs_detections": 14
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-05-02": {
    "date": "2026-05-02",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.159,
-   "frp_mw": 44.0,
-   "viirs_cells": 27,
-   "viirs_detections": 28,
+   "activity": 0.036,
+   "frp_mw": 28.2,
+   "viirs_cells": 8,
+   "viirs_detections": 8,
    "day": {
-    "activity": 0.034,
+    "activity": 0.03,
     "passes": 1,
-    "frp_mw": 31.8,
-    "viirs_cells": 6,
-    "viirs_detections": 6
+    "frp_mw": 26.9,
+    "viirs_cells": 5,
+    "viirs_detections": 5
    },
    "night": {
-    "activity": 0.125,
+    "activity": 0.006,
     "passes": 1,
-    "frp_mw": 12.2,
-    "viirs_cells": 21,
-    "viirs_detections": 22
+    "frp_mw": 1.4,
+    "viirs_cells": 3,
+    "viirs_detections": 3
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-05-03": {
@@ -219397,7 +219396,7 @@
   },
   "2026-05-04": {
    "date": "2026-05-04",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
    "activity": 0.004,
    "frp_mw": 20.1,
@@ -219418,17 +219417,17 @@
     "viirs_detections": 1
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-05-05": {
    "date": "2026-05-05",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.003,
-   "frp_mw": 6.8,
-   "viirs_cells": 5,
-   "viirs_detections": 5,
+   "activity": 0.0,
+   "frp_mw": 4.8,
+   "viirs_cells": 2,
+   "viirs_detections": 2,
    "day": {
     "activity": 0.0,
     "passes": 1,
@@ -219437,76 +219436,76 @@
     "viirs_detections": 1
    },
    "night": {
-    "activity": 0.003,
+    "activity": 0.0,
     "passes": 1,
-    "frp_mw": 2.6,
-    "viirs_cells": 4,
-    "viirs_detections": 4
+    "frp_mw": 0.6,
+    "viirs_cells": 1,
+    "viirs_detections": 1
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-05-06": {
    "date": "2026-05-06",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.756,
-   "frp_mw": 296.9,
-   "viirs_cells": 51,
-   "viirs_detections": 56,
+   "activity": 0.539,
+   "frp_mw": 279.3,
+   "viirs_cells": 34,
+   "viirs_detections": 38,
    "day": {
-    "activity": 0.498,
+    "activity": 0.427,
     "passes": 2,
     "frp_mw": 274.5,
-    "viirs_cells": 29,
+    "viirs_cells": 28,
     "viirs_detections": 32
    },
    "night": {
-    "activity": 0.258,
+    "activity": 0.112,
     "passes": 1,
-    "frp_mw": 22.4,
-    "viirs_cells": 22,
-    "viirs_detections": 24
+    "frp_mw": 4.8,
+    "viirs_cells": 6,
+    "viirs_detections": 6
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-05-07": {
    "date": "2026-05-07",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 2.118,
-   "frp_mw": 317.0,
-   "viirs_cells": 52,
-   "viirs_detections": 65,
+   "activity": 1.658,
+   "frp_mw": 287.0,
+   "viirs_cells": 25,
+   "viirs_detections": 28,
    "day": {
-    "activity": 1.628,
+    "activity": 1.599,
     "passes": 1,
     "frp_mw": 279.3,
     "viirs_cells": 14,
     "viirs_detections": 17
    },
    "night": {
-    "activity": 0.49,
+    "activity": 0.059,
     "passes": 1,
-    "frp_mw": 37.7,
-    "viirs_cells": 38,
-    "viirs_detections": 48
+    "frp_mw": 7.7,
+    "viirs_cells": 11,
+    "viirs_detections": 11
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-05-08": {
    "date": "2026-05-08",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.412,
-   "frp_mw": 106.9,
-   "viirs_cells": 38,
-   "viirs_detections": 44,
+   "activity": 0.154,
+   "frp_mw": 90.5,
+   "viirs_cells": 22,
+   "viirs_detections": 25,
    "day": {
     "activity": 0.131,
     "passes": 1,
@@ -219515,284 +219514,284 @@
     "viirs_detections": 15
    },
    "night": {
-    "activity": 0.281,
+    "activity": 0.023,
     "passes": 1,
-    "frp_mw": 22.3,
-    "viirs_cells": 26,
-    "viirs_detections": 29
+    "frp_mw": 5.9,
+    "viirs_cells": 10,
+    "viirs_detections": 10
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-05-09": {
    "date": "2026-05-09",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.896,
-   "frp_mw": 209.6,
-   "viirs_cells": 28,
-   "viirs_detections": 31,
+   "activity": 0.514,
+   "frp_mw": 200.5,
+   "viirs_cells": 17,
+   "viirs_detections": 21,
    "day": {
-    "activity": 0.843,
+    "activity": 0.511,
     "passes": 2,
     "frp_mw": 198.7,
-    "viirs_cells": 15,
+    "viirs_cells": 14,
     "viirs_detections": 18
    },
    "night": {
-    "activity": 0.053,
-    "passes": 2,
-    "frp_mw": 10.9,
-    "viirs_cells": 13,
-    "viirs_detections": 13
+    "activity": 0.003,
+    "passes": 1,
+    "frp_mw": 1.8,
+    "viirs_cells": 3,
+    "viirs_detections": 3
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-05-10": {
    "date": "2026-05-10",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.925,
-   "frp_mw": 334.7,
-   "viirs_cells": 26,
-   "viirs_detections": 36,
+   "activity": 0.911,
+   "frp_mw": 321.2,
+   "viirs_cells": 17,
+   "viirs_detections": 25,
    "day": {
-    "activity": 0.883,
+    "activity": 0.889,
     "passes": 2,
     "frp_mw": 303.4,
     "viirs_cells": 11,
     "viirs_detections": 18
    },
    "night": {
-    "activity": 0.042,
+    "activity": 0.022,
     "passes": 2,
-    "frp_mw": 31.3,
-    "viirs_cells": 15,
-    "viirs_detections": 18
+    "frp_mw": 17.8,
+    "viirs_cells": 6,
+    "viirs_detections": 7
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-05-11": {
    "date": "2026-05-11",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.391,
-   "frp_mw": 398.9,
-   "viirs_cells": 45,
-   "viirs_detections": 52,
+   "activity": 0.514,
+   "frp_mw": 375.9,
+   "viirs_cells": 31,
+   "viirs_detections": 34,
    "day": {
-    "activity": 0.226,
+    "activity": 0.35,
     "passes": 2,
-    "frp_mw": 379.4,
+    "frp_mw": 373.4,
     "viirs_cells": 28,
-    "viirs_detections": 32
+    "viirs_detections": 31
    },
    "night": {
-    "activity": 0.165,
-    "passes": 2,
-    "frp_mw": 19.5,
-    "viirs_cells": 17,
-    "viirs_detections": 20
+    "activity": 0.164,
+    "passes": 1,
+    "frp_mw": 2.5,
+    "viirs_cells": 3,
+    "viirs_detections": 3
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-05-12": {
    "date": "2026-05-12",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.356,
-   "frp_mw": 80.8,
-   "viirs_cells": 36,
-   "viirs_detections": 40,
+   "activity": 0.202,
+   "frp_mw": 64.8,
+   "viirs_cells": 19,
+   "viirs_detections": 20,
    "day": {
-    "activity": 0.154,
+    "activity": 0.155,
     "passes": 1,
     "frp_mw": 58.0,
     "viirs_cells": 10,
     "viirs_detections": 11
    },
    "night": {
-    "activity": 0.202,
+    "activity": 0.047,
     "passes": 1,
-    "frp_mw": 22.9,
-    "viirs_cells": 26,
-    "viirs_detections": 29
+    "frp_mw": 6.8,
+    "viirs_cells": 9,
+    "viirs_detections": 9
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-05-13": {
    "date": "2026-05-13",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.167,
-   "frp_mw": 94.5,
-   "viirs_cells": 15,
-   "viirs_detections": 18,
+   "activity": 0.159,
+   "frp_mw": 91.2,
+   "viirs_cells": 11,
+   "viirs_detections": 14,
    "day": {
-    "activity": 0.16,
+    "activity": 0.158,
     "passes": 1,
     "frp_mw": 90.9,
     "viirs_cells": 10,
     "viirs_detections": 13
    },
    "night": {
-    "activity": 0.007,
+    "activity": 0.001,
     "passes": 1,
-    "frp_mw": 3.6,
-    "viirs_cells": 5,
-    "viirs_detections": 5
+    "frp_mw": 0.3,
+    "viirs_cells": 1,
+    "viirs_detections": 1
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-05-14": {
    "date": "2026-05-14",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.807,
-   "frp_mw": 436.0,
-   "viirs_cells": 38,
-   "viirs_detections": 44,
+   "activity": 0.69,
+   "frp_mw": 420.4,
+   "viirs_cells": 21,
+   "viirs_detections": 26,
    "day": {
-    "activity": 0.653,
+    "activity": 0.663,
     "passes": 1,
     "frp_mw": 413.1,
     "viirs_cells": 12,
     "viirs_detections": 17
    },
    "night": {
-    "activity": 0.154,
+    "activity": 0.027,
     "passes": 2,
-    "frp_mw": 22.9,
-    "viirs_cells": 26,
-    "viirs_detections": 27
+    "frp_mw": 7.3,
+    "viirs_cells": 9,
+    "viirs_detections": 9
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-05-15": {
    "date": "2026-05-15",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 1.248,
-   "frp_mw": 481.1,
-   "viirs_cells": 45,
-   "viirs_detections": 63,
+   "activity": 1.112,
+   "frp_mw": 467.2,
+   "viirs_cells": 34,
+   "viirs_detections": 52,
    "day": {
-    "activity": 1.141,
+    "activity": 1.094,
     "passes": 2,
     "frp_mw": 432.5,
-    "viirs_cells": 26,
+    "viirs_cells": 25,
     "viirs_detections": 37
    },
    "night": {
-    "activity": 0.107,
+    "activity": 0.018,
     "passes": 2,
-    "frp_mw": 48.6,
-    "viirs_cells": 19,
-    "viirs_detections": 26
+    "frp_mw": 34.7,
+    "viirs_cells": 9,
+    "viirs_detections": 15
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-05-16": {
    "date": "2026-05-16",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 17.635,
-   "frp_mw": 3656.5,
-   "viirs_cells": 89,
-   "viirs_detections": 173,
+   "activity": 13.731,
+   "frp_mw": 3556.4,
+   "viirs_cells": 79,
+   "viirs_detections": 159,
    "day": {
-    "activity": 16.996,
+    "activity": 12.982,
     "passes": 2,
-    "frp_mw": 3439.6,
-    "viirs_cells": 63,
-    "viirs_detections": 133
+    "frp_mw": 3349.1,
+    "viirs_cells": 61,
+    "viirs_detections": 130
    },
    "night": {
-    "activity": 0.639,
+    "activity": 0.749,
     "passes": 2,
-    "frp_mw": 217.0,
-    "viirs_cells": 26,
-    "viirs_detections": 40
+    "frp_mw": 207.2,
+    "viirs_cells": 18,
+    "viirs_detections": 29
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-05-17": {
    "date": "2026-05-17",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 22.39,
-   "frp_mw": 1532.3,
-   "viirs_cells": 55,
-   "viirs_detections": 79,
+   "activity": 20.338,
+   "frp_mw": 1515.1,
+   "viirs_cells": 36,
+   "viirs_detections": 58,
    "day": {
-    "activity": 21.565,
+    "activity": 20.088,
     "passes": 1,
     "frp_mw": 1434.2,
     "viirs_cells": 23,
     "viirs_detections": 38
    },
    "night": {
-    "activity": 0.825,
+    "activity": 0.25,
     "passes": 1,
-    "frp_mw": 98.1,
-    "viirs_cells": 32,
-    "viirs_detections": 41
+    "frp_mw": 80.9,
+    "viirs_cells": 13,
+    "viirs_detections": 20
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-05-18": {
    "date": "2026-05-18",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 29.071,
-   "frp_mw": 1509.9,
-   "viirs_cells": 73,
-   "viirs_detections": 131,
+   "activity": 38.204,
+   "frp_mw": 1496.6,
+   "viirs_cells": 55,
+   "viirs_detections": 112,
    "day": {
-    "activity": 27.349,
+    "activity": 36.376,
     "passes": 1,
     "frp_mw": 1414.5,
     "viirs_cells": 32,
     "viirs_detections": 78
    },
    "night": {
-    "activity": 1.722,
+    "activity": 1.828,
     "passes": 1,
-    "frp_mw": 95.4,
-    "viirs_cells": 41,
-    "viirs_detections": 53
+    "frp_mw": 82.1,
+    "viirs_cells": 23,
+    "viirs_detections": 34
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-05-19": {
    "date": "2026-05-19",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 8.823,
-   "frp_mw": 1536.2,
-   "viirs_cells": 69,
-   "viirs_detections": 105,
+   "activity": 8.529,
+   "frp_mw": 1510.5,
+   "viirs_cells": 44,
+   "viirs_detections": 77,
    "day": {
     "activity": 6.567,
     "passes": 1,
@@ -219801,128 +219800,128 @@
     "viirs_detections": 31
    },
    "night": {
-    "activity": 2.256,
+    "activity": 1.962,
     "passes": 2,
-    "frp_mw": 460.7,
-    "viirs_cells": 50,
-    "viirs_detections": 74
+    "frp_mw": 435.0,
+    "viirs_cells": 25,
+    "viirs_detections": 46
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-05-20": {
    "date": "2026-05-20",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 3.254,
-   "frp_mw": 691.8,
-   "viirs_cells": 94,
-   "viirs_detections": 150,
+   "activity": 4.077,
+   "frp_mw": 676.4,
+   "viirs_cells": 78,
+   "viirs_detections": 130,
    "day": {
-    "activity": 0.223,
+    "activity": 0.333,
     "passes": 2,
     "frp_mw": 247.4,
-    "viirs_cells": 25,
+    "viirs_cells": 26,
     "viirs_detections": 31
    },
    "night": {
-    "activity": 3.031,
+    "activity": 3.744,
     "passes": 2,
-    "frp_mw": 444.4,
-    "viirs_cells": 69,
-    "viirs_detections": 119
+    "frp_mw": 429.0,
+    "viirs_cells": 52,
+    "viirs_detections": 99
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-05-21": {
    "date": "2026-05-21",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.562,
-   "frp_mw": 456.4,
-   "viirs_cells": 72,
-   "viirs_detections": 89,
+   "activity": 0.446,
+   "frp_mw": 433.1,
+   "viirs_cells": 49,
+   "viirs_detections": 60,
    "day": {
-    "activity": 0.359,
+    "activity": 0.357,
     "passes": 2,
-    "frp_mw": 415.8,
+    "frp_mw": 415.9,
     "viirs_cells": 36,
     "viirs_detections": 47
    },
    "night": {
-    "activity": 0.203,
+    "activity": 0.089,
     "passes": 2,
-    "frp_mw": 40.5,
-    "viirs_cells": 36,
-    "viirs_detections": 42
+    "frp_mw": 17.2,
+    "viirs_cells": 13,
+    "viirs_detections": 13
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-05-22": {
    "date": "2026-05-22",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.441,
-   "frp_mw": 308.0,
-   "viirs_cells": 49,
-   "viirs_detections": 56,
+   "activity": 0.335,
+   "frp_mw": 292.9,
+   "viirs_cells": 34,
+   "viirs_detections": 40,
    "day": {
-    "activity": 0.038,
+    "activity": 0.067,
     "passes": 2,
-    "frp_mw": 272.9,
+    "frp_mw": 270.7,
     "viirs_cells": 19,
-    "viirs_detections": 24
+    "viirs_detections": 23
    },
    "night": {
-    "activity": 0.403,
+    "activity": 0.268,
     "passes": 1,
-    "frp_mw": 35.1,
-    "viirs_cells": 30,
-    "viirs_detections": 32
+    "frp_mw": 22.2,
+    "viirs_cells": 15,
+    "viirs_detections": 17
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-05-23": {
    "date": "2026-05-23",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.5,
-   "frp_mw": 148.7,
-   "viirs_cells": 28,
-   "viirs_detections": 34,
+   "activity": 0.43,
+   "frp_mw": 139.0,
+   "viirs_cells": 19,
+   "viirs_detections": 24,
    "day": {
-    "activity": 0.404,
+    "activity": 0.395,
     "passes": 1,
     "frp_mw": 127.9,
     "viirs_cells": 11,
     "viirs_detections": 16
    },
    "night": {
-    "activity": 0.096,
+    "activity": 0.035,
     "passes": 1,
-    "frp_mw": 20.8,
-    "viirs_cells": 17,
-    "viirs_detections": 18
+    "frp_mw": 11.0,
+    "viirs_cells": 8,
+    "viirs_detections": 8
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-05-24": {
    "date": "2026-05-24",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.164,
-   "frp_mw": 31.2,
-   "viirs_cells": 18,
-   "viirs_detections": 21,
+   "activity": 0.062,
+   "frp_mw": 21.1,
+   "viirs_cells": 10,
+   "viirs_detections": 10,
    "day": {
     "activity": 0.0,
     "passes": 1,
@@ -219931,24 +219930,24 @@
     "viirs_detections": 1
    },
    "night": {
-    "activity": 0.164,
+    "activity": 0.062,
     "passes": 1,
-    "frp_mw": 23.0,
-    "viirs_cells": 17,
-    "viirs_detections": 20
+    "frp_mw": 12.8,
+    "viirs_cells": 9,
+    "viirs_detections": 9
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-05-25": {
    "date": "2026-05-25",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.363,
-   "frp_mw": 128.5,
-   "viirs_cells": 31,
-   "viirs_detections": 39,
+   "activity": 0.299,
+   "frp_mw": 109.2,
+   "viirs_cells": 15,
+   "viirs_detections": 20,
    "day": {
     "activity": 0.015,
     "passes": 1,
@@ -219957,76 +219956,76 @@
     "viirs_detections": 10
    },
    "night": {
-    "activity": 0.348,
+    "activity": 0.284,
     "passes": 2,
-    "frp_mw": 29.6,
-    "viirs_cells": 25,
-    "viirs_detections": 29
+    "frp_mw": 10.4,
+    "viirs_cells": 9,
+    "viirs_detections": 10
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-05-26": {
    "date": "2026-05-26",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.177,
-   "frp_mw": 122.3,
-   "viirs_cells": 31,
-   "viirs_detections": 36,
+   "activity": 0.138,
+   "frp_mw": 114.0,
+   "viirs_cells": 23,
+   "viirs_detections": 27,
    "day": {
-    "activity": 0.165,
+    "activity": 0.134,
     "passes": 2,
     "frp_mw": 108.7,
-    "viirs_cells": 20,
+    "viirs_cells": 19,
     "viirs_detections": 23
    },
    "night": {
-    "activity": 0.012,
-    "passes": 2,
-    "frp_mw": 13.6,
-    "viirs_cells": 11,
-    "viirs_detections": 13
+    "activity": 0.004,
+    "passes": 1,
+    "frp_mw": 5.3,
+    "viirs_cells": 4,
+    "viirs_detections": 4
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-05-27": {
    "date": "2026-05-27",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 3.997,
-   "frp_mw": 138.1,
-   "viirs_cells": 21,
-   "viirs_detections": 28,
+   "activity": 3.963,
+   "frp_mw": 119.2,
+   "viirs_cells": 9,
+   "viirs_detections": 13,
    "day": {
-    "activity": 3.984,
+    "activity": 3.963,
     "passes": 2,
-    "frp_mw": 122.6,
-    "viirs_cells": 10,
-    "viirs_detections": 14
+    "frp_mw": 118.2,
+    "viirs_cells": 8,
+    "viirs_detections": 12
    },
    "night": {
-    "activity": 0.013,
-    "passes": 2,
-    "frp_mw": 15.5,
-    "viirs_cells": 11,
-    "viirs_detections": 14
+    "activity": 0.0,
+    "passes": 1,
+    "frp_mw": 1.0,
+    "viirs_cells": 1,
+    "viirs_detections": 1
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-05-28": {
    "date": "2026-05-28",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.558,
-   "frp_mw": 123.2,
-   "viirs_cells": 28,
-   "viirs_detections": 32,
+   "activity": 0.479,
+   "frp_mw": 106.2,
+   "viirs_cells": 14,
+   "viirs_detections": 16,
    "day": {
     "activity": 0.477,
     "passes": 1,
@@ -220035,24 +220034,24 @@
     "viirs_detections": 13
    },
    "night": {
-    "activity": 0.081,
+    "activity": 0.002,
     "passes": 1,
-    "frp_mw": 19.4,
-    "viirs_cells": 17,
-    "viirs_detections": 19
+    "frp_mw": 2.4,
+    "viirs_cells": 3,
+    "viirs_detections": 3
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-05-29": {
    "date": "2026-05-29",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.007,
-   "frp_mw": 13.7,
-   "viirs_cells": 6,
-   "viirs_detections": 6,
+   "activity": 0.005,
+   "frp_mw": 11.9,
+   "viirs_cells": 4,
+   "viirs_detections": 4,
    "day": {
     "activity": 0.004,
     "passes": 1,
@@ -220061,66 +220060,66 @@
     "viirs_detections": 3
    },
    "night": {
-    "activity": 0.003,
+    "activity": 0.001,
     "passes": 1,
-    "frp_mw": 2.0,
-    "viirs_cells": 3,
-    "viirs_detections": 3
+    "frp_mw": 0.3,
+    "viirs_cells": 1,
+    "viirs_detections": 1
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-05-30": {
    "date": "2026-05-30",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 1.663,
-   "frp_mw": 317.7,
-   "viirs_cells": 33,
-   "viirs_detections": 48,
+   "activity": 1.668,
+   "frp_mw": 296.7,
+   "viirs_cells": 17,
+   "viirs_detections": 29,
    "day": {
-    "activity": 1.616,
+    "activity": 1.667,
     "passes": 1,
     "frp_mw": 294.0,
     "viirs_cells": 14,
     "viirs_detections": 26
    },
    "night": {
-    "activity": 0.047,
+    "activity": 0.001,
     "passes": 2,
-    "frp_mw": 23.7,
-    "viirs_cells": 19,
-    "viirs_detections": 22
+    "frp_mw": 2.6,
+    "viirs_cells": 3,
+    "viirs_detections": 3
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-05-31": {
    "date": "2026-05-31",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.553,
-   "frp_mw": 227.8,
-   "viirs_cells": 38,
-   "viirs_detections": 51,
+   "activity": 0.552,
+   "frp_mw": 205.5,
+   "viirs_cells": 18,
+   "viirs_detections": 27,
    "day": {
-    "activity": 0.509,
+    "activity": 0.552,
     "passes": 2,
     "frp_mw": 205.1,
     "viirs_cells": 17,
     "viirs_detections": 26
    },
    "night": {
-    "activity": 0.044,
-    "passes": 2,
-    "frp_mw": 22.7,
-    "viirs_cells": 21,
-    "viirs_detections": 25
+    "activity": 0.0,
+    "passes": 1,
+    "frp_mw": 0.5,
+    "viirs_cells": 1,
+    "viirs_detections": 1
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-06-02": {
@@ -220151,38 +220150,38 @@
   },
   "2026-06-03": {
    "date": "2026-06-03",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.183,
-   "frp_mw": 119.9,
-   "viirs_cells": 33,
-   "viirs_detections": 37,
+   "activity": 0.099,
+   "frp_mw": 99.5,
+   "viirs_cells": 12,
+   "viirs_detections": 13,
    "day": {
-    "activity": 0.097,
+    "activity": 0.098,
     "passes": 1,
-    "frp_mw": 104.2,
-    "viirs_cells": 12,
-    "viirs_detections": 13
+    "frp_mw": 98.6,
+    "viirs_cells": 11,
+    "viirs_detections": 12
    },
    "night": {
-    "activity": 0.086,
+    "activity": 0.001,
     "passes": 1,
-    "frp_mw": 15.8,
-    "viirs_cells": 21,
-    "viirs_detections": 24
+    "frp_mw": 0.8,
+    "viirs_cells": 1,
+    "viirs_detections": 1
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-06-04": {
    "date": "2026-06-04",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.108,
-   "frp_mw": 96.4,
-   "viirs_cells": 27,
-   "viirs_detections": 30,
+   "activity": 0.025,
+   "frp_mw": 75.6,
+   "viirs_cells": 10,
+   "viirs_detections": 11,
    "day": {
     "activity": 0.021,
     "passes": 1,
@@ -220191,76 +220190,76 @@
     "viirs_detections": 7
    },
    "night": {
-    "activity": 0.087,
-    "passes": 2,
-    "frp_mw": 24.5,
-    "viirs_cells": 21,
-    "viirs_detections": 23
+    "activity": 0.004,
+    "passes": 1,
+    "frp_mw": 3.7,
+    "viirs_cells": 4,
+    "viirs_detections": 4
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-06-05": {
    "date": "2026-06-05",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 6.224,
-   "frp_mw": 1198.5,
-   "viirs_cells": 50,
-   "viirs_detections": 69,
+   "activity": 7.292,
+   "frp_mw": 1189.3,
+   "viirs_cells": 41,
+   "viirs_detections": 60,
    "day": {
-    "activity": 6.175,
+    "activity": 7.263,
     "passes": 2,
     "frp_mw": 1166.8,
-    "viirs_cells": 33,
+    "viirs_cells": 32,
     "viirs_detections": 48
    },
    "night": {
-    "activity": 0.049,
+    "activity": 0.029,
     "passes": 2,
-    "frp_mw": 31.8,
-    "viirs_cells": 17,
-    "viirs_detections": 21
+    "frp_mw": 22.5,
+    "viirs_cells": 9,
+    "viirs_detections": 12
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-06-06": {
    "date": "2026-06-06",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.165,
-   "frp_mw": 88.9,
-   "viirs_cells": 25,
-   "viirs_detections": 30,
+   "activity": 0.201,
+   "frp_mw": 82.1,
+   "viirs_cells": 20,
+   "viirs_detections": 25,
    "day": {
     "activity": 0.011,
     "passes": 2,
-    "frp_mw": 52.9,
+    "frp_mw": 52.6,
     "viirs_cells": 5,
     "viirs_detections": 6
    },
    "night": {
-    "activity": 0.154,
+    "activity": 0.19,
     "passes": 2,
-    "frp_mw": 36.0,
-    "viirs_cells": 20,
-    "viirs_detections": 24
+    "frp_mw": 29.4,
+    "viirs_cells": 15,
+    "viirs_detections": 19
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-06-07": {
    "date": "2026-06-07",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.153,
-   "frp_mw": 42.5,
-   "viirs_cells": 23,
-   "viirs_detections": 24,
+   "activity": 0.031,
+   "frp_mw": 29.8,
+   "viirs_cells": 11,
+   "viirs_detections": 11,
    "day": {
     "activity": 0.001,
     "passes": 2,
@@ -220269,24 +220268,24 @@
     "viirs_detections": 4
    },
    "night": {
-    "activity": 0.152,
+    "activity": 0.03,
     "passes": 1,
-    "frp_mw": 19.1,
-    "viirs_cells": 19,
-    "viirs_detections": 20
+    "frp_mw": 6.4,
+    "viirs_cells": 7,
+    "viirs_detections": 7
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-06-08": {
    "date": "2026-06-08",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.046,
-   "frp_mw": 27.6,
-   "viirs_cells": 18,
-   "viirs_detections": 22,
+   "activity": 0.002,
+   "frp_mw": 11.0,
+   "viirs_cells": 3,
+   "viirs_detections": 3,
    "day": {
     "activity": 0.001,
     "passes": 1,
@@ -220295,24 +220294,24 @@
     "viirs_detections": 2
    },
    "night": {
-    "activity": 0.045,
+    "activity": 0.001,
     "passes": 1,
-    "frp_mw": 17.3,
-    "viirs_cells": 16,
-    "viirs_detections": 20
+    "frp_mw": 0.7,
+    "viirs_cells": 1,
+    "viirs_detections": 1
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-06-09": {
    "date": "2026-06-09",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.366,
-   "frp_mw": 84.3,
-   "viirs_cells": 30,
-   "viirs_detections": 34,
+   "activity": 0.111,
+   "frp_mw": 66.7,
+   "viirs_cells": 11,
+   "viirs_detections": 13,
    "day": {
     "activity": 0.029,
     "passes": 1,
@@ -220321,24 +220320,24 @@
     "viirs_detections": 4
    },
    "night": {
-    "activity": 0.337,
+    "activity": 0.082,
     "passes": 1,
-    "frp_mw": 27.2,
-    "viirs_cells": 27,
-    "viirs_detections": 30
+    "frp_mw": 9.6,
+    "viirs_cells": 8,
+    "viirs_detections": 9
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-06-10": {
    "date": "2026-06-10",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.3,
-   "frp_mw": 202.0,
-   "viirs_cells": 36,
-   "viirs_detections": 43,
+   "activity": 0.272,
+   "frp_mw": 184.3,
+   "viirs_cells": 20,
+   "viirs_detections": 25,
    "day": {
     "activity": 0.26,
     "passes": 1,
@@ -220347,128 +220346,128 @@
     "viirs_detections": 16
    },
    "night": {
-    "activity": 0.04,
+    "activity": 0.012,
     "passes": 2,
-    "frp_mw": 35.4,
-    "viirs_cells": 23,
-    "viirs_detections": 27
+    "frp_mw": 17.7,
+    "viirs_cells": 7,
+    "viirs_detections": 9
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-06-11": {
    "date": "2026-06-11",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.573,
-   "frp_mw": 511.9,
-   "viirs_cells": 27,
-   "viirs_detections": 40,
+   "activity": 0.856,
+   "frp_mw": 498.2,
+   "viirs_cells": 16,
+   "viirs_detections": 27,
    "day": {
-    "activity": 0.324,
+    "activity": 0.336,
     "passes": 2,
     "frp_mw": 427.2,
     "viirs_cells": 12,
     "viirs_detections": 17
    },
    "night": {
-    "activity": 0.249,
+    "activity": 0.52,
     "passes": 2,
-    "frp_mw": 84.8,
-    "viirs_cells": 15,
-    "viirs_detections": 23
+    "frp_mw": 71.0,
+    "viirs_cells": 4,
+    "viirs_detections": 10
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-06-12": {
    "date": "2026-06-12",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.717,
-   "frp_mw": 500.8,
-   "viirs_cells": 47,
-   "viirs_detections": 61,
+   "activity": 0.783,
+   "frp_mw": 466.2,
+   "viirs_cells": 30,
+   "viirs_detections": 39,
    "day": {
-    "activity": 0.57,
+    "activity": 0.576,
     "passes": 2,
-    "frp_mw": 431.1,
-    "viirs_cells": 28,
-    "viirs_detections": 35
+    "frp_mw": 422.2,
+    "viirs_cells": 27,
+    "viirs_detections": 34
    },
    "night": {
-    "activity": 0.147,
-    "passes": 2,
-    "frp_mw": 69.8,
-    "viirs_cells": 19,
-    "viirs_detections": 26
+    "activity": 0.207,
+    "passes": 1,
+    "frp_mw": 43.9,
+    "viirs_cells": 3,
+    "viirs_detections": 5
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-06-13": {
    "date": "2026-06-13",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.571,
-   "frp_mw": 124.4,
-   "viirs_cells": 33,
-   "viirs_detections": 37,
+   "activity": 0.396,
+   "frp_mw": 105.5,
+   "viirs_cells": 15,
+   "viirs_detections": 16,
    "day": {
-    "activity": 0.378,
+    "activity": 0.365,
     "passes": 2,
     "frp_mw": 100.2,
     "viirs_cells": 7,
     "viirs_detections": 8
    },
    "night": {
-    "activity": 0.193,
+    "activity": 0.031,
     "passes": 1,
-    "frp_mw": 24.2,
-    "viirs_cells": 26,
-    "viirs_detections": 29
+    "frp_mw": 5.2,
+    "viirs_cells": 8,
+    "viirs_detections": 8
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-06-14": {
    "date": "2026-06-14",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 3.643,
-   "frp_mw": 400.8,
-   "viirs_cells": 30,
-   "viirs_detections": 32,
+   "activity": 3.524,
+   "frp_mw": 388.0,
+   "viirs_cells": 15,
+   "viirs_detections": 17,
    "day": {
-    "activity": 3.527,
+    "activity": 3.49,
     "passes": 1,
     "frp_mw": 377.2,
     "viirs_cells": 8,
     "viirs_detections": 9
    },
    "night": {
-    "activity": 0.116,
+    "activity": 0.034,
     "passes": 1,
-    "frp_mw": 23.6,
-    "viirs_cells": 22,
-    "viirs_detections": 23
+    "frp_mw": 10.8,
+    "viirs_cells": 7,
+    "viirs_detections": 8
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-06-15": {
    "date": "2026-06-15",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.117,
-   "frp_mw": 126.5,
-   "viirs_cells": 28,
-   "viirs_detections": 33,
+   "activity": 0.068,
+   "frp_mw": 110.1,
+   "viirs_cells": 13,
+   "viirs_detections": 16,
    "day": {
     "activity": 0.067,
     "passes": 1,
@@ -220477,24 +220476,24 @@
     "viirs_detections": 10
    },
    "night": {
-    "activity": 0.05,
+    "activity": 0.001,
     "passes": 2,
-    "frp_mw": 28.4,
-    "viirs_cells": 19,
-    "viirs_detections": 23
+    "frp_mw": 12.0,
+    "viirs_cells": 4,
+    "viirs_detections": 6
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-06-16": {
    "date": "2026-06-16",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 1.962,
-   "frp_mw": 621.5,
-   "viirs_cells": 58,
-   "viirs_detections": 95,
+   "activity": 2.027,
+   "frp_mw": 606.5,
+   "viirs_cells": 43,
+   "viirs_detections": 78,
    "day": {
     "activity": 0.751,
     "passes": 2,
@@ -220503,76 +220502,76 @@
     "viirs_detections": 29
    },
    "night": {
-    "activity": 1.211,
+    "activity": 1.276,
     "passes": 2,
-    "frp_mw": 316.6,
-    "viirs_cells": 37,
-    "viirs_detections": 66
+    "frp_mw": 301.6,
+    "viirs_cells": 22,
+    "viirs_detections": 49
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-06-17": {
    "date": "2026-06-17",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
    "activity": 0.723,
-   "frp_mw": 281.8,
-   "viirs_cells": 36,
-   "viirs_detections": 48,
+   "frp_mw": 268.0,
+   "viirs_cells": 28,
+   "viirs_detections": 36,
    "day": {
-    "activity": 0.699,
+    "activity": 0.692,
     "passes": 2,
     "frp_mw": 262.0,
     "viirs_cells": 23,
     "viirs_detections": 31
    },
    "night": {
-    "activity": 0.024,
+    "activity": 0.031,
     "passes": 2,
-    "frp_mw": 19.7,
-    "viirs_cells": 13,
-    "viirs_detections": 17
+    "frp_mw": 5.9,
+    "viirs_cells": 5,
+    "viirs_detections": 5
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-06-18": {
    "date": "2026-06-18",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.881,
-   "frp_mw": 237.6,
-   "viirs_cells": 22,
-   "viirs_detections": 28,
+   "activity": 0.882,
+   "frp_mw": 231.0,
+   "viirs_cells": 17,
+   "viirs_detections": 22,
    "day": {
-    "activity": 0.874,
+    "activity": 0.881,
     "passes": 1,
-    "frp_mw": 230.9,
+    "frp_mw": 230.5,
     "viirs_cells": 16,
     "viirs_detections": 21
    },
    "night": {
-    "activity": 0.007,
+    "activity": 0.001,
     "passes": 1,
-    "frp_mw": 6.7,
-    "viirs_cells": 6,
-    "viirs_detections": 7
+    "frp_mw": 0.4,
+    "viirs_cells": 1,
+    "viirs_detections": 1
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-06-19": {
    "date": "2026-06-19",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 1.333,
-   "frp_mw": 293.9,
-   "viirs_cells": 31,
-   "viirs_detections": 47,
+   "activity": 0.569,
+   "frp_mw": 285.3,
+   "viirs_cells": 21,
+   "viirs_detections": 37,
    "day": {
     "activity": 0.026,
     "passes": 1,
@@ -220581,50 +220580,50 @@
     "viirs_detections": 10
    },
    "night": {
-    "activity": 1.307,
+    "activity": 0.543,
     "passes": 1,
-    "frp_mw": 234.0,
-    "viirs_cells": 22,
-    "viirs_detections": 37
+    "frp_mw": 225.5,
+    "viirs_cells": 12,
+    "viirs_detections": 27
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-06-20": {
    "date": "2026-06-20",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.104,
-   "frp_mw": 190.2,
-   "viirs_cells": 29,
-   "viirs_detections": 35,
+   "activity": 0.048,
+   "frp_mw": 171.3,
+   "viirs_cells": 12,
+   "viirs_detections": 18,
    "day": {
-    "activity": 0.044,
+    "activity": 0.045,
     "passes": 1,
     "frp_mw": 168.0,
     "viirs_cells": 8,
     "viirs_detections": 14
    },
    "night": {
-    "activity": 0.06,
+    "activity": 0.003,
     "passes": 1,
-    "frp_mw": 22.2,
-    "viirs_cells": 21,
-    "viirs_detections": 21
+    "frp_mw": 3.4,
+    "viirs_cells": 4,
+    "viirs_detections": 4
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-06-21": {
    "date": "2026-06-21",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.158,
-   "frp_mw": 103.3,
-   "viirs_cells": 29,
-   "viirs_detections": 35,
+   "activity": 0.041,
+   "frp_mw": 82.5,
+   "viirs_cells": 13,
+   "viirs_detections": 16,
    "day": {
     "activity": 0.025,
     "passes": 1,
@@ -220633,24 +220632,24 @@
     "viirs_detections": 10
    },
    "night": {
-    "activity": 0.133,
-    "passes": 2,
-    "frp_mw": 27.9,
-    "viirs_cells": 22,
-    "viirs_detections": 25
+    "activity": 0.016,
+    "passes": 1,
+    "frp_mw": 7.1,
+    "viirs_cells": 6,
+    "viirs_detections": 6
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-06-22": {
    "date": "2026-06-22",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.197,
-   "frp_mw": 281.9,
-   "viirs_cells": 26,
-   "viirs_detections": 34,
+   "activity": 0.196,
+   "frp_mw": 278.3,
+   "viirs_cells": 23,
+   "viirs_detections": 31,
    "day": {
     "activity": 0.195,
     "passes": 2,
@@ -220659,24 +220658,24 @@
     "viirs_detections": 28
    },
    "night": {
-    "activity": 0.002,
+    "activity": 0.001,
     "passes": 2,
-    "frp_mw": 6.2,
-    "viirs_cells": 6,
-    "viirs_detections": 6
+    "frp_mw": 2.5,
+    "viirs_cells": 3,
+    "viirs_detections": 3
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-06-23": {
    "date": "2026-06-23",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.162,
-   "frp_mw": 194.0,
-   "viirs_cells": 32,
-   "viirs_detections": 40,
+   "activity": 0.129,
+   "frp_mw": 180.5,
+   "viirs_cells": 20,
+   "viirs_detections": 25,
    "day": {
     "activity": 0.108,
     "passes": 2,
@@ -220685,50 +220684,50 @@
     "viirs_detections": 21
    },
    "night": {
-    "activity": 0.054,
+    "activity": 0.021,
     "passes": 1,
-    "frp_mw": 16.0,
-    "viirs_cells": 16,
-    "viirs_detections": 19
+    "frp_mw": 2.5,
+    "viirs_cells": 4,
+    "viirs_detections": 4
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-06-24": {
    "date": "2026-06-24",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.408,
-   "frp_mw": 132.3,
-   "viirs_cells": 37,
-   "viirs_detections": 41,
+   "activity": 0.295,
+   "frp_mw": 114.7,
+   "viirs_cells": 18,
+   "viirs_detections": 18,
    "day": {
-    "activity": 0.282,
+    "activity": 0.28,
     "passes": 1,
     "frp_mw": 105.9,
     "viirs_cells": 9,
     "viirs_detections": 9
    },
    "night": {
-    "activity": 0.126,
+    "activity": 0.015,
     "passes": 1,
-    "frp_mw": 26.4,
-    "viirs_cells": 28,
-    "viirs_detections": 32
+    "frp_mw": 8.8,
+    "viirs_cells": 9,
+    "viirs_detections": 9
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-06-25": {
    "date": "2026-06-25",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.017,
-   "frp_mw": 57.8,
-   "viirs_cells": 12,
-   "viirs_detections": 14,
+   "activity": 0.004,
+   "frp_mw": 48.5,
+   "viirs_cells": 4,
+   "viirs_detections": 5,
    "day": {
     "activity": 0.003,
     "passes": 1,
@@ -220737,154 +220736,154 @@
     "viirs_detections": 3
    },
    "night": {
-    "activity": 0.014,
+    "activity": 0.001,
     "passes": 1,
-    "frp_mw": 10.6,
-    "viirs_cells": 10,
-    "viirs_detections": 11
+    "frp_mw": 1.3,
+    "viirs_cells": 2,
+    "viirs_detections": 2
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-06-26": {
    "date": "2026-06-26",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.071,
-   "frp_mw": 130.2,
-   "viirs_cells": 18,
-   "viirs_detections": 19,
+   "activity": 0.065,
+   "frp_mw": 121.3,
+   "viirs_cells": 11,
+   "viirs_detections": 12,
    "day": {
-    "activity": 0.066,
+    "activity": 0.065,
     "passes": 1,
     "frp_mw": 121.0,
     "viirs_cells": 10,
     "viirs_detections": 11
    },
    "night": {
-    "activity": 0.005,
-    "passes": 2,
-    "frp_mw": 9.2,
-    "viirs_cells": 8,
-    "viirs_detections": 8
+    "activity": 0.0,
+    "passes": 1,
+    "frp_mw": 0.3,
+    "viirs_cells": 1,
+    "viirs_detections": 1
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-06-27": {
    "date": "2026-06-27",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.09,
-   "frp_mw": 549.3,
-   "viirs_cells": 20,
-   "viirs_detections": 25,
+   "activity": 0.088,
+   "frp_mw": 543.6,
+   "viirs_cells": 16,
+   "viirs_detections": 20,
    "day": {
-    "activity": 0.089,
+    "activity": 0.088,
     "passes": 2,
     "frp_mw": 543.6,
     "viirs_cells": 16,
     "viirs_detections": 20
    },
    "night": {
-    "activity": 0.001,
-    "passes": 2,
-    "frp_mw": 5.7,
-    "viirs_cells": 4,
-    "viirs_detections": 5
+    "activity": 0,
+    "passes": 0,
+    "frp_mw": 0,
+    "viirs_cells": 0,
+    "viirs_detections": 0
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-06-28": {
    "date": "2026-06-28",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.751,
-   "frp_mw": 219.2,
-   "viirs_cells": 18,
-   "viirs_detections": 23,
+   "activity": 0.492,
+   "frp_mw": 210.9,
+   "viirs_cells": 11,
+   "viirs_detections": 14,
    "day": {
-    "activity": 0.72,
+    "activity": 0.475,
     "passes": 2,
     "frp_mw": 204.3,
     "viirs_cells": 7,
     "viirs_detections": 10
    },
    "night": {
-    "activity": 0.031,
-    "passes": 2,
-    "frp_mw": 14.8,
-    "viirs_cells": 11,
-    "viirs_detections": 13
+    "activity": 0.017,
+    "passes": 1,
+    "frp_mw": 6.5,
+    "viirs_cells": 4,
+    "viirs_detections": 4
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-06-29": {
    "date": "2026-06-29",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.099,
-   "frp_mw": 66.7,
-   "viirs_cells": 28,
-   "viirs_detections": 31,
+   "activity": 0.02,
+   "frp_mw": 43.4,
+   "viirs_cells": 9,
+   "viirs_detections": 9,
    "day": {
     "activity": 0.02,
     "passes": 2,
-    "frp_mw": 46.3,
-    "viirs_cells": 9,
-    "viirs_detections": 9
+    "frp_mw": 42.1,
+    "viirs_cells": 8,
+    "viirs_detections": 8
    },
    "night": {
-    "activity": 0.079,
+    "activity": 0.0,
     "passes": 1,
-    "frp_mw": 20.4,
-    "viirs_cells": 19,
-    "viirs_detections": 22
+    "frp_mw": 1.3,
+    "viirs_cells": 1,
+    "viirs_detections": 1
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-06-30": {
    "date": "2026-06-30",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.211,
-   "frp_mw": 66.2,
-   "viirs_cells": 15,
-   "viirs_detections": 19,
+   "activity": 0.178,
+   "frp_mw": 56.2,
+   "viirs_cells": 4,
+   "viirs_detections": 7,
    "day": {
-    "activity": 0.179,
+    "activity": 0.178,
     "passes": 1,
     "frp_mw": 56.2,
     "viirs_cells": 4,
     "viirs_detections": 7
    },
    "night": {
-    "activity": 0.032,
-    "passes": 1,
-    "frp_mw": 9.9,
-    "viirs_cells": 11,
-    "viirs_detections": 12
+    "activity": 0,
+    "passes": 0,
+    "frp_mw": 0,
+    "viirs_cells": 0,
+    "viirs_detections": 0
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-07-01": {
    "date": "2026-07-01",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.022,
-   "frp_mw": 68.2,
-   "viirs_cells": 12,
-   "viirs_detections": 15,
+   "activity": 0.019,
+   "frp_mw": 60.8,
+   "viirs_cells": 7,
+   "viirs_detections": 8,
    "day": {
     "activity": 0.019,
     "passes": 1,
@@ -220893,128 +220892,128 @@
     "viirs_detections": 6
    },
    "night": {
-    "activity": 0.003,
-    "passes": 2,
-    "frp_mw": 9.1,
-    "viirs_cells": 6,
-    "viirs_detections": 9
+    "activity": 0.0,
+    "passes": 1,
+    "frp_mw": 1.8,
+    "viirs_cells": 1,
+    "viirs_detections": 2
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-07-02": {
    "date": "2026-07-02",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.413,
-   "frp_mw": 714.3,
-   "viirs_cells": 37,
-   "viirs_detections": 54,
+   "activity": 0.409,
+   "frp_mw": 705.7,
+   "viirs_cells": 30,
+   "viirs_detections": 45,
    "day": {
-    "activity": 0.391,
+    "activity": 0.398,
     "passes": 2,
     "frp_mw": 692.2,
     "viirs_cells": 21,
     "viirs_detections": 33
    },
    "night": {
-    "activity": 0.022,
+    "activity": 0.011,
     "passes": 2,
-    "frp_mw": 22.2,
-    "viirs_cells": 16,
-    "viirs_detections": 21
+    "frp_mw": 13.6,
+    "viirs_cells": 9,
+    "viirs_detections": 12
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-07-03": {
    "date": "2026-07-03",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.274,
-   "frp_mw": 153.7,
-   "viirs_cells": 32,
-   "viirs_detections": 45,
+   "activity": 0.061,
+   "frp_mw": 132.7,
+   "viirs_cells": 13,
+   "viirs_detections": 20,
    "day": {
-    "activity": 0.036,
+    "activity": 0.035,
     "passes": 2,
     "frp_mw": 88.2,
     "viirs_cells": 6,
     "viirs_detections": 8
    },
    "night": {
-    "activity": 0.238,
+    "activity": 0.026,
     "passes": 2,
-    "frp_mw": 65.5,
-    "viirs_cells": 26,
-    "viirs_detections": 37
+    "frp_mw": 44.5,
+    "viirs_cells": 7,
+    "viirs_detections": 12
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-07-04": {
    "date": "2026-07-04",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.096,
-   "frp_mw": 40.8,
-   "viirs_cells": 16,
-   "viirs_detections": 18,
+   "activity": 0.005,
+   "frp_mw": 20.4,
+   "viirs_cells": 2,
+   "viirs_detections": 2,
    "day": {
-    "activity": 0.008,
+    "activity": 0.005,
     "passes": 1,
-    "frp_mw": 28.6,
-    "viirs_cells": 4,
-    "viirs_detections": 4
+    "frp_mw": 20.4,
+    "viirs_cells": 2,
+    "viirs_detections": 2
    },
    "night": {
-    "activity": 0.088,
-    "passes": 1,
-    "frp_mw": 12.2,
-    "viirs_cells": 12,
-    "viirs_detections": 14
+    "activity": 0,
+    "passes": 0,
+    "frp_mw": 0,
+    "viirs_cells": 0,
+    "viirs_detections": 0
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-07-05": {
    "date": "2026-07-05",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.045,
-   "frp_mw": 24.2,
-   "viirs_cells": 15,
-   "viirs_detections": 16,
+   "activity": 0.001,
+   "frp_mw": 11.6,
+   "viirs_cells": 2,
+   "viirs_detections": 2,
    "day": {
-    "activity": 0.002,
+    "activity": 0.001,
     "passes": 1,
-    "frp_mw": 15.2,
-    "viirs_cells": 3,
-    "viirs_detections": 3
+    "frp_mw": 11.6,
+    "viirs_cells": 2,
+    "viirs_detections": 2
    },
    "night": {
-    "activity": 0.043,
-    "passes": 1,
-    "frp_mw": 9.0,
-    "viirs_cells": 12,
-    "viirs_detections": 13
+    "activity": 0,
+    "passes": 0,
+    "frp_mw": 0,
+    "viirs_cells": 0,
+    "viirs_detections": 0
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-07-06": {
    "date": "2026-07-06",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.083,
-   "frp_mw": 72.0,
-   "viirs_cells": 28,
-   "viirs_detections": 30,
+   "activity": 0.022,
+   "frp_mw": 52.6,
+   "viirs_cells": 10,
+   "viirs_detections": 10,
    "day": {
     "activity": 0.019,
     "passes": 1,
@@ -221023,102 +221022,102 @@
     "viirs_detections": 5
    },
    "night": {
-    "activity": 0.064,
+    "activity": 0.003,
     "passes": 2,
-    "frp_mw": 23.5,
-    "viirs_cells": 23,
-    "viirs_detections": 25
+    "frp_mw": 4.0,
+    "viirs_cells": 5,
+    "viirs_detections": 5
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-07-07": {
    "date": "2026-07-07",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 1.265,
-   "frp_mw": 686.0,
-   "viirs_cells": 36,
-   "viirs_detections": 47,
+   "activity": 1.381,
+   "frp_mw": 668.3,
+   "viirs_cells": 29,
+   "viirs_detections": 34,
    "day": {
-    "activity": 1.242,
+    "activity": 1.367,
     "passes": 2,
     "frp_mw": 660.2,
-    "viirs_cells": 20,
+    "viirs_cells": 21,
     "viirs_detections": 24
    },
    "night": {
-    "activity": 0.023,
+    "activity": 0.014,
     "passes": 2,
-    "frp_mw": 25.8,
-    "viirs_cells": 16,
-    "viirs_detections": 23
+    "frp_mw": 8.1,
+    "viirs_cells": 8,
+    "viirs_detections": 10
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-07-08": {
    "date": "2026-07-08",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 2.292,
-   "frp_mw": 673.3,
-   "viirs_cells": 62,
-   "viirs_detections": 81,
+   "activity": 2.551,
+   "frp_mw": 657.5,
+   "viirs_cells": 48,
+   "viirs_detections": 64,
    "day": {
-    "activity": 2.047,
+    "activity": 2.435,
     "passes": 2,
     "frp_mw": 644.5,
-    "viirs_cells": 35,
+    "viirs_cells": 34,
     "viirs_detections": 46
    },
    "night": {
-    "activity": 0.245,
+    "activity": 0.116,
     "passes": 2,
-    "frp_mw": 28.8,
-    "viirs_cells": 27,
-    "viirs_detections": 35
+    "frp_mw": 13.0,
+    "viirs_cells": 14,
+    "viirs_detections": 18
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-07-09": {
    "date": "2026-07-09",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 1.087,
-   "frp_mw": 601.0,
-   "viirs_cells": 45,
-   "viirs_detections": 61,
+   "activity": 0.966,
+   "frp_mw": 587.8,
+   "viirs_cells": 36,
+   "viirs_detections": 51,
    "day": {
-    "activity": 1.029,
+    "activity": 0.933,
     "passes": 2,
-    "frp_mw": 564.7,
-    "viirs_cells": 25,
+    "frp_mw": 564.6,
+    "viirs_cells": 24,
     "viirs_detections": 36
    },
    "night": {
-    "activity": 0.058,
+    "activity": 0.033,
     "passes": 1,
-    "frp_mw": 36.4,
-    "viirs_cells": 20,
-    "viirs_detections": 25
+    "frp_mw": 23.1,
+    "viirs_cells": 12,
+    "viirs_detections": 15
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-07-10": {
    "date": "2026-07-10",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.141,
-   "frp_mw": 23.7,
-   "viirs_cells": 25,
-   "viirs_detections": 27,
+   "activity": 0.026,
+   "frp_mw": 6.0,
+   "viirs_cells": 7,
+   "viirs_detections": 8,
    "day": {
     "activity": 0,
     "passes": 0,
@@ -221127,14 +221126,14 @@
     "viirs_detections": 0
    },
    "night": {
-    "activity": 0.141,
+    "activity": 0.026,
     "passes": 1,
-    "frp_mw": 23.7,
-    "viirs_cells": 25,
-    "viirs_detections": 27
+    "frp_mw": 6.0,
+    "viirs_cells": 7,
+    "viirs_detections": 8
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-07-16": {
@@ -221165,12 +221164,12 @@
   },
   "2026-07-17": {
    "date": "2026-07-17",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.825,
-   "frp_mw": 222.5,
-   "viirs_cells": 53,
-   "viirs_detections": 66,
+   "activity": 0.862,
+   "frp_mw": 199.4,
+   "viirs_cells": 31,
+   "viirs_detections": 44,
    "day": {
     "activity": 0.025,
     "passes": 1,
@@ -221179,232 +221178,232 @@
     "viirs_detections": 6
    },
    "night": {
-    "activity": 0.8,
+    "activity": 0.837,
     "passes": 2,
-    "frp_mw": 124.1,
-    "viirs_cells": 48,
-    "viirs_detections": 60
+    "frp_mw": 100.9,
+    "viirs_cells": 26,
+    "viirs_detections": 38
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-07-18": {
    "date": "2026-07-18",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 4.003,
-   "frp_mw": 1604.9,
-   "viirs_cells": 37,
-   "viirs_detections": 58,
+   "activity": 3.8,
+   "frp_mw": 1595.7,
+   "viirs_cells": 32,
+   "viirs_detections": 51,
    "day": {
-    "activity": 3.964,
+    "activity": 3.739,
     "passes": 2,
     "frp_mw": 1579.1,
-    "viirs_cells": 27,
+    "viirs_cells": 28,
     "viirs_detections": 37
    },
    "night": {
-    "activity": 0.039,
-    "passes": 2,
-    "frp_mw": 25.8,
-    "viirs_cells": 10,
-    "viirs_detections": 21
+    "activity": 0.061,
+    "passes": 1,
+    "frp_mw": 16.6,
+    "viirs_cells": 4,
+    "viirs_detections": 14
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-07-19": {
    "date": "2026-07-19",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 2.373,
-   "frp_mw": 820.3,
-   "viirs_cells": 43,
-   "viirs_detections": 75,
+   "activity": 2.478,
+   "frp_mw": 816.0,
+   "viirs_cells": 40,
+   "viirs_detections": 71,
    "day": {
-    "activity": 2.227,
+    "activity": 2.219,
     "passes": 2,
     "frp_mw": 780.3,
     "viirs_cells": 28,
     "viirs_detections": 49
    },
    "night": {
-    "activity": 0.146,
+    "activity": 0.259,
     "passes": 1,
-    "frp_mw": 40.0,
-    "viirs_cells": 15,
-    "viirs_detections": 26
+    "frp_mw": 35.7,
+    "viirs_cells": 12,
+    "viirs_detections": 22
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-07-20": {
    "date": "2026-07-20",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 12.719,
-   "frp_mw": 3175.5,
-   "viirs_cells": 74,
-   "viirs_detections": 129,
+   "activity": 12.472,
+   "frp_mw": 3166.6,
+   "viirs_cells": 66,
+   "viirs_detections": 122,
    "day": {
-    "activity": 12.691,
+    "activity": 12.47,
     "passes": 2,
-    "frp_mw": 3164.6,
-    "viirs_cells": 64,
+    "frp_mw": 3163.9,
+    "viirs_cells": 63,
     "viirs_detections": 119
    },
    "night": {
-    "activity": 0.028,
+    "activity": 0.002,
     "passes": 1,
-    "frp_mw": 10.9,
-    "viirs_cells": 10,
-    "viirs_detections": 10
+    "frp_mw": 2.7,
+    "viirs_cells": 3,
+    "viirs_detections": 3
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-07-21": {
    "date": "2026-07-21",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.668,
-   "frp_mw": 432.5,
-   "viirs_cells": 47,
-   "viirs_detections": 66,
+   "activity": 0.698,
+   "frp_mw": 412.0,
+   "viirs_cells": 27,
+   "viirs_detections": 44,
    "day": {
-    "activity": 0.392,
+    "activity": 0.347,
     "passes": 1,
-    "frp_mw": 350.3,
-    "viirs_cells": 14,
-    "viirs_detections": 21
+    "frp_mw": 348.0,
+    "viirs_cells": 13,
+    "viirs_detections": 20
    },
    "night": {
-    "activity": 0.276,
+    "activity": 0.351,
     "passes": 1,
-    "frp_mw": 82.2,
-    "viirs_cells": 33,
-    "viirs_detections": 45
+    "frp_mw": 64.0,
+    "viirs_cells": 14,
+    "viirs_detections": 24
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-07-22": {
    "date": "2026-07-22",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 1.394,
-   "frp_mw": 269.2,
-   "viirs_cells": 52,
-   "viirs_detections": 75,
+   "activity": 1.395,
+   "frp_mw": 248.4,
+   "viirs_cells": 30,
+   "viirs_detections": 52,
    "day": {
-    "activity": 0.179,
+    "activity": 0.058,
     "passes": 1,
     "frp_mw": 169.8,
     "viirs_cells": 6,
     "viirs_detections": 8
    },
    "night": {
-    "activity": 1.215,
+    "activity": 1.337,
     "passes": 2,
-    "frp_mw": 99.4,
-    "viirs_cells": 46,
-    "viirs_detections": 67
+    "frp_mw": 78.6,
+    "viirs_cells": 24,
+    "viirs_detections": 44
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-07-23": {
    "date": "2026-07-23",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 1.611,
-   "frp_mw": 1289.3,
-   "viirs_cells": 51,
-   "viirs_detections": 80,
+   "activity": 0.999,
+   "frp_mw": 1244.5,
+   "viirs_cells": 32,
+   "viirs_detections": 61,
    "day": {
-    "activity": 1.4,
+    "activity": 0.613,
     "passes": 2,
-    "frp_mw": 1104.3,
-    "viirs_cells": 21,
-    "viirs_detections": 34
+    "frp_mw": 1077.5,
+    "viirs_cells": 18,
+    "viirs_detections": 31
    },
    "night": {
-    "activity": 0.211,
+    "activity": 0.386,
     "passes": 2,
-    "frp_mw": 185.0,
-    "viirs_cells": 30,
-    "viirs_detections": 46
+    "frp_mw": 167.0,
+    "viirs_cells": 14,
+    "viirs_detections": 30
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-07-24": {
    "date": "2026-07-24",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 1.028,
-   "frp_mw": 808.0,
-   "viirs_cells": 78,
-   "viirs_detections": 111,
+   "activity": 1.512,
+   "frp_mw": 780.5,
+   "viirs_cells": 59,
+   "viirs_detections": 86,
    "day": {
-    "activity": 0.294,
+    "activity": 0.296,
     "passes": 2,
     "frp_mw": 588.8,
     "viirs_cells": 28,
     "viirs_detections": 38
    },
    "night": {
-    "activity": 0.734,
+    "activity": 1.216,
     "passes": 2,
-    "frp_mw": 219.2,
-    "viirs_cells": 50,
-    "viirs_detections": 73
+    "frp_mw": 191.7,
+    "viirs_cells": 31,
+    "viirs_detections": 48
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-07-25": {
    "date": "2026-07-25",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 1.577,
-   "frp_mw": 1155.6,
-   "viirs_cells": 58,
-   "viirs_detections": 88,
+   "activity": 1.419,
+   "frp_mw": 1136.5,
+   "viirs_cells": 41,
+   "viirs_detections": 71,
    "day": {
-    "activity": 1.061,
+    "activity": 1.046,
     "passes": 2,
     "frp_mw": 978.7,
     "viirs_cells": 24,
     "viirs_detections": 42
    },
    "night": {
-    "activity": 0.516,
+    "activity": 0.373,
     "passes": 1,
-    "frp_mw": 177.0,
-    "viirs_cells": 34,
-    "viirs_detections": 46
+    "frp_mw": 157.9,
+    "viirs_cells": 17,
+    "viirs_detections": 29
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-07-26": {
    "date": "2026-07-26",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.308,
-   "frp_mw": 114.1,
-   "viirs_cells": 35,
-   "viirs_detections": 35,
+   "activity": 0.138,
+   "frp_mw": 93.4,
+   "viirs_cells": 14,
+   "viirs_detections": 14,
    "day": {
     "activity": 0.068,
     "passes": 1,
@@ -221413,76 +221412,76 @@
     "viirs_detections": 5
    },
    "night": {
-    "activity": 0.24,
+    "activity": 0.07,
     "passes": 1,
-    "frp_mw": 28.9,
-    "viirs_cells": 30,
-    "viirs_detections": 30
+    "frp_mw": 8.3,
+    "viirs_cells": 9,
+    "viirs_detections": 9
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-07-27": {
    "date": "2026-07-27",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 1.153,
-   "frp_mw": 166.0,
-   "viirs_cells": 37,
-   "viirs_detections": 56,
+   "activity": 0.871,
+   "frp_mw": 144.1,
+   "viirs_cells": 15,
+   "viirs_detections": 31,
    "day": {
-    "activity": 0.807,
+    "activity": 0.817,
     "passes": 1,
     "frp_mw": 113.8,
     "viirs_cells": 4,
     "viirs_detections": 7
    },
    "night": {
-    "activity": 0.346,
+    "activity": 0.054,
     "passes": 2,
-    "frp_mw": 52.2,
-    "viirs_cells": 33,
-    "viirs_detections": 49
+    "frp_mw": 30.3,
+    "viirs_cells": 11,
+    "viirs_detections": 24
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-07-28": {
    "date": "2026-07-28",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 3.487,
-   "frp_mw": 1087.6,
-   "viirs_cells": 74,
-   "viirs_detections": 118,
+   "activity": 4.613,
+   "frp_mw": 1069.1,
+   "viirs_cells": 56,
+   "viirs_detections": 99,
    "day": {
-    "activity": 1.536,
+    "activity": 1.514,
     "passes": 1,
     "frp_mw": 826.0,
     "viirs_cells": 14,
     "viirs_detections": 16
    },
    "night": {
-    "activity": 1.951,
+    "activity": 3.099,
     "passes": 2,
-    "frp_mw": 261.6,
-    "viirs_cells": 60,
-    "viirs_detections": 102
+    "frp_mw": 243.1,
+    "viirs_cells": 42,
+    "viirs_detections": 83
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-07-29": {
    "date": "2026-07-29",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.572,
-   "frp_mw": 424.3,
-   "viirs_cells": 42,
-   "viirs_detections": 64,
+   "activity": 0.599,
+   "frp_mw": 410.5,
+   "viirs_cells": 31,
+   "viirs_detections": 51,
    "day": {
     "activity": 0.374,
     "passes": 2,
@@ -221491,50 +221490,50 @@
     "viirs_detections": 26
    },
    "night": {
-    "activity": 0.198,
+    "activity": 0.225,
     "passes": 2,
-    "frp_mw": 78.1,
-    "viirs_cells": 23,
-    "viirs_detections": 38
+    "frp_mw": 64.2,
+    "viirs_cells": 12,
+    "viirs_detections": 25
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-07-30": {
    "date": "2026-07-30",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 3.814,
-   "frp_mw": 494.4,
-   "viirs_cells": 34,
-   "viirs_detections": 46,
+   "activity": 3.797,
+   "frp_mw": 484.0,
+   "viirs_cells": 26,
+   "viirs_detections": 36,
    "day": {
-    "activity": 3.79,
+    "activity": 3.789,
     "passes": 2,
     "frp_mw": 476.8,
     "viirs_cells": 19,
     "viirs_detections": 28
    },
    "night": {
-    "activity": 0.024,
+    "activity": 0.008,
     "passes": 1,
-    "frp_mw": 17.6,
-    "viirs_cells": 15,
-    "viirs_detections": 18
+    "frp_mw": 7.2,
+    "viirs_cells": 7,
+    "viirs_detections": 8
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-07-31": {
    "date": "2026-07-31",
-   "status": "nrt",
+   "status": "sp",
    "sensor": "SNPP",
-   "activity": 0.611,
-   "frp_mw": 365.8,
-   "viirs_cells": 33,
-   "viirs_detections": 41,
+   "activity": 0.591,
+   "frp_mw": 345.2,
+   "viirs_cells": 16,
+   "viirs_detections": 22,
    "day": {
     "activity": 0.032,
     "passes": 1,
@@ -221543,14 +221542,14 @@
     "viirs_detections": 3
    },
    "night": {
-    "activity": 0.579,
+    "activity": 0.559,
     "passes": 1,
-    "frp_mw": 47.6,
-    "viirs_cells": 30,
-    "viirs_detections": 38
+    "frp_mw": 27.0,
+    "viirs_cells": 13,
+    "viirs_detections": 19
    },
    "epochs": [
-    "2.0NRT"
+    "2"
    ]
   },
   "2026-08-01": {
@@ -222143,7 +222142,7 @@
    "night": {
     "activity": 0.252,
     "passes": 2,
-    "frp_mw": 122.4,
+    "frp_mw": 122.5,
     "viirs_cells": 29,
     "viirs_detections": 47
    },
@@ -225308,7 +225307,7 @@
    "day": {
     "activity": 3.349,
     "passes": 1,
-    "frp_mw": 923.4,
+    "frp_mw": 923.3,
     "viirs_cells": 49,
     "viirs_detections": 71
    },
@@ -225341,7 +225340,7 @@
    "night": {
     "activity": 0.84,
     "passes": 2,
-    "frp_mw": 160.6,
+    "frp_mw": 160.5,
     "viirs_cells": 27,
     "viirs_detections": 44
    },
@@ -227141,6 +227140,33 @@
    },
    "epochs": [
     "2"
+   ]
+  },
+  "2026-11-15": {
+   "date": "2026-11-15",
+   "status": "nrt",
+   "sensor": "NOAA20",
+   "activity": 0.644,
+   "frp_mw": 118.9,
+   "viirs_cells": 30,
+   "viirs_detections": 43,
+   "day": {
+    "activity": 0.001,
+    "passes": 1,
+    "frp_mw": 5.3,
+    "viirs_cells": 2,
+    "viirs_detections": 2
+   },
+   "night": {
+    "activity": 0.643,
+    "passes": 1,
+    "frp_mw": 113.7,
+    "viirs_cells": 28,
+    "viirs_detections": 41
+   },
+   "epochs": [
+    "2.0NRT",
+    "2.1URT"
    ]
   }
  }
