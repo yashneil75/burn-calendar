@@ -2,7 +2,7 @@
  "schema_version": 1,
  "region_id": "california-state",
  "model": "california-modis-aqua-poisson-glm",
- "updated_utc": "2026-11-15T17:54:46+00:00",
+ "updated_utc": "2026-11-15T17:56:46+00:00",
  "days": {
   "2015-01-01": {
    "date": "2015-01-01",
