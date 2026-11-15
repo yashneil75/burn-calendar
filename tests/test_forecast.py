@@ -27,18 +27,23 @@ class ForecastTests(unittest.TestCase):
         rows = [{'date': (today-timedelta(days=i)).isoformat(), 'activity': 10.0} for i in range(1, 40) if i != 3]
         rows.append({'date': today.isoformat(), 'activity': 99999.0})
         model = FakeModel()
-        output = make_forecast({'daily': rows, 'unit': 'cells'}, model, today)
+        output = make_forecast({'daily': rows, 'unit': 'cells', 'generated_utc': '2026-11-15T12:00:00+00:00'}, model, today)
         self.assertEqual(output['origin_utc_date'], '2026-11-14')
         self.assertEqual(output['predictions'][0]['date'], '2026-11-16')
         self.assertEqual(output['predictions'][-1]['date'], '2026-11-22')
         self.assertTrue(np.isnan(model.context[-3]))
         self.assertAlmostEqual(float(np.nanmax(model.context)), np.log1p(10.0), places=6)
         self.assertEqual(model.horizon, 8)
+        self.assertEqual(output['calendar_generated_utc'], '2026-11-15T12:00:00+00:00')
 
     def test_stale_data_withholds_forecast(self):
         rows = [{'date': f'2026-10-{i:02d}', 'activity': 10.0} for i in range(1, 30)]
         with self.assertRaisesRegex(ValueError, 'more than three days old'):
-            make_forecast({'daily': rows}, FakeModel(), date(2026, 11, 15))
+            make_forecast({'daily': rows, 'generated_utc': '2026-11-15T12:00:00+00:00'}, FakeModel(), date(2026, 11, 15))
+
+    def test_calendar_without_revision_withholds_forecast(self):
+        with self.assertRaisesRegex(ValueError, 'generation timestamp'):
+            make_forecast({'daily': []}, FakeModel(), date(2026, 11, 15))
 
 
 if __name__ == '__main__':

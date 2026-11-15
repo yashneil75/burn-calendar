@@ -19,6 +19,8 @@ ROOT = Path(__file__).resolve().parent.parent
 
 def make_forecast(calendar, model, today):
     """Forecast tomorrow through seven days later, with no future data in context."""
+    if not calendar.get('generated_utc'):
+        raise ValueError('Calendar is missing its generation timestamp')
     closed_day = today - timedelta(days=1)
     days = {date.fromisoformat(row['date']): float(row['activity'])
             for row in calendar['daily'] if date.fromisoformat(row['date']) <= closed_day}
@@ -46,7 +48,7 @@ def make_forecast(calendar, model, today):
     return {'schema_version': 1, 'kind': 'experimental_forecast', 'model': MODEL_ID,
             'model_revision': MODEL_REVISION, 'origin_utc_date': closed_day.isoformat(),
             'latest_reported_date': latest.isoformat(),
-            'calendar_generated_utc': calendar.get('generated_utc'),
+            'calendar_generated_utc': calendar['generated_utc'],
             'generated_utc': datetime.now(timezone.utc).isoformat(timespec='seconds'),
             'unit': calendar.get('unit'),
             'warning': 'Experimental forecast of satellite-detected activity; not a fire-risk forecast or emergency guidance.',
