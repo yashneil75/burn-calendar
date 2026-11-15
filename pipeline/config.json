@@ -1,15 +1,18 @@
 {
   "region_id": "california-state",
   "name": "California",
-  "bbox": [-124.4, 32.5, -114.1, 42.0],
+  "bbox": [-124.5, 32.5, -114.1, 42.0],
   "sp_refresh": "year_to_date",
   "nrt_trailing_days": 120,
   "sp_chunk_days": 5,
   "nrt_chunk_days": 5,
   "sources": {
     "sp": "VIIRS_SNPP_SP",
-    "nrt": "VIIRS_SNPP_NRT"
+    "nrt": "VIIRS_SNPP_NRT",
+    "noaa20_sp": "VIIRS_NOAA20_SP",
+    "noaa20_nrt": "VIIRS_NOAA20_NRT"
   },
+  "noaa20_start": "2026-11-03",
   "model_path": "pipeline/model/ca_model.json",
   "state_path": "pipeline/state.json",
   "calendar_path": "docs/data/calendar.json",

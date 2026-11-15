@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="assets/styles.css" />
   <style>
     .prose { max-width: 680px; margin: 0 auto; padding: 20px 0 8px; }
-    .prose h2 { font-family: "Inter Tight", "Inter", sans-serif; font-weight: 650; font-size: 22px; margin: 0; padding-top: 34px; border-top: 1px solid var(--hairline); letter-spacing: -0.025em; }
+    .prose h2 { font-family: "Inter Tight", "Inter", sans-serif; font-weight: 400; font-size: 22px; margin: 0; padding-top: 34px; border-top: 1px solid var(--hairline); letter-spacing: -0.025em; }
     .prose h2:first-of-type { border-top: 0; padding-top: 0; }
     .prose p, .prose li { line-height: 1.78; }
     .prose p { margin: 0 0 16px; }
@@ -37,6 +37,7 @@
       <a class="brand" href="index.html" aria-label="California Burn Calendar, back to the calendar"><span class="brand-word">California Burn Calendar</span></a>
       <nav class="topnav" aria-label="Sections">
         <a href="index.html#season">Calendar</a>
+        <a href="map.html">Map</a>
         <a href="archive.html">Archive</a>
         <a href="methodology.html">Methodology</a>
       </nav>
@@ -45,11 +46,11 @@
   </header>
 
   <main class="wrap" style="padding-top: 40px;">
-    <h1 style="font-family:'Inter Tight','Inter',sans-serif; font-weight:650; font-size: clamp(40px, 5.4vw, 58px); margin: 4px auto 34px; max-width: 680px; letter-spacing:-0.035em; display:block;">Methods</h1>
+    <h1 style="font-family:'Inter Tight','Inter',sans-serif; font-weight:400; font-size: clamp(40px, 5.4vw, 58px); margin: 4px auto 34px; max-width: 680px; letter-spacing:-0.035em; display:block;">Methods</h1>
 
     <article class="prose">
       <h2>What this is</h2>
-      <p>Burn Calendar tracks California fire activity one day at a time and places it on a single, consistent scale across the whole FIRMS record (2000–present). From 2012, every reported day of Suomi NPP VIIRS detections is converted to the number of 1&nbsp;km² grid cells a MODIS‑Aqua image would have shown occupied, using a model fitted specifically for California. Before VIIRS launched, the calendar is MODIS-native: Terra detections until Aqua became available in July 2002, Aqua afterwards through 2011. Same grid, same cleaning, no harmonization step. The number answers: <em>how much fire, how concentrated, where, and how it builds and falls within the season, day by day, since 2000.</em></p>
+      <p>Burn Calendar tracks detected fire activity within the Natural Earth California boundary, day by day since 2000. From 2012, a model estimates MODIS‑Aqua-like occupied 1&nbsp;km grid cells from VIIRS detections. Before then, the calendar uses MODIS detections directly. Differences in coverage, observation time and sensor response limit comparisons across periods; a consistent scale across the whole record has not been established.</p>
       <p>The calendar is rebuilt every morning by an automated job. It is an activity index: it does not measure acres burned, count distinct fires, or predict escape.</p>
 
       <h2>Definitions &amp; units</h2>
@@ -57,37 +58,37 @@
         <li><strong>Activity</strong>: predicted MODIS‑Aqua <em>occupied 1&nbsp;km equal-area grid cells</em> per pass, summed across a day. The grid is cylindrical equal-area (x&nbsp;=&nbsp;R·longitude, y&nbsp;=&nbsp;R·sin(latitude)); cell shapes distort toward the poles only.</li>
         <li><strong>FRP</strong>: fire radiative power in megawatts, summed across the day's cells; a measure of energy release rate, not extent.</li>
         <li><strong>Reported days</strong>: days on which VIIRS S‑NPP produced science-quality (or near-real-time) detections. A blank dashed cell means no observations were reported for that day; it does not mean zero fire.</li>
-        <li><strong>MODIS-native era</strong>: 2000–2011 in this calendar is MODIS measured directly on the reference scale (Terra before Aqua became available in mid-2002, Aqua after), with an identical grid and cleaning rules. Terra-era days come from the late-morning overpass and see systematically fewer afternoon-style fires than the Aqua/VIIRS record.</li>
-        <li><strong>C6 / C6.1</strong>: NASA MODIS Collection 6 and 6.1 reference epochs. The absolute levels differ between collections; the model carries an epoch indicator so each day is scored against its own reference collection.</li>
+        <li><strong>MODIS-native era</strong>: 2000–2011 uses Terra before Aqua became available in mid-2002, and Aqua thereafter. Terra and Aqua observe at different times, and their readings have not been calibrated to one another.</li>
+        <li><strong>Date indicator</strong>: the existing model uses a 2023 cutoff intended to approximate a collection transition. The actual collection cannot be inferred reliably from date, and the observed ratio shift has not been shown to be caused by that transition. The <a href="https://modis-fire.umd.edu/files/MODIS_C6_C6.1_Fire_User_Guide_1.0.pdf">MODIS product guide</a> describes C6 and C6.1 active-fire products as sufficiently consistent to intermix.</li>
       </ul>
 
       <h2>Data sources</h2>
       <ul>
-        <li>Before VIIRS launched (October 2011), the detections are MODIS itself: Terra through June 2002, Aqua from July 2002 through 2011, also standard processing with the same cleaning rules. This segment is the reference scale measured directly, not harmonized, so it needs no model.</li>
-                <li>NASA FIRMS area API: <code>VIIRS_SNPP_SP</code> (standard processing, quality‑filtered) and <code>VIIRS_SNPP_NRT</code> (near-real-time), statewide bounding box (west −124.4°, south 32.5°, east −114.1°, north 42.0°).</li>
+        <li>Before VIIRS, the calendar uses Terra or Aqua MODIS directly, preserving the original sensor choice for each day. These observations have not been adjusted for differences in overpass time or coverage.</li>
+        <li>NASA FIRMS area API: S-NPP standard-processing and near-real-time data through November 2, 2026, followed by NOAA-20. The API is queried with a bounding box and then detection centres are filtered to the Natural Earth California polygon, including islands and points on its boundary. The polygon is an approximate geographic boundary; satellite coordinates represent pixel centres.</li>
         <li>The archive from 2000 through the latest published science month was bootstrapped from the CC0 Source Cooperative FIRMS mirror (NASA LANCE republished verbatim), cross-checked row-for-row against FIRMS API extracts of the same windows.</li>
+        <li>Historical extracts for 2012–2026 originally omitted a narrow coastal strip west of −124.4°. A targeted archive backfill found no reported detections there in that period. The live query extends to −124.5° before filtering to the state boundary.</li>
         <li>Science-quality SP products trail real time by roughly 2–4 months; recent months are served from NRT and upgrade in place to SP as the science files are published. Days currently served from NRT are labeled as such in the day view.</li>
         <li>Cleaning is conservative and identical across history: vegetation-type detections only (type&nbsp;=&nbsp;0), VIIRS confidence nominal or high, 10-minute overpass windows, 1&nbsp;km grid occupancy.</li>
       </ul>
 
       <h2 id="model">The model</h2>
-      <p>A California-tailored Poisson GLM with log link, fitted against 682 co-detected S‑NPP/Aqua overpasses (10-minute coincidence window, same footprint rules as the archive), 2015–2026. Features: occupied cells, cell and pixel FRP quantiles, zero-FRP fraction, cell neighborhood and 5×5 coarseness fractions, scan/track, thermal medians (ti4), local solar hour and day-of-year (circular), day/night, and an epoch indicator (C6.1 from 2023). Ridge penalty λ&nbsp;=&nbsp;1.0; coefficients and feature standardization ship in this repository (<code>pipeline/model/ca_model.json</code>).</p>
-      <p>The VIIRS/MODIS count ratio differs sharply by collection (~0.26 in C6 vs ~0.42 in C6.1 summed over the cohort), so a single global constant systematically fails by epoch. Validation is leave-one-year-out: every season is scored by a model that never saw it.</p>
+      <p>The current Poisson model was fitted on 682 co-detected S‑NPP/Aqua overpasses from 2015–2026 over the broader California bounding box, not retrained on the polygon. It uses occupied cells, FRP summaries, spatial context, scan/track, time of day, season and a date indicator. Its coefficients are in <code>pipeline/model/ca_model.json</code>. The training cohort may exclude passes where MODIS saw no fire, and does not represent all observation conditions.</p>
+      <p>The table shows the original leave-one-year-out evaluation. Its predictions did not apply the 500-cell cap used in production, so these results do not exactly measure deployed scoring. Pooled bias is about +22%; individual years vary widely. The three-pair 2026 fold is particularly uncertain. These numbers do not establish accuracy for all passes or complete days.</p>
       <table>
         <thead><tr><th>Fold (held out)</th><th>n</th><th>MAE</th><th>Median AE</th><th>Bias</th></tr></thead>
         <tbody id="fold-table"></tbody>
         <tfoot><tr class="total"><td>Pooled (all folds)</td><td>682</td><td id="pooled-mae">…</td><td id="pooled-medae">…</td><td id="pooled-bias">…</td></tr></tfoot>
       </table>
-      <p>The deployed model is fitted on all years (the honest coefficients for today's C6.1 reference era). Median absolute error is ~6 cells against a cohort mean of ~23 cells per co-detected pass.</p>
+      <p>The deployed model is fitted on all available training years. A stronger assessment would require coverage-aware sensor masks, including observable MODIS-zero cases.</p>
 
       <h2>Updates</h2>
-      <p>Every day at 07:23&nbsp;UTC, a GitHub Actions job pulls the current year's SP window in 5-day chunks (backfilling months as NASA publishes them) plus a trailing 120-day NRT window, re-aggregates, re-scores, and commits the rebuilt <code>docs/data/calendar.json</code>. The site is fully static; all scoring happens ahead of time. Nothing about you is measured or stored; there are no cookies and no analytics on this page.</p>
+      <p>Every day at 07:23&nbsp;UTC, a GitHub Actions job pulls SP data for the current year and at least the trailing 120 days, plus a trailing 120-day NRT window for the relevant sensor, then rebuilds the calendar and map together. Pass activity is allocated across 5 km map cells in proportion to their occupied 1 km cells. The site is fully static; all scoring happens ahead of time.</p>
 
       <h2>Fine print</h2>
       <ul>
-        <li>VIIRS S‑NPP remains the deep-time reference; NOAA‑20/21 are not yet harmonized into this product and MODIS science collections end in 2026. The MODIS‑Aqua scale is used here as a fixed historical reference, not an ongoing sensor.</li>
-        <li>The 2000–2011 segment is MODIS-native: it shares the reference scale by construction but is sampled at different times (Terra late-morning, then Aqua early-afternoon) and cannot be cross-validated against VIIRS; treat cross-era comparisons as approximate.</li>
-        <li>Early November 2026 shows only the days reported so far; months with pending science reprocessing upgrade automatically as NASA publishes.</li>
+        <li>From November 3, 2026 the refresh uses NOAA‑20, applying the S‑NPP-trained model without a validated NOAA bridge. These estimates are provisional and may not be directly comparable to earlier dates. <a href="https://www.earthdata.nasa.gov/s3fs-public/2024-07/VIIRS_C2_AF-375m_User_Guide_1.0.pdf">NASA's VIIRS guide</a> describes the sensor products, which are generated independently; it does not establish a correction for this California index.</li>
+        <li>The 2000–2011 segment is MODIS-native, but Terra and Aqua have different sampling times. Treat cross-era comparisons as approximate.</li>
         <li>Blank cells are unreported, not zero. Detection geometry (scan edge, off-nadir view) and sensor response differences are why the harmonization model exists.</li>
       </ul>
       <p>Code, pipeline, coefficients, and the open data file: <a href="https://github.com/yashneil75/burn-calendar">github.com/yashneil75/burn-calendar</a>. The underlying detections are NASA's public-domain FIRMS products.</p>
@@ -97,7 +98,7 @@
   </main>
 
   <footer class="wrap footer">
-    <div>Source: NASA FIRMS, VIIRS S‑NPP standard-processing and near-real-time products.</div>
+    <div>Source: NASA FIRMS, MODIS and VIIRS products.</div>
     <div style="text-align:right;">Burn Calendar · Built by Yashneil Gajjala &amp; Shrihan Chada</div>
   </footer>
 

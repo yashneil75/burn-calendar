@@ -5,11 +5,9 @@ acquisitions co-detected with Aqua MODIS within 10 minutes, 2015-2026
 (science-quality standard-processing rows, 1 km equal-area occupied cells).
 Target: MODIS-Aqua occupied cells per paired overpass.
 
-The MODIS collection epoch changes the VIIRS/MODIS count ratio materially
-(C6 6.03: ratio ~0.26 pre-2022; C6.1 61.03: ratio ~0.40+ from 2023), so the
-model carries an epoch indicator and is validated by leave-one-year-out CV:
-each season is predicted by a model that never saw it, pooling both epochs.
-The deployed coefficients are then fitted on all years.
+The model retains a date-based epoch indicator for compatibility. A date is
+not a reliable processing collection identifier. Validation holds out each
+year and applies the same 500-cell cap as the production scoring code.
 
 Outputs pipeline/model/ca_model.json consumed by harmonize.py. Never runs
 in CI; the coefficients ship in the repo.
@@ -67,12 +65,15 @@ def load_joined(derived: Path) -> list[dict]:
         for p in json.loads(f.read_text(encoding="utf-8")):
             if p["platform"] == "SNPP":
                 # Spatial pairs reference a pass's center_time, not its batch anchor.
-                passes_by_time[p.get("center_time", p["time"])] = p
+                key = p.get("center_time", p["time"])
+                if key in passes_by_time:
+                    raise ValueError(f"Duplicate SNPP pass time: {key}")
+                passes_by_time[key] = p
     rows = []
     for pair in pairs:
         snpp = passes_by_time.get(pair["viirs_time"])
         if snpp is None:
-            continue
+            raise ValueError(f"Missing SNPP pass: {pair['viirs_time']}")
         rows.append({**featurize(snpp), "y": float(pair["modis_count"]),
                      "date": snpp["date"], "year": snpp["date"][:4]})
     return rows
@@ -110,7 +111,7 @@ def fit_with_intercept(X: np.ndarray, y: np.ndarray, l2: float):
 
 def predict(X: np.ndarray, beta, intercept, mean, std) -> np.ndarray:
     Xz = (X - mean) / std
-    return np.exp(np.clip(Xz @ beta + intercept, -20, 20))
+    return np.clip(np.exp(np.clip(Xz @ beta + intercept, -20, 20)), 0, 500)
 
 
 def metrics(y: np.ndarray, mu: np.ndarray) -> dict:
@@ -166,7 +167,7 @@ def main() -> None:
     payload = {
         "schema_version": 1,
         "name": "california-modis-aqua-poisson-glm",
-        "trained_on": "California statewide VIIRS S-NPP vs Aqua MODIS co-detections, 2015-2026 (leave-one-year-out validation)",
+        "trained_on": f"California bounding-box VIIRS S-NPP/Aqua co-detected pairs, {min(years_arr)}–{max(years_arr)} (leave-one-year-out validation)",
         "target": "MODIS-Aqua occupied 1 km cells per co-detected overpass",
         "feature_order": FEATURES,
         "feature_mean": mean.tolist(),
@@ -182,6 +183,7 @@ def main() -> None:
             "modis_to_viirs_ratio": train_ratio,
         },
         "clip": [0.0, 500.0],
+        "validation_note": "Co-detections only; no common swath or cloud masks. Training uses a bounding box; production filters to the California polygon. NOAA-20 is not calibrated.",
         "created_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
     }
     Path(args.out).parent.mkdir(parents=True, exist_ok=True)

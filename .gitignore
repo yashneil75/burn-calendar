@@ -3,6 +3,7 @@ __pycache__/
 .venv/
 .env
 .firms-cache/
+data/harmonization/
 pipeline/state.json.bak
 .ipynb_checkpoints/
 .DS_Store

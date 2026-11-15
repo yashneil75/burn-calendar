@@ -53,9 +53,7 @@ function selectedMonthStats() {
 function renderUpdatedAt() {
   const node = el("updatedAt");
   if (node) {
-    node.textContent = `Refreshed ${new Date(state.data.generated_utc).toLocaleString("en-US", {
-      month: "short", day: "numeric", hour: "2-digit", minute: "2-digit", hour12: false, timeZone: "UTC",
-    })} UTC`;
+    node.textContent = `Latest detection: ${state.data.stats.last_day || "unknown"} UTC`;
   }
 }
 
@@ -184,7 +182,7 @@ function openDrawer(dateStr) {
     d.status === "sp" ? "Standard-processing (science quality)"
     : d.status === "nrt" ? "Near-real-time (pending science reprocessing)"
     : "MODIS-native, standard processing (pre-VIIRS era)";
-  el("drawerStatus").textContent = statusText;
+  el("drawerStatus").textContent = statusText + (d.sensor === "NOAA20" ? " · NOAA-20 provisional sensor transition" : "");
   el("drawerViirsLabel").textContent = d.status === "modis-native" ? "MODIS cells · detections" : "VIIRS cells · detections";
   el("drawerActivity").textContent = fmt(d.activity);
   el("drawerFrp").textContent = `${fmt(d.frp_mw, 0)} MW`;
