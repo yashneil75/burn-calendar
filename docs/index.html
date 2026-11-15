@@ -102,6 +102,23 @@
     </footer>
   </main>
 
+  <div class="drawer-backdrop info-backdrop" id="infoBackdrop" aria-hidden="true"></div>
+  <aside class="info-modal" id="infoModal" role="dialog" aria-modal="true" aria-labelledby="infoModalTitle" aria-hidden="true">
+    <div class="info-head">
+      <h2 class="info-title" id="infoModalTitle">What this is</h2>
+      <button class="drawer-close" id="infoClose" type="button" aria-label="Close">&times;</button>
+    </div>
+    <div class="info-body">
+      <p>California Burn Calendar is a day-by-day record of fire activity across California from 2015 onward, built from NASA's VIIRS S-NPP satellite fire detections.</p>
+      <p>Every reported day is scored onto one consistent scale, MODIS-Aqua-equivalent occupied 1 km cells, so days, months and years compare directly.</p>
+      <p>Numbers describe activity, not area burned and not fire counts. Blank cells mean no observations were reported for that day, not zero fire.</p>
+    </div>
+    <div class="info-foot">
+      <span class="info-meta">Updated daily at 07:23 UTC</span>
+      <a class="textlink" href="methodology.html">Full methodology &rarr;</a>
+    </div>
+  </aside>
+
   <div class="drawer-backdrop" id="drawerBackdrop" aria-hidden="true"></div>
   <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawerDate" aria-hidden="true">
     <div class="drawer-head">
@@ -114,7 +131,7 @@
     <div class="drawer-body">
       <div class="drawer-big">
         <span class="n num" id="drawerActivity">…</span>
-        <span class="u">activity, MODIS-Aqua scale · <a class="textlink" href="methodology.html">what this is</a></span>
+        <span class="u">activity, MODIS-Aqua scale · <a class="textlink" id="whatThisIs" href="methodology.html">what this is</a></span>
       </div>
       <div class="dn-split" aria-label="Day and night breakdown">
         <div class="dn-row" data-period="D">

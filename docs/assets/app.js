@@ -218,6 +218,21 @@ function closeDrawer() {
   el("drawer").setAttribute("aria-hidden", "true");
 }
 
+function openInfo() {
+  el("infoModal").classList.add("open");
+  el("infoBackdrop").classList.add("open");
+  el("infoModal").setAttribute("aria-hidden", "false");
+  el("infoClose").focus();
+}
+
+function closeInfo() {
+  el("infoModal").classList.remove("open");
+  el("infoBackdrop").classList.remove("open");
+  el("infoModal").setAttribute("aria-hidden", "true");
+  const link = el("whatThisIs");
+  if (link) link.focus();
+}
+
 /* ---------- Archive page ---------- */
 function renderArchive() {
   const months = state.data.months;
@@ -310,8 +325,23 @@ async function boot() {
   });
   el("drawerClose").addEventListener("click", closeDrawer);
   el("drawerBackdrop").addEventListener("click", closeDrawer);
+  const whatLink = el("whatThisIs");
+  if (whatLink) {
+    whatLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      openInfo();
+    });
+  }
+  el("infoClose").addEventListener("click", closeInfo);
+  el("infoBackdrop").addEventListener("click", closeInfo);
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") closeDrawer();
+    if (e.key === "Escape") {
+      if (el("infoModal").classList.contains("open")) {
+        closeInfo();
+      } else {
+        closeDrawer();
+      }
+    }
   });
 }
 
