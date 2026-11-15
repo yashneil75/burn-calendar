@@ -49,7 +49,7 @@
 
     <article class="prose">
       <h2>What this is</h2>
-      <p>Burn Calendar tracks California fire activity one day at a time and places it on a single, consistent scale across the whole VIIRS era (2015–present). Every day with reported science-quality detections of fire by the Suomi NPP VIIRS instrument is converted to the number of 1&nbsp;km² grid cells a MODIS‑Aqua image would have shown occupied, using a model fitted specifically for California. The number answers: <em>how much fire, how concentrated, where, and how it builds and falls within the season, day by day, since 2015.</em></p>
+      <p>Burn Calendar tracks California fire activity one day at a time and places it on a single, consistent scale across the whole FIRMS record (2000–present). From 2012, every reported day of Suomi NPP VIIRS detections is converted to the number of 1&nbsp;km² grid cells a MODIS‑Aqua image would have shown occupied, using a model fitted specifically for California. Before VIIRS launched, the calendar is MODIS-native: Terra detections until Aqua became available in July 2002, Aqua afterwards through 2011. Same grid, same cleaning, no harmonization step. The number answers: <em>how much fire, how concentrated, where, and how it builds and falls within the season, day by day, since 2000.</em></p>
       <p>The calendar is rebuilt every morning by an automated job. It is an activity index: it does not measure acres burned, count distinct fires, or predict escape.</p>
 
       <h2>Definitions &amp; units</h2>
@@ -57,13 +57,15 @@
         <li><strong>Activity</strong>: predicted MODIS‑Aqua <em>occupied 1&nbsp;km equal-area grid cells</em> per pass, summed across a day. The grid is cylindrical equal-area (x&nbsp;=&nbsp;R·longitude, y&nbsp;=&nbsp;R·sin(latitude)); cell shapes distort toward the poles only.</li>
         <li><strong>FRP</strong>: fire radiative power in megawatts, summed across the day's cells; a measure of energy release rate, not extent.</li>
         <li><strong>Reported days</strong>: days on which VIIRS S‑NPP produced science-quality (or near-real-time) detections. A blank dashed cell means no observations were reported for that day; it does not mean zero fire.</li>
+        <li><strong>MODIS-native era</strong>: 2000–2011 in this calendar is MODIS measured directly on the reference scale (Terra before Aqua became available in mid-2002, Aqua after), with an identical grid and cleaning rules. Terra-era days come from the late-morning overpass and see systematically fewer afternoon-style fires than the Aqua/VIIRS record.</li>
         <li><strong>C6 / C6.1</strong>: NASA MODIS Collection 6 and 6.1 reference epochs. The absolute levels differ between collections; the model carries an epoch indicator so each day is scored against its own reference collection.</li>
       </ul>
 
       <h2>Data sources</h2>
       <ul>
-        <li>NASA FIRMS area API: <code>VIIRS_SNPP_SP</code> (standard processing, quality‑filtered) and <code>VIIRS_SNPP_NRT</code> (near-real-time), statewide bounding box (west −124.4°, south 32.5°, east −114.1°, north 42.0°).</li>
-        <li>The archive from 2015 through the latest published science month was bootstrapped from the CC0 Source Cooperative FIRMS mirror (NASA LANCE republished verbatim), cross-checked row-for-row against FIRMS API extracts of the same windows.</li>
+        <li>Before VIIRS launched (October 2011), the detections are MODIS itself: Terra through June 2002, Aqua from July 2002 through 2011, also standard processing with the same cleaning rules. This segment is the reference scale measured directly, not harmonized, so it needs no model.</li>
+                <li>NASA FIRMS area API: <code>VIIRS_SNPP_SP</code> (standard processing, quality‑filtered) and <code>VIIRS_SNPP_NRT</code> (near-real-time), statewide bounding box (west −124.4°, south 32.5°, east −114.1°, north 42.0°).</li>
+        <li>The archive from 2000 through the latest published science month was bootstrapped from the CC0 Source Cooperative FIRMS mirror (NASA LANCE republished verbatim), cross-checked row-for-row against FIRMS API extracts of the same windows.</li>
         <li>Science-quality SP products trail real time by roughly 2–4 months; recent months are served from NRT and upgrade in place to SP as the science files are published. Days currently served from NRT are labeled as such in the day view.</li>
         <li>Cleaning is conservative and identical across history: vegetation-type detections only (type&nbsp;=&nbsp;0), VIIRS confidence nominal or high, 10-minute overpass windows, 1&nbsp;km grid occupancy.</li>
       </ul>
@@ -84,6 +86,7 @@
       <h2>Fine print</h2>
       <ul>
         <li>VIIRS S‑NPP remains the deep-time reference; NOAA‑20/21 are not yet harmonized into this product and MODIS science collections end in 2026. The MODIS‑Aqua scale is used here as a fixed historical reference, not an ongoing sensor.</li>
+        <li>The 2000–2011 segment is MODIS-native: it shares the reference scale by construction but is sampled at different times (Terra late-morning, then Aqua early-afternoon) and cannot be cross-validated against VIIRS; treat cross-era comparisons as approximate.</li>
         <li>Early November 2026 shows only the days reported so far; months with pending science reprocessing upgrade automatically as NASA publishes.</li>
         <li>Blank cells are unreported, not zero. Detection geometry (scan edge, off-nadir view) and sensor response differences are why the harmonization model exists.</li>
       </ul>

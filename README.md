@@ -1,13 +1,13 @@
 # California Burn Calendar
 
-California fire activity, one day at a time, placed on a single consistent scale across the entire VIIRS S‑NPP era (2015–present). Every day with science-quality 375 m VIIRS detections is harmonized to a MODIS‑Aqua-equivalent occupied-cell scale by a California-tailored model, then served as a fully static site on GitHub Pages. Refreshed every morning at 07:23 UTC by GitHub Actions.
+California fire activity, one day at a time, placed on a single consistent scale across the entire FIRMS record (2000–present; MODIS-native before VIIRS launched). Every day with science-quality 375 m VIIRS detections is harmonized to a MODIS‑Aqua-equivalent occupied-cell scale by a California-tailored model, then served as a fully static site on GitHub Pages. Refreshed every morning at 07:23 UTC by GitHub Actions.
 
 **Live:** https://yashneil75.github.io/burn-calendar/
 
 ## What you get
 
 - A month grid: per-day harmonized activity with FRP and day/night splits
-- An archive matrix: every year and month since 2015 at a glance
+- An archive matrix: every year and month since 2000 at a glance
 - A day drawer: D/N breakdown, per-pass counts, percentile vs. the calendar month across years
 - An open, rebuilt-daily data file: `docs/data/calendar.json`
 

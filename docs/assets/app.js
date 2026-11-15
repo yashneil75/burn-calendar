@@ -180,9 +180,12 @@ function openDrawer(dateStr) {
   el("drawerDate").textContent = dayDate.toLocaleDateString("en-US", {
     weekday: "long", month: "long", day: "numeric", year: "numeric", timeZone: "UTC",
   });
-  el("drawerStatus").textContent = d.status === "sp"
-    ? "Standard-processing (science quality)"
-    : "Near-real-time (pending science reprocessing)";
+  const statusText =
+    d.status === "sp" ? "Standard-processing (science quality)"
+    : d.status === "nrt" ? "Near-real-time (pending science reprocessing)"
+    : "MODIS-native, standard processing (pre-VIIRS era)";
+  el("drawerStatus").textContent = statusText;
+  el("drawerViirsLabel").textContent = d.status === "modis-native" ? "MODIS cells · detections" : "VIIRS cells · detections";
   el("drawerActivity").textContent = fmt(d.activity);
   el("drawerFrp").textContent = `${fmt(d.frp_mw, 0)} MW`;
   el("drawerViirs").textContent = `${d.viirs_cells.toLocaleString()} · ${d.viirs_detections.toLocaleString()} detections`;
