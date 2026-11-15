@@ -1,11 +1,11 @@
-/* Burn Calendar — California. Client-side rendering of docs/data/calendar.json.
+/* California Burn Calendar. Client-side rendering of docs/data/calendar.json.
    No frameworks; the JSON is the app's only dependency besides fonts.
    Dual mode: index.html (calendar) and archive.html (matrix). */
 
 "use strict";
 
 const RAMP = ["#e7cd90", "#d9a441", "#c8692b", "#c2452d", "#7e2b1c"];
-const RAMP_LOW = "#ece5cf";
+const RAMP_LOW = "#faf3e3";
 
 const state = {
   data: null,
@@ -84,25 +84,23 @@ function renderCalendar() {
     if (entry) {
       cell.style.background = activityColor(entry.activity);
       if (entry.activity > 60) cell.style.color = "#f6efe0";
-      cell.innerHTML = `<span class="dow">${d}</span>
-        <span><span class="act num">${fmt(entry.activity)}</span><br>
-        <span class="frp num">${fmt(entry.frp_mw, 0)} MW</span></span>`;
+      cell.innerHTML = `<span class="dow">${d}</span><span class="act num">${fmt(entry.activity)}</span><span class="frp num">${fmt(entry.frp_mw, 0)} MW</span>`;
       cell.setAttribute("aria-label", `${dateStr}: ${fmt(entry.activity)} activity, ${fmt(entry.frp_mw, 0)} megawatts FRP`);
       cell.addEventListener("click", () => openDrawer(dateStr));
     } else {
       cell.disabled = true;
-      cell.innerHTML = `<span class="dow">${d}</span><span class="act">—</span>`;
+      cell.innerHTML = `<span class="dow">${d}</span><span class="act">·</span>`;
       cell.setAttribute("aria-label", `${dateStr}: no observations reported`);
     }
     grid.appendChild(cell);
   }
 
   const mStats = selectedMonthStats();
-  el("monthTotal").textContent = mStats ? fmt(mStats.activity) : "—";
+  el("monthTotal").textContent = mStats ? fmt(mStats.activity) : "…";
   el("monthDays").textContent = mStats ? String(mStats.days_reported) : "0";
   el("monthPeak").textContent = mStats && mStats.peak_day
     ? `${new Date(mStats.peak_day + "T00:00:00Z").toLocaleDateString("en-US", { month: "short", day: "numeric", timeZone: "UTC" })} · ${fmt(mStats.peak_activity)}`
-    : "—";
+    : "…";
 }
 
 function renderHeaderStats() {
@@ -115,7 +113,7 @@ function renderHeaderStats() {
   el("statTrailing12").textContent = fmt(t12);
   el("statPeak").textContent = stats.peak_day
     ? `${new Date(stats.peak_day + "T00:00:00Z").toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", timeZone: "UTC" })}`
-    : "—";
+    : "…";
   el("statPeakVal").textContent = fmt(stats.peak_activity);
   el("statDays").textContent = String(stats.days_reported);
   renderUpdatedAt();
@@ -249,13 +247,13 @@ function renderArchive() {
         cell.style.background = activityColor(stats.activity);
         cell.textContent = fmt(stats.activity, stats.activity >= 100 ? 0 : 1);
         if (stats.activity > 400) cell.style.color = "#f6efe0";
-        cell.title = `${monthLabel(Number(yr), m)} — ${fmt(stats.activity)} activity, ${stats.days_reported} days reported, peak ${fmt(stats.peak_activity)}`;
+        cell.title = `${monthLabel(Number(yr), m)} · ${fmt(stats.activity)} activity, ${stats.days_reported} days reported, peak ${fmt(stats.peak_activity)}`;
         cell.href = `index.html?month=${key}#season`;
         cell.setAttribute("aria-label", cell.title);
       } else {
         cell.className = "am-cell empty";
         cell.textContent = "·";
-        cell.title = `${monthLabel(Number(yr), m)} — no observations reported`;
+        cell.title = `${monthLabel(Number(yr), m)} · no observations reported`;
         cell.setAttribute("aria-disabled", "true");
         cell.style.pointerEvents = "none";
       }

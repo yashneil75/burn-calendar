@@ -1,4 +1,4 @@
-# Burn Calendar — California
+# California Burn Calendar
 
 California fire activity, one day at a time, placed on a single consistent scale across the entire VIIRS S‑NPP era (2015–present). Every day with science-quality 375 m VIIRS detections is harmonized to a MODIS‑Aqua-equivalent occupied-cell scale by a California-tailored model, then served as a fully static site on GitHub Pages. Refreshed every morning at 07:23 UTC by GitHub Actions.
 
@@ -11,7 +11,7 @@ California fire activity, one day at a time, placed on a single consistent scale
 - A day drawer: D/N breakdown, per-pass counts, percentile vs. the calendar month across years
 - An open, rebuilt-daily data file: `docs/data/calendar.json`
 
-Units: MODIS‑Aqua-equivalent occupied 1 km² equal-area grid cells. This is an activity index — not burned area, not a fire count, not an early-warning system. Days without reported observations are blank, never zero.
+Units: MODIS‑Aqua-equivalent occupied 1 km² equal-area grid cells. This is an activity index: not burned area, not a fire count, not an early-warning system. Days without reported observations are blank, never zero.
 
 ## Repository layout
 
@@ -19,7 +19,7 @@ Units: MODIS‑Aqua-equivalent occupied 1 km² equal-area grid cells. This is an
 docs/                  The static site (GitHub Pages serves from here)
   index.html           Month grid + archive + day drawer
   methodology.html     Methods, sources, validation results
-  data/calendar.json   The product — rebuilt daily
+  data/calendar.json   The product, rebuilt daily
 pipeline/              Everything that runs ahead of time (Python + numpy)
   build_calendar.py    Daily refresh: pull FIRMS, re-aggregate, rewrite calendar.json
   fit_model.py         Offline: fit the CA Poisson GLM (not run in CI)
@@ -30,7 +30,7 @@ pipeline/              Everything that runs ahead of time (Python + numpy)
 
 ## Daily refresh mechanics
 
-1. Pull `VIIRS_SNPP_SP` (standard processing, science quality) year-to-date in 5-day chunks — months appear as NASA publishes them.
+1. Pull `VIIRS_SNPP_SP` (standard processing, science quality) year-to-date in 5-day chunks; months appear as NASA publishes them.
 2. Pull `VIIRS_SNPP_NRT` for a trailing 120-day window to cover the SP lag.
 3. Aggregate to 10-minute overpasses on a 1 km cylindrical equal-area grid (same cleaning semantics throughout: vegetation type only, nominal/high confidence, occupancy kept, zero-the-unobserved explicitly not applied).
 4. Score each SNPP pass with `pipeline/model/ca_model.json`.
