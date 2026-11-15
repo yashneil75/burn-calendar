@@ -1,4 +1,4 @@
-/* California Burn Calendar. Client-side rendering of docs/data/calendar.json.
+/* Califire. Client-side rendering of docs/data/calendar.json.
    No frameworks; the JSON is the app's only dependency besides fonts.
    Dual mode: index.html (calendar) and archive.html (matrix). */
 

@@ -1,4 +1,4 @@
-# California Burn Calendar
+# Califire
 
 Satellite-detected fire activity within the Natural Earth California boundary, one day at a time since 2000. VIIRS detections are scored with a model intended to approximate MODIS-Aqua occupied cells; earlier years use MODIS directly. Sensor, coverage and overpass differences limit comparisons across time. The site is served on GitHub Pages and the refresh is scheduled for 07:23 UTC.
 
@@ -6,7 +6,7 @@ The refresh uses S-NPP through November 2, 2026 and NOAA-20 thereafter. The exis
 
 The narrow California coastal strip west of −124.4° was checked against the 2012–2026 archive snapshot; it contained no reported detections. Current API requests extend to −124.5°. The historical rebuild tools additionally require DuckDB with its httpfs and spatial extensions, plus the locally saved annual extracts.
 
-**Live:** https://yashneil75.github.io/burn-calendar/
+**Live:** https://yashneil75.github.io/califire/
 
 ## What you get
 

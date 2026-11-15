@@ -1,4 +1,4 @@
-"""Build the California burn calendar.
+"""Build Califire.
 
 Two modes:
   --bootstrap DIR   One-off local rebuild of pipeline/state.json from the

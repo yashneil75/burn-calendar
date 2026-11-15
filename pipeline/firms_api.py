@@ -16,7 +16,7 @@ from urllib.parse import quote
 from urllib.request import Request, urlopen
 
 API_BASE = "https://firms.modaps.eosdis.nasa.gov"
-USER_AGENT = "burn-calendar/1.0 (+https://github.com/yashneil75/burn-calendar)"
+USER_AGENT = "califire/1.0 (+https://github.com/yashneil75/califire)"
 
 
 class FIRMSClientError(RuntimeError):

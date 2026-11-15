@@ -1,4 +1,4 @@
-/* California Burn Calendar - The map page.
+/* Califire - The map page.
    Plain white field, no basemap. Boundary and cells are local files. */
 
 "use strict";
