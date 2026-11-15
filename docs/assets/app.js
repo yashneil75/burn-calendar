@@ -11,6 +11,8 @@ const state = {
   data: null,
   byDate: new Map(),
   byMonth: new Map(),
+  forecastByDate: new Map(),
+  forecast: null,
   selectedYear: null,
   selectedMonth: null, // 0-based
 };
@@ -76,8 +78,9 @@ function renderCalendar() {
   for (let d = 1; d <= daysInMonth; d += 1) {
     const dateStr = `${y}-${String(m + 1).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
     const entry = state.byDate.get(dateStr);
+    const prediction = state.forecastByDate.get(dateStr);
     const cell = document.createElement("button");
-    cell.className = "day-cell" + (entry ? "" : " absent");
+    cell.className = "day-cell" + (entry ? "" : prediction ? " forecast-cell" : " absent");
     cell.dataset.date = dateStr;
     if (entry) {
       cell.style.background = activityColor(entry.activity);
@@ -85,6 +88,10 @@ function renderCalendar() {
       cell.innerHTML = `<span class="dow">${d}</span><span class="act num">${fmt(entry.activity)}</span><span class="frp num">${fmt(entry.frp_mw, 0)} MW</span>`;
       cell.setAttribute("aria-label", `${dateStr}: ${fmt(entry.activity)} activity, ${fmt(entry.frp_mw, 0)} megawatts FRP`);
       cell.addEventListener("click", () => openDrawer(dateStr));
+    } else if (prediction) {
+      cell.innerHTML = `<span class="dow">${d}</span><span class="act num">${fmt(prediction.median)}</span><span class="forecast-label">FORECAST</span>`;
+      cell.setAttribute("aria-label", `${dateStr}: experimental forecast ${fmt(prediction.median)} activity; not fire risk`);
+      cell.addEventListener("click", () => openForecast(dateStr));
     } else {
       cell.disabled = true;
       cell.innerHTML = `<span class="dow">${d}</span><span class="act">·</span>`;
@@ -152,7 +159,8 @@ function initDateJump() {
   if (!input) return;
   const stats = state.data.stats;
   input.min = stats.first_day || "2015-01-01";
-  input.max = stats.last_day || "";
+  const forecastDates = [...state.forecastByDate.keys()].sort();
+  input.max = forecastDates.length ? forecastDates[forecastDates.length - 1] : (stats.last_day || "");
   input.value = stats.last_day && stats.days_reported ? stats.last_day : "";
   input.addEventListener("change", () => {
     const value = input.value;
@@ -164,10 +172,67 @@ function initDateJump() {
     }
     if (state.byDate.has(value)) {
       openDrawer(value);
+    } else if (state.forecastByDate.has(value)) {
+      openForecast(value);
     } else {
       el("season").scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
     }
   });
+}
+
+function openForecast(dateStr) {
+  const f = state.forecastByDate.get(dateStr);
+  if (!f) return;
+  el("forecastDate").textContent = new Date(dateStr + "T12:00:00Z").toLocaleDateString("en-US", {
+    weekday: "long", month: "long", day: "numeric", year: "numeric", timeZone: "UTC",
+  });
+  el("forecastMedian").textContent = fmt(f.median);
+  el("forecastRange").textContent = `${fmt(f.q10)}–${fmt(f.q90)} activity units`;
+  el("forecastGenerated").textContent = `Generated ${state.forecast.generated_utc.replace("T", " ").replace("+00:00", " UTC")}`;
+  el("forecastDrawer").classList.add("open");
+  el("forecastBackdrop").classList.add("open");
+  el("forecastDrawer").setAttribute("aria-hidden", "false");
+  el("forecastClose").focus();
+}
+
+function closeForecast() {
+  el("forecastDrawer").classList.remove("open");
+  el("forecastBackdrop").classList.remove("open");
+  el("forecastDrawer").setAttribute("aria-hidden", "true");
+}
+
+async function loadForecast() {
+  try {
+    const response = await fetch("data/forecast.json", {cache: "no-store"});
+    if (!response.ok) return;
+    const data = await response.json();
+    const today = new Date().toISOString().slice(0, 10);
+    const yesterday = new Date(Date.parse(`${today}T00:00:00Z`) - 86400000).toISOString().slice(0, 10);
+    const age = Date.now() - Date.parse(data.generated_utc);
+    // Fail closed if a refresh is missed or the file is malformed.
+    if (data.kind !== "experimental_forecast" || data.origin_utc_date !== yesterday ||
+        !data.calendar_generated_utc || data.calendar_generated_utc !== state.data.generated_utc ||
+        !Number.isFinite(age) || age < -300000 || age > 36 * 3600000 || !Array.isArray(data.predictions)) return;
+    const bias = data.validation?.pooled?.timestral?.bias;
+    if (!Number.isFinite(bias)) return;
+    state.forecast = data;
+    const lastAllowed = new Date(Date.parse(`${today}T00:00:00Z`) + 7 * 86400000).toISOString().slice(0, 10);
+    for (const f of data.predictions) {
+      if (/^\d{4}-\d{2}-\d{2}$/.test(f.date) && f.date > today && f.date <= lastAllowed &&
+          [f.q10, f.median, f.q90].every(Number.isFinite) && f.q10 >= 0 && f.q10 <= f.median && f.median <= f.q90) {
+        state.forecastByDate.set(f.date, f);
+      }
+    }
+    if (state.forecastByDate.size) {
+      const caution = el("forecastCaution");
+      const percent = Math.round(Math.abs(bias) * 100);
+      const direction = bias < 0 ? "below" : "above";
+      caution.textContent = `Experimental forecast of detected activity, not fire risk. In the 2023–2025 test, summed medians were ${percent}% ${direction} reported activity.`;
+      el("forecastNote").hidden = false;
+    }
+  } catch (_) {
+    // The observed calendar remains available if forecasts are absent.
+  }
 }
 
 /* ---------- Index: drawer ---------- */
@@ -297,6 +362,8 @@ async function boot() {
     return;
   }
 
+  await loadForecast();
+
   // Calendar page
   const params = new URLSearchParams(window.location.search);
   const wanted = params.get("month");
@@ -326,6 +393,8 @@ async function boot() {
   });
   el("drawerClose").addEventListener("click", closeDrawer);
   el("drawerBackdrop").addEventListener("click", closeDrawer);
+  el("forecastClose").addEventListener("click", closeForecast);
+  el("forecastBackdrop").addEventListener("click", closeForecast);
   const whatLink = el("whatThisIs");
   if (whatLink) {
     whatLink.addEventListener("click", (e) => {
@@ -337,7 +406,9 @@ async function boot() {
   el("infoBackdrop").addEventListener("click", closeInfo);
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape") {
-      if (el("infoModal").classList.contains("open")) {
+      if (el("forecastDrawer").classList.contains("open")) {
+        closeForecast();
+      } else if (el("infoModal").classList.contains("open")) {
         closeInfo();
       } else {
         closeDrawer();

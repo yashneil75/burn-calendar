@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "kind": "experimental_forecast",
+  "model": "mistralai/Timestral-5M",
+  "model_revision": "bdd20cfc15a3fea0e4cb5ccef37f8d3ca7aa335f",
+  "origin_utc_date": "2026-11-14",
+  "latest_reported_date": "2026-11-14",
+  "calendar_generated_utc": "2026-11-15T22:22:02+00:00",
+  "generated_utc": "2026-11-15T22:57:30+00:00",
+  "unit": "MODIS-Aqua-equivalent occupied 1 km\u00b2 grid cells",
+  "warning": "Experimental forecast of satellite-detected activity; not a fire-risk forecast or emergency guidance.",
+  "predictions": [
+    {
+      "date": "2026-11-16",
+      "median": 1.529,
+      "q10": 0.072,
+      "q90": 13.518
+    },
+    {
+      "date": "2026-11-17",
+      "median": 1.689,
+      "q10": 0.058,
+      "q90": 15.404
+    },
+    {
+      "date": "2026-11-18",
+      "median": 1.688,
+      "q10": 0.05,
+      "q90": 16.048
+    },
+    {
+      "date": "2026-11-19",
+      "median": 1.485,
+      "q10": 0.03,
+      "q90": 15.143
+    },
+    {
+      "date": "2026-11-20",
+      "median": 1.268,
+      "q10": 0.016,
+      "q90": 13.488
+    },
+    {
+      "date": "2026-11-21",
+      "median": 1.102,
+      "q10": 0.011,
+      "q90": 12.201
+    },
+    {
+      "date": "2026-11-22",
+      "median": 1.067,
+      "q10": 0.012,
+      "q90": 11.991
+    }
+  ],
+  "validation": {
+    "description": "1st and 15th of each month 2023\u20132025; only reported future days are scored; inputs use latest available historical archive, not as-of snapshots.",
+    "pooled": {
+      "timestral": {
+        "n": 483,
+        "mae": 7.6436021174060995,
+        "rmse": 24.531782688099966,
+        "bias": -0.7287101288859132
+      },
+      "seasonal": {
+        "n": 483,
+        "mae": 8.527616977225673,
+        "rmse": 24.0245642983094,
+        "bias": -0.5072658343184692
+      },
+      "persistence": {
+        "n": 483,
+        "mae": 8.015538198339895,
+        "rmse": 24.030379212739273,
+        "bias": -0.4228810677382503
+      },
+      "interval_10_90_coverage": 0.7619047619047619,
+      "top_10_percent_threshold": 21.5742,
+      "top_10_percent_timestral": {
+        "n": 49,
+        "mae": 58.233672949491705,
+        "rmse": 76.17012793865958,
+        "bias": -0.8794492867378628
+      },
+      "top_10_percent_seasonal": {
+        "n": 49,
+        "mae": 52.67515306122449,
+        "rmse": 71.96350127268316,
+        "bias": -0.7870520546402124
+      }
+    },
+    "by_year": {
+      "2023": {
+        "timestral": {
+          "n": 161,
+          "mae": 4.814109326995123,
+          "rmse": 16.629443431364244,
+          "bias": -0.6935374066393355
+        },
+        "seasonal": {
+          "n": 161,
+          "mae": 5.746018633540373,
+          "rmse": 14.700853755999326,
+          "bias": -0.07481494181584296
+        },
+        "persistence": {
+          "n": 161,
+          "mae": 5.654298207689123,
+          "rmse": 17.097732630384776,
+          "bias": -0.2545420048242894
+        },
+        "interval_10_90_coverage": 0.7888198757763976
+      },
+      "2024": {
+        "timestral": {
+          "n": 158,
+          "mae": 7.320875157392479,
+          "rmse": 18.757706408848644,
+          "bias": -0.6232407844040593
+        },
+        "seasonal": {
+          "n": 158,
+          "mae": 8.330667721518987,
+          "rmse": 20.583750383102224,
+          "bias": -0.6054614612307527
+        },
+        "persistence": {
+          "n": 158,
+          "mae": 8.144904821772386,
+          "rmse": 19.877618270068943,
+          "bias": -0.18564611667508688
+        },
+        "interval_10_90_coverage": 0.7278481012658228
+      },
+      "2025": {
+        "timestral": {
+          "n": 164,
+          "mae": 10.732255769469024,
+          "rmse": 34.087245783567276,
+          "bias": -0.8124845361304676
+        },
+        "seasonal": {
+          "n": 164,
+          "mae": 11.448076219512192,
+          "rmse": 32.85594162741475,
+          "bias": -0.6355452500358437
+        },
+        "persistence": {
+          "n": 164,
+          "mae": 10.208951076342583,
+          "rmse": 32.14091660475233,
+          "bias": -0.6508804605563476
+        },
+        "interval_10_90_coverage": 0.7682926829268293
+      }
+    }
+  }
+}

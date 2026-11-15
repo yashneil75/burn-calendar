@@ -78,6 +78,7 @@
             <span>More</span>
             <span style="margin-left:auto">Dashed = no observations reported</span>
           </div>
+          <p id="forecastNote" class="forecast-note" hidden><span id="forecastCaution"></span> <a class="textlink" href="methodology.html#forecast">Forecast method</a>.</p>
         </div>
         <aside class="season-side" aria-label="Month summary">
           <div>
@@ -158,6 +159,21 @@
         <dt id="drawerViirsLabel">VIIRS cells · detections</dt><dd class="num" id="drawerViirs">…</dd>
       </dl>
       <div class="vs-month" id="drawerVersus">…</div>
+    </div>
+  </aside>
+
+  <div class="drawer-backdrop" id="forecastBackdrop" aria-hidden="true"></div>
+  <aside class="drawer" id="forecastDrawer" role="dialog" aria-modal="true" aria-labelledby="forecastDate" aria-hidden="true">
+    <div class="drawer-head">
+      <div><h2 class="drawer-date" id="forecastDate">…</h2><div class="drawer-status">Experimental forecast · not observed</div></div>
+      <button class="drawer-close" id="forecastClose" type="button" aria-label="Close forecast">&times;</button>
+    </div>
+    <div class="drawer-body">
+      <div class="drawer-big"><span class="n num" id="forecastMedian">…</span><span class="u">forecast median, activity units</span></div>
+      <p><strong>Model range (10th–90th percentile):</strong><br><span id="forecastRange">…</span></p>
+      <p class="forecast-disclaimer">This estimates satellite-detected activity, not wildfire ignition, spread, risk, or emergency conditions. In the 2023–2025 backtest, summed median forecasts were substantially below reported activity; high-activity days were especially underestimated.</p>
+      <p class="forecast-meta" id="forecastGenerated">…</p>
+      <p><a class="textlink" href="methodology.html#forecast">How the forecast was tested →</a></p>
     </div>
   </aside>
 
