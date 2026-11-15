@@ -12,6 +12,7 @@ import math
 from typing import Any
 
 import numpy as np
+from boundary import within_california
 
 EARTH_RADIUS_KM = 6371.0088
 GRID_KM = 1.0
@@ -31,7 +32,9 @@ def _platform(value):
     val = str(value).strip().upper()
     return {"A": "Aqua", "AQUA": "Aqua", "T": "Terra", "TERRA": "Terra",
             "N": "SNPP", "SNPP": "SNPP", "SUOMI-NPP": "SNPP",
-            "SUOMI NPP": "SNPP", "SUOMI_NPP": "SNPP"}.get(val)
+            "SUOMI NPP": "SNPP", "SUOMI_NPP": "SNPP",
+            "1": "NOAA20", "N20": "NOAA20", "NOAA-20": "NOAA20",
+            "NOAA20": "NOAA20", "NOAA_20": "NOAA20"}.get(val)
 
 
 def _parse_date(value):
@@ -161,6 +164,10 @@ def aggregate_observations(rows, region_id):
             "ti5": _number(_first(row, "bright_ti5", "bright_t31")),
             "processing_version": str(row.get("version", "unknown")),
         })
+    if region_id == "california-state" and cleaned:
+        mask = within_california([item["lon"] for item in cleaned], [item["lat"] for item in cleaned])
+        exclusions["outside_california"] += int(len(cleaned) - np.count_nonzero(mask))
+        cleaned = [item for item, inside in zip(cleaned, mask) if inside]
     aggregate_observations.last_exclusions = dict(exclusions)
 
     strata = defaultdict(list)
@@ -194,6 +201,11 @@ def _summarize(items, region_id, platform, dn):
     for item in items:
         cell_frp[item["cell"]] += max(0.0, item["frp"])
     cells = {item["cell"] for item in items}
+    coarse_counts = Counter((x // 5, y // 5) for x, y in cells)
+    representatives = {}
+    for item in items:
+        key = (item["cell"][0] // 5, item["cell"][1] // 5)
+        representatives.setdefault(key, (item["lon"], item["lat"]))
     scans = [item["scan"] for item in items if item["scan"] is not None]
     tracks = [item["track"] for item in items if item["track"] is not None]
     dt = min(item["datetime"] for item in items)
@@ -243,6 +255,8 @@ def _summarize(items, region_id, platform, dn):
         "processing_versions": sorted({item["processing_version"] for item in items}),
         "source_features": topology,
         "coarse_cells": [list(c) for c in sorted({(c[0] // 5, c[1] // 5) for c in cells})],
+        "coarse_cell_counts": [[x, y, count, *representatives[(x, y)]]
+                               for (x, y), count in sorted(coarse_counts.items())],
         "center_time": sorted(item["datetime"] for item in items)[len(items) // 2].isoformat(timespec="minutes"),
         "mean_scan": float(sum(scans) / len(scans)) if scans else None,
         "mean_track": float(sum(tracks) / len(tracks)) if tracks else None,
