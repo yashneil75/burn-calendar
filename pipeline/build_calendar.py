@@ -31,12 +31,13 @@ MAP_PATH = ROOT / "docs/assets/cells.json"
 MODEL = harmonize.load_model(ROOT / CONFIG["model_path"])
 
 
-def atomic_write_json(path: Path, payload) -> None:
+def atomic_write_json(path: Path, payload, *, compact: bool = False) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp = path.with_suffix(path.suffix + ".tmp")
     # One field per line keeps git history efficient; the file is only ever
     # parsed by a fast JSON parser, not read by humans.
-    tmp.write_text(json.dumps(payload, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    options = {"separators": (",", ":")} if compact else {"indent": 1}
+    tmp.write_text(json.dumps(payload, ensure_ascii=False, **options) + "\n", encoding="utf-8")
     os.replace(tmp, path)
 
 
@@ -271,7 +272,7 @@ def main() -> None:
                                    "updated_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
                                    "days": days})
     atomic_write_json(CALENDAR_PATH, build_calendar_payload(days))
-    atomic_write_json(MAP_STATE_PATH, {"schema_version": 1, "days": map_days})
+    atomic_write_json(MAP_STATE_PATH, {"schema_version": 1, "days": map_days}, compact=True)
     atomic_write_json(MAP_PATH, build_map_payload(map_days))
     print("wrote", STATE_PATH)
     print("wrote", CALENDAR_PATH)

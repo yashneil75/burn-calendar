@@ -96,7 +96,7 @@ def main():
              "missing_west_years": missing_west, "days": days}
     calendar.atomic_write_json(calendar.STATE_PATH, state)
     calendar.atomic_write_json(calendar.CALENDAR_PATH, calendar.build_calendar_payload(days))
-    calendar.atomic_write_json(calendar.MAP_STATE_PATH, {"schema_version": 1, "days": map_days})
+    calendar.atomic_write_json(calendar.MAP_STATE_PATH, {"schema_version": 1, "days": map_days}, compact=True)
     calendar.atomic_write_json(ROOT / "docs/assets/cells.json", map_data)
     print(f"Rebuilt {len(days)} days and {len(map_data['cells'])} California grid cells")
 

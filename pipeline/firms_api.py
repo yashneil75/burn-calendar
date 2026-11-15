@@ -24,7 +24,7 @@ class FIRMSClientError(RuntimeError):
 
 
 def fetch_rows(source: str, bbox: list[float], days: int, start: date,
-               timeout: float = 30.0, retries: int = 3) -> list[dict]:
+               timeout: float = 30.0, retries: int = 6) -> list[dict]:
     """Fetch `days` of FIRMS detections ending at `start` + `days` - 1."""
     key = os.environ.get("FIRMS_MAP_KEY")
     if not key:

@@ -98,6 +98,8 @@ function wireSlider() {
   const end = el("rangeEnd");
   const min = state.years[MIN_IDX];
   const max = state.years[state.years.length - 1];
+  const endpoints = document.querySelectorAll(".range-ends .num");
+  if (endpoints.length >= 2) { endpoints[0].textContent = String(min); endpoints[1].textContent = String(max); }
   start.min = String(min); start.max = String(max); start.value = String(state.a);
   end.min = String(min); end.max = String(max); end.value = String(state.b);
   start.addEventListener("input", () => {

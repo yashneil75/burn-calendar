@@ -2,17 +2,34 @@ import sys
 import unittest
 from datetime import datetime
 from unittest.mock import patch
+from urllib.error import URLError
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "pipeline"))
 import build_calendar
 import fit_model
+import firms_api
 import numpy as np
 from boundary import within_california, california
 from aggregate import aggregate_observations
 
 
 class HarmonizationTests(unittest.TestCase):
+    def test_firms_retries_transient_network_failures(self):
+        from datetime import date
+        class Headers:
+            def get_content_charset(self): return "utf-8"
+        class Response:
+            headers = Headers()
+            def __enter__(self): return self
+            def __exit__(self, *args): return False
+            def read(self): return b"latitude,longitude\n38,-121\n"
+        with patch.dict('os.environ', {'FIRMS_MAP_KEY': 'test'}), \
+             patch.object(firms_api, 'urlopen', side_effect=[URLError('offline'), URLError('offline'), Response()]) as request, \
+             patch.object(firms_api.time, 'sleep'):
+            rows = firms_api.fetch_rows('VIIRS_NOAA20_NRT', [-124.5,32.5,-114.1,42], 1, date(2026,11,15))
+        self.assertEqual(request.call_count, 3)
+        self.assertEqual(rows[0]['latitude'], '38')
     def test_model_validation_uses_production_cap(self):
         prediction = fit_model.predict(np.array([[100.0]]), np.array([1.0]), 0.0,
                                        np.array([0.0]), np.array([1.0]))
