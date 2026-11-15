@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Methodology — Burn Calendar · California</title>
+  <meta name="description" content="How the California burn calendar is built: data sources, the California-tailored VIIRS to MODIS-Aqua harmonization model, validation results, and refresh mechanics." />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,500..700;1,9..144,500..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+  <style>
+    .prose { max-width: 74ch; padding: 26px 30px 34px; margin-bottom: 26px; }
+    .prose h2 { font-family: "Fraunces", serif; font-weight: 640; font-size: 24px; margin: 34px 0 10px; letter-spacing: -0.01em; }
+    .prose h2:first-of-type { margin-top: 6px; }
+    .prose p { margin: 0 0 14px; }
+    .prose li { margin-bottom: 8px; }
+    .prose code { background: rgba(27,38,32,.08); border-radius: 4px; padding: .1em .35em; font-size: .92em; }
+    table { border-collapse: collapse; width: 100%; font-size: 13px; margin: 12px 0 18px; }
+    th, td { padding: 7px 10px; text-align: right; border-bottom: 1px solid rgba(27,38,32,.15); }
+    th:first-child, td:first-child { text-align: left; }
+    th { font-size: 11px; text-transform: uppercase; letter-spacing: .07em; color: var(--ink-2); }
+    tr.total td { font-weight: 700; border-top: 2px solid rgba(27,38,32,.4); }
+    .backlink { display: inline-block; margin: 18px 0 40px; color: var(--paper); opacity: .85; }
+    .backlink:hover { opacity: 1; }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="index.html" aria-label="Burn Calendar — back to calendar">
+        <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true">
+          <circle cx="15" cy="15" r="14.2" fill="#1d2a24" stroke="#d9a441" stroke-width="1.4"/>
+          <path d="M6.5 19.5c3.4-5.6 6.6-8.4 9.4-8.4 1.5 0 2.6.8 3.6 2.6 1 .9 1.9 1.3 3 1.1" fill="none" stroke="#ece6d6" stroke-opacity="0.55" stroke-width="1.2" stroke-linecap="round"/>
+          <circle cx="15" cy="19.4" r="2.1" fill="#c2452d"/>
+        </svg>
+        <span><span class="brand-word">Burn Calendar</span><span class="brand-sep"> · </span><span class="brand-region">California</span></span>
+      </a>
+      <nav class="topnav"><a href="index.html">Calendar</a><a href="#model">The model</a></nav>
+    </div>
+  </header>
+
+  <main class="wrap" style="padding-top: 40px;">
+    <h1 style="font-family:'Fraunces',serif; font-weight:640; font-size: clamp(38px, 5vw, 56px); margin: 6px 0 26px; letter-spacing:-0.015em;">Methods</h1>
+
+    <article class="panel prose">
+      <h2>What this is</h2>
+      <p>Burn Calendar tracks California fire activity one day at a time and places it on a single, consistent scale across the whole VIIRS era (2015–present). Every day with reported science-quality detections of fire by the Suomi NPP VIIRS instrument is converted to the number of 1&nbsp;km² grid cells a MODIS‑Aqua image would have shown occupied, using a model fitted specifically for California. The number answers: <em>how much fire, how concentrated, where, and how it builds and falls within the season — day by day, since 2015.</em></p>
+      <p>The calendar is rebuilt every morning by an automated job. It is an activity index: it does not measure acres burned, count distinct fires, or predict escape.</p>
+
+      <h2>Definitions &amp; units</h2>
+      <ul>
+        <li><strong>Activity</strong> — predicted MODIS‑Aqua <em>occupied 1&nbsp;km equal-area grid cells</em> per pass, summed across a day. The grid is cylindrical equal-area (x&nbsp;=&nbsp;R·longitude, y&nbsp;=&nbsp;R·sin(latitude)); cell shapes distort toward the poles only.</li>
+        <li><strong>FRP</strong> — fire radiative power in megawatts, summed across the day's cells; a measure of energy release rate, not extent.</li>
+        <li><strong>Reported days</strong> — days on which VIIRS S‑NPP produced science-quality (or near-real-time) detections. A blank dashed cell means no observations were reported for that day; it does not mean zero fire.</li>
+        <li><strong>C6 / C6.1</strong> — NASA MODIS Collection 6 and 6.1 reference epochs. The absolute levels differ between collections; the model carries an epoch indicator so each day is scored against its own reference collection.</li>
+      </ul>
+
+      <h2>Data sources</h2>
+      <ul>
+        <li>NASA FIRMS area API — <code>VIIRS_SNPP_SP</code> (standard processing, quality‑filtered) and <code>VIIRS_SNPP_NRT</code> (near-real-time), statewide bounding box (west −124.4°, south 32.5°, east −114.1°, north 42.0°).</li>
+        <li>The archive from 2015 through the latest published science month was bootstrapped from the CC0 Source Cooperative FIRMS mirror (NASA LANCE republished verbatim), cross-checked row-for-row against FIRMS API extracts of the same windows.</li>
+        <li>Science-quality SP products trail real time by roughly 2–4 months; recent months are served from NRT and upgrade in place to SP as the science files are published. Days currently served from NRT are labeled as such in the day view.</li>
+        <li>Cleaning is conservative and identical across history: vegetation-type detections only (type&nbsp;=&nbsp;0), VIIRS confidence nominal or high, 10-minute overpass windows, 1&nbsp;km grid occupancy.</li>
+      </ul>
+
+      <h2 id="model">The model</h2>
+      <p>A California-tailored Poisson GLM with log link, fitted against 682 co-detected S‑NPP/Aqua overpasses (10-minute coincidence window, same footprint rules as the archive), 2015–2026. Features: occupied cells, cell and pixel FRP quantiles, zero-FRP fraction, cell neighborhood and 5×5 coarseness fractions, scan/track, thermal medians (ti4), local solar hour and day-of-year (circular), day/night, and an epoch indicator (C6.1 from 2023). Ridge penalty λ&nbsp;=&nbsp;1.0; coefficients and feature standardization ship in this repository (<code>pipeline/model/ca_model.json</code>).</p>
+      <p>The VIIRS/MODIS count ratio differs sharply by collection (~0.26 in C6 vs ~0.42 in C6.1 summed over the cohort), so a single global constant systematically fails by epoch. Validation is leave-one-year-out: every season is scored by a model that never saw it.</p>
+      <table>
+        <thead><tr><th>Fold (held out)</th><th>n</th><th>MAE</th><th>Median AE</th><th>Bias</th></tr></thead>
+        <tbody id="fold-table"></tbody>
+        <tfoot><tr class="total"><td>Pooled (all folds)</td><td>682</td><td id="pooled-mae">—</td><td id="pooled-medae">—</td><td id="pooled-bias">—</td></tr></tfoot>
+      </table>
+      <p>The deployed model is fitted on all years (the honest coefficients for today's C6.1 reference era). Median absolute error is ~6 cells against a cohort mean of ~23 cells per co-detected pass.</p>
+
+      <h2>Updates</h2>
+      <p>Every day at 07:23&nbsp;UTC, a GitHub Actions job pulls the current year's SP window in 5-day chunks (backfilling months as NASA publishes them) plus a trailing 120-day NRT window, re-aggregates, re-scores, and commits the rebuilt <code>docs/data/calendar.json</code>. The site is fully static; all scoring happens ahead of time. Nothing about you is measured or stored — there are no cookies and no analytics on this page.</p>
+
+      <h2>Fine print</h2>
+      <ul>
+        <li>VIIRS S‑NPP remains the deep-time reference; NOAA‑20/21 are not yet harmonized into this product and MODIS science collections end in 2026 — the MODIS‑Aqua scale is used here as a fixed historical reference, not an ongoing sensor.</li>
+        <li>Early November 2026 shows only the days reported so far; months with pending science reprocessing upgrade automatically as NASA publishes.</li>
+        <li>Blank cells are unreported, not zero. Detection geometry (scan edge, off-nadir view) and sensor response differences are why the harmonization model exists.</li>
+      </ul>
+      <p>Code, pipeline, coefficients, and the open data file: <a href="https://github.com/yashneil75/burn-calendar">github.com/yashneil75/burn-calendar</a>. The underlying detections are NASA's public-domain FIRMS products.</p>
+    </article>
+
+    <a class="backlink" href="index.html">&larr; Back to the calendar</a>
+  </main>
+
+  <footer class="wrap footer">
+    <div>Source: NASA FIRMS — VIIRS S‑NPP standard-processing and near-real-time products.</div>
+    <div style="text-align:right;">Burn Calendar · Built by Yashneil Gajjala</div>
+  </footer>
+
+  <script>
+    fetch("data/calendar.json").then(r => r.json()).then(d => {
+      const m = (d.model && d.model.holdout) || null;
+      const folds = (d.model && d.model.metrics_by_year) || {};
+      const tbody = document.getElementById("fold-table");
+      for (const [yr, fm] of Object.entries(folds)) {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `<td>${yr}</td><td>${fm.n}</td><td>${fm.mae.toFixed(1)}</td><td>${fm.median_ae.toFixed(1)}</td><td>${(fm.relative_bias * 100).toFixed(1)}%</td>`;
+        tbody.appendChild(tr);
+      }
+      if (m) {
+        document.getElementById("pooled-mae").textContent = m.mae.toFixed(1);
+        document.getElementById("pooled-medae").textContent = m.median_ae.toFixed(1);
+        document.getElementById("pooled-bias").textContent = (m.relative_bias * 100).toFixed(1) + "%";
+      }
+    }).catch(() => {});
+  </script>
+</body>
+</html>

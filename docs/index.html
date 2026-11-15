@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Burn Calendar — California, day by day</title>
+  <meta name="description" content="California fire activity, daily since 2015, harmonized to a consistent MODIS-Aqua scale. Statewide VIIRS detections, refreshed every morning." />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Fraunces:ital,opsz,wght@0,9..144,500..700;1,9..144,500..700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="#top" aria-label="Burn Calendar home">
+        <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true">
+          <circle cx="15" cy="15" r="14.2" fill="#1d2a24" stroke="#d9a441" stroke-width="1.4"/>
+          <path d="M6.5 19.5c3.4-5.6 6.6-8.4 9.4-8.4 1.5 0 2.6.8 3.6 2.6 1 .9 1.9 1.3 3 1.1" fill="none" stroke="#ece6d6" stroke-opacity="0.55" stroke-width="1.2" stroke-linecap="round"/>
+          <path d="M9.5 15.2c2.6-3.9 4.9-5.9 7-5.9 1.1 0 2 .6 2.8 2" fill="none" stroke="#ece6d6" stroke-opacity="0.3" stroke-width="1.1" stroke-linecap="round"/>
+          <circle cx="15" cy="19.4" r="2.1" fill="#c2452d"/>
+        </svg>
+        <span><span class="brand-word">Burn Calendar</span><span class="brand-sep"> · </span><span class="brand-region">California</span></span>
+      </a>
+      <nav class="topnav" aria-label="Sections">
+        <a href="#season">Current month</a>
+        <a href="#archive">Archive 2015–2026</a>
+        <a href="methodology.html">Methodology</a>
+      </nav>
+      <span class="updated num" id="updatedAt">Refreshed —</span>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="wrap hero">
+      <div>
+        <h1>California,<br />day by <em>day</em>.</h1>
+        <p class="lede">VIIRS S‑NPP fire detections, 375&nbsp;m, harmonized to a consistent MODIS‑Aqua activity scale — statewide, every day since 2015, refreshed each morning.</p>
+      </div>
+      <dl class="hero-stats" aria-label="Key figures">
+        <div class="hstat">
+          <dt>MODIS-Aqua equivalent cells — trailing 12 months</dt>
+          <dd class="num"><span id="statTrailing12">—</span><small>occupied 1 km² grid cells</small></dd>
+        </div>
+        <div class="hstat">
+          <dt>Single biggest day on record</dt>
+          <dd class="num"><span id="statPeakVal">—</span><small><span id="statPeak">—</span></small></dd>
+        </div>
+        <div class="hstat">
+          <dt>Days reported since January 2015</dt>
+          <dd class="num"><span id="statDays">—</span><small>days with observations</small></dd>
+        </div>
+      </dl>
+    </section>
+
+    <section class="wrap" id="season" aria-labelledby="season-title">
+      <div class="panel season">
+        <div class="season-main">
+          <div class="panel-head" style="padding: 0 0 14px;">
+            <div>
+              <h2 class="panel-title" id="season-title">The month</h2>
+              <p class="panel-sub">Per-day harmonized activity. Click any day for the breakdown.</p>
+            </div>
+            <div class="month-nav">
+              <button id="prevMonth" type="button" aria-label="Previous month">&lsaquo;</button>
+              <div class="month-label num" id="monthLabel">—</div>
+              <button id="nextMonth" type="button" aria-label="Next month">&rsaquo;</button>
+            </div>
+          </div>
+          <div class="cal-weekdays" aria-hidden="true">
+            <span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span><span>Su</span>
+          </div>
+          <div class="cal-grid" id="calGrid"></div>
+          <div class="legend">
+            <span>Less</span>
+            <span class="legend-ramp" aria-hidden="true">
+              <span style="background:#ece5cf"></span><span style="background:#e7cd90"></span><span style="background:#d9a441"></span><span style="background:#c8692b"></span><span style="background:#c2452d"></span><span style="background:#7e2b1c"></span>
+            </span>
+            <span>More</span>
+            <span style="margin-left:auto">Blank dashed = no observations reported</span>
+          </div>
+        </div>
+        <aside class="season-side" aria-label="Month summary">
+          <div>
+            <div class="side-label">Month totals</div>
+            <div class="kv" style="margin: 10px 0 0;">
+              <dt>Activity</dt><dd class="num" id="monthTotal">—</dd>
+              <dt>Days reported</dt><dd class="num" id="monthDays">—</dd>
+              <dt>Biggest day</dt><dd class="num" id="monthPeak">—</dd>
+            </div>
+          </div>
+          <div>
+            <div class="side-label">Strongest days — trailing 24 months</div>
+            <ul class="peak-list" id="strongestList"></ul>
+          </div>
+          <p class="epoch-note">Reference collection: MODIS&nbsp;C6.1 (2023–present) and MODIS&nbsp;C6 (2015–2022). Detections aggregate to a 1&nbsp;km equal-area grid; numbers count grid cells occupied by fire, not fires.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="wrap" id="archive" aria-labelledby="archive-title">
+      <div class="panel archive">
+        <h2 class="panel-title" id="archive-title">Every year since 2015</h2>
+        <p class="panel-sub" style="margin-bottom: 0;">Monthly activity, color-scaled. Select any month to open it above.</p>
+        <div class="archive-matrix" id="archiveMatrix"></div>
+      </div>
+    </section>
+
+    <footer class="wrap footer">
+      <div>Source: NASA FIRMS — VIIRS S‑NPP standard-processing (science quality) and near-real-time products.<br />Harmonized to a MODIS‑Aqua equivalent with the <a href="methodology.html">California-tailored model</a>.</div>
+      <div style="text-align:right;">Burn Calendar · Built by Yashneil Gajjala<br /><a href="methodology.html">Methodology &amp; sources</a></div>
+    </footer>
+  </main>
+
+  <div class="drawer-backdrop" id="drawerBackdrop" aria-hidden="true"></div>
+  <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawerDate" aria-hidden="true">
+    <div class="drawer-head">
+      <div>
+        <h2 class="drawer-date" id="drawerDate">—</h2>
+        <div class="drawer-status" id="drawerStatus">—</div>
+      </div>
+      <button class="drawer-close" id="drawerClose" type="button" aria-label="Close">&times;</button>
+    </div>
+    <div class="drawer-body">
+      <div class="drawer-big">
+        <span class="n num" id="drawerActivity">—</span>
+        <span class="u">MODIS-Aqua equivalent occupied 1&nbsp;km² cells</span>
+      </div>
+      <div class="dn-split" aria-label="Day and night breakdown">
+        <div class="dn-row" data-period="D">
+          <span>Day</span>
+          <div class="dn-track"><div class="dn-fill" id="fillD" style="width:0%"></div></div>
+          <span class="dn-val num" id="valD">—</span>
+        </div>
+        <div class="dn-row" data-period="N">
+          <span>Night</span>
+          <div class="dn-track"><div class="dn-fill" id="fillN" style="width:0%"></div></div>
+          <span class="dn-val num" id="valN">—</span>
+        </div>
+        <div class="dn-row" data-period="D" style="font-size:11px; color:var(--ink-2)">
+          <span></span><span id="metaD">passes —</span><span></span>
+        </div>
+        <div class="dn-row" data-period="N" style="font-size:11px; color:var(--ink-2)">
+          <span></span><span id="metaN">passes —</span><span></span>
+        </div>
+      </div>
+      <dl class="kv">
+        <dt>Fire radiative power</dt><dd class="num" id="drawerFrp">—</dd>
+        <dt>VIIRS footprint</dt><dd class="num" id="drawerViirs">—</dd>
+        <dt>Processing version</dt><dd class="num" id="drawerEpochs">—</dd>
+      </dl>
+      <div class="vs-month" id="drawerVersus">—</div>
+    </div>
+  </aside>
+
+  <script src="assets/app.js"></script>
+</body>
+</html>
