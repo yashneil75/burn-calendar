@@ -1,0 +1,210 @@
+{
+  "schema_version": 1,
+  "name": "california-modis-aqua-poisson-glm",
+  "trained_on": "California bounding-box VIIRS S-NPP/Aqua co-detected pairs, 2015\u20132026 (leave-one-year-out validation)",
+  "target": "MODIS-Aqua occupied 1 km cells per co-detected overpass",
+  "feature_order": [
+    "log_cells",
+    "log_frp_med",
+    "log_frp_max",
+    "log_frp_q90",
+    "zero_frp_frac",
+    "scan",
+    "track",
+    "neighbor_frac",
+    "coarse5_frac",
+    "log_vis2",
+    "cells_above10",
+    "daynight_d",
+    "doy_sin",
+    "doy_cos",
+    "epoch_c61",
+    "hour_sin",
+    "hour_cos"
+  ],
+  "feature_mean": [
+    3.4859118164859026,
+    2.1942473067366883,
+    3.8730641939965316,
+    3.533781342168966,
+    0.000394918749293131,
+    0.4648739409875543,
+    0.4712225069147312,
+    0.5973738394016054,
+    0.5801612393472477,
+    2.547295665622417,
+    0.41023719108893214,
+    0.6606929510155317,
+    -0.1921041009269718,
+    -0.18439193411912747,
+    0.22102747909199522,
+    -0.017048898982060013,
+    -0.33914100776458783
+  ],
+  "feature_std": [
+    1.2158595172303341,
+    0.8104965549220531,
+    1.2018390837348418,
+    0.9974659900500438,
+    0.0034725454893773534,
+    0.06233628827826174,
+    0.09400558461720848,
+    0.27976263142273067,
+    0.2554670345055281,
+    1.3180975044958423,
+    0.25014571937621694,
+    0.4734741550432472,
+    0.6898322291630874,
+    0.6732214529014452,
+    0.41493895042311213,
+    0.39521870639311746,
+    0.8535191187154918
+  ],
+  "coefficients": [
+    0.1809469162419538,
+    -0.38453419661854016,
+    -0.046076610230270154,
+    0.14387806366421693,
+    0.06826381129539866,
+    0.07649411825585678,
+    -0.46698359711371323,
+    1.2952162379435894,
+    -0.14728541833476794,
+    1.4657894099563031,
+    0.10920491408579616,
+    -12.220226287595711,
+    0.2906355761119707,
+    0.2316539114032045,
+    0.18914802041374368,
+    -2.4269593360237613,
+    -10.270451940217807
+  ],
+  "intercept": 0.4015053213595179,
+  "l2": 1.0,
+  "c61_cutoff": "2023-01-01",
+  "metrics": {
+    "leave_one_year_out_pooled": {
+      "n": 837,
+      "mae": 12.709917701036774,
+      "median_ae": 4.902447035211881,
+      "rmse": 34.403723009656424,
+      "relative_bias": -0.0312822907108078
+    },
+    "leave_one_year_out_by_year": {
+      "2015": {
+        "n": 67,
+        "mae": 8.873211050039584,
+        "median_ae": 4.64177624073797,
+        "rmse": 13.687295554893426,
+        "relative_bias": -0.31964212786994745
+      },
+      "2016": {
+        "n": 73,
+        "mae": 5.922005090680485,
+        "median_ae": 3.4799948766639446,
+        "rmse": 9.236166483572886,
+        "relative_bias": -0.5103154150124029
+      },
+      "2017": {
+        "n": 88,
+        "mae": 12.981921732500119,
+        "median_ae": 5.456483622632417,
+        "rmse": 34.53061550436097,
+        "relative_bias": 0.06963225236106249
+      },
+      "2018": {
+        "n": 96,
+        "mae": 8.679722549891892,
+        "median_ae": 3.956854299183928,
+        "rmse": 15.274087498020997,
+        "relative_bias": -0.1079122569455254
+      },
+      "2019": {
+        "n": 64,
+        "mae": 4.019979510424387,
+        "median_ae": 3.6215350080146282,
+        "rmse": 5.113860903896208,
+        "relative_bias": -0.664548667721565
+      },
+      "2020": {
+        "n": 101,
+        "mae": 31.104341528546815,
+        "median_ae": 6.778674582917908,
+        "rmse": 76.20102130030573,
+        "relative_bias": 0.2575517248063335
+      },
+      "2021": {
+        "n": 100,
+        "mae": 18.777986084924216,
+        "median_ae": 6.827524028257413,
+        "rmse": 42.93039187877568,
+        "relative_bias": 0.1774463091330049
+      },
+      "2022": {
+        "n": 63,
+        "mae": 5.825401181410873,
+        "median_ae": 4.909327422277747,
+        "rmse": 7.6622049596701505,
+        "relative_bias": -0.6843029572980213
+      },
+      "2023": {
+        "n": 76,
+        "mae": 10.03566932844811,
+        "median_ae": 3.6707485461786127,
+        "rmse": 22.021753469428177,
+        "relative_bias": -0.26935718659816227
+      },
+      "2024": {
+        "n": 71,
+        "mae": 9.817296839027614,
+        "median_ae": 5.99548836453741,
+        "rmse": 15.506908784740281,
+        "relative_bias": -0.3202311607153506
+      },
+      "2025": {
+        "n": 36,
+        "mae": 14.53149420063171,
+        "median_ae": 10.49083485663128,
+        "rmse": 20.02317425860567,
+        "relative_bias": -0.46633016690281354
+      },
+      "2026": {
+        "n": 2,
+        "mae": 4.619162409183738,
+        "median_ae": 4.619162409183738,
+        "rmse": 6.2972564259629715,
+        "relative_bias": -0.856008811448009
+      }
+    },
+    "fit_all_years": {
+      "n": 837,
+      "mae": 11.049829457615834,
+      "median_ae": 4.82243575873462,
+      "rmse": 27.394192568836445,
+      "relative_bias": -0.1027377166738463
+    },
+    "modis_to_viirs_ratio": 0.2535819735819736
+  },
+  "clip": [
+    0.0,
+    500.0
+  ],
+  "validation_note": "Co-detections only; no common swath or cloud masks. Training uses a bounding box; production filters to the California polygon. NOAA-20 is not calibrated.",
+  "created_utc": "2026-11-15T22:10:27+00:00",
+  "training_inputs_sha256": {
+    "passes/california-state/2015.json": "6bc282403dad1d2b8ca2426dcbea11b0297fba6991179179cbf5099bfdc545ae",
+    "passes/california-state/2016.json": "7b9b0e99fa854554abacecc3bdcc48e37043b3e507ed3baffe99df3e189f340e",
+    "passes/california-state/2017.json": "47202a4c1cd79a3612b975c927e7a44afe971cb7123956f4d01b8466f09bbe87",
+    "passes/california-state/2018.json": "e523cc365cbd588a3d8cb883893eefbed188f1b4eeec7f9402d5a2c380d71c54",
+    "passes/california-state/2019.json": "b16f52053269d28120b60273c30e85839c351643fb4292861e0f39a5e4313984",
+    "passes/california-state/2020.json": "e1648e4711d3174fbec05fe99a69b7872aa07fd6e6fdd41b388d5f1e331f9f4a",
+    "passes/california-state/2021.json": "0af7c56ab4aca79f5741f7769c3e693c7b22b61b2641a37f657c6806e792e695",
+    "passes/california-state/2022.json": "d0c90a2dcba13fe524e6608387293ff194a5ce22c02c61226ce2cbc9dea22358",
+    "passes/california-state/2023.json": "f294b214db4fb70c4b90e4df96f7a7a3936db9478cae5f2eb2e74b1e4e8c3c65",
+    "passes/california-state/2024.json": "051bca40bf10e2f13679f399f9b12f2cae6a360543df4501ef4a7b82e292fc0d",
+    "passes/california-state/2025.json": "4086bce846114908cd359ead0afb95d3f565eabc2a37e2e7abc1a0274a7affe0",
+    "passes/california-state/2026.json": "b396e121ecdac14f168647b36cfe38fa049ed46fa35f7f5952f6d4dff0d2bd81",
+    "pairs/california-state/pairs.json": "323f22e2502ab7ce81221855100891e9275d0ec65afcb36cb405c8c8273ee488"
+  },
+  "candidate_only": true
+}
