@@ -13,7 +13,7 @@
  },
  "unit": "MODIS-Aqua-equivalent occupied 1 km² grid cells",
  "timezone": "UTC",
- "generated_utc": "2026-11-15T22:20:08+00:00",
+ "generated_utc": "2026-11-15T22:22:02+00:00",
  "model": {
   "name": "california-modis-aqua-poisson-glm",
   "target": "MODIS-Aqua occupied 1 km cells per co-detected overpass",
