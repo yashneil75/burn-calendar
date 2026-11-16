@@ -9,14 +9,16 @@ const fmt = (n, digits = 1) =>
 
 const state = {
   cells: [], years: [], a: 0, b: 0, map: null, layer: null, legendDiv: null,
+  counties: [], countyLayer: null,
   draw: { active: false, mode: null, points: [], line: null, rect: null, vertexMarkers: [], polygon: null, areaPoints: null },
 };
 
 async function boot() {
-  const [cellsRes, calRes, boundaryRes] = await Promise.all([
+  const [cellsRes, calRes, boundaryRes, countiesRes] = await Promise.all([
     fetch("assets/cells.json"),
     fetch("data/calendar.json"),
     fetch("assets/california.geojson"),
+    fetch("assets/counties.json").catch(() => null),
   ]);
   if (!cellsRes.ok || !boundaryRes.ok) {
     el("map").innerHTML = `<p class="load-error">The map data did not load. Try refreshing; if it persists, the latest build may be in progress.</p>`;
@@ -49,6 +51,20 @@ async function boot() {
 
   const feature = boundary.features[0];
   const bounds = L.geoJSON(feature).getBounds();
+
+  // County search is progressive enhancement: the map works without it.
+  if (countiesRes && countiesRes.ok) {
+    try {
+      const counties = await countiesRes.json();
+      state.counties = (counties.features || []).slice().sort((x, y) => x.properties.name.localeCompare(y.properties.name));
+    } catch (_) {
+      state.counties = [];
+    }
+  }
+  const countyRow = document.querySelector(".county-row");
+  if (!state.counties.length) {
+    if (countyRow) countyRow.hidden = true;
+  }
 
   const map = L.map("map", {
     center: bounds.getCenter(),
@@ -100,6 +116,39 @@ function pointInPolygon(lat, lng, polygon) {
   return inside;
 }
 
+// Exterior rings of any Polygon/MultiPolygon, as [lat, lng] pairs. Holes are ignored.
+function exteriorRings(geometry) {
+  const polys = geometry.type === "Polygon" ? [geometry.coordinates] : geometry.coordinates;
+  return polys.map((poly) => poly[0].map(([lng, lat]) => [lat, lng]));
+}
+
+// Ramer–Douglas–Peucker in degrees, keeps point-in-polygon cheap for dense county rings.
+function simplifyRing(ring, eps) {
+  const keep = new Uint8Array(ring.length);
+  if (ring.length < 3) return ring.slice();
+  keep[0] = keep[ring.length - 1] = 1;
+  const stack = [[0, ring.length - 1]];
+  while (stack.length) {
+    const [a, b] = stack.pop();
+    const ay = ring[a][0], ax = ring[a][1], by = ring[b][0], bx = ring[b][1];
+    const dy = by - ay, dx = bx - ax;
+    const len2 = dx * dx + dy * dy;
+    let maxD = 0, idx = -1;
+    for (let i = a + 1; i < b; i += 1) {
+      const py = ring[i][0], px = ring[i][1];
+      let dist;
+      if (len2 === 0) dist = Math.hypot(py - ay, px - ax);
+      else {
+        const t = ((px - ax) * dx + (py - ay) * dy) / len2;
+        dist = Math.hypot(py - (ay + t * dy), px - (ax + t * dx));
+      }
+      if (dist > maxD) { maxD = dist; idx = i; }
+    }
+    if (maxD > eps && idx !== -1) { keep[idx] = 1; stack.push([a, idx], [idx, b]); }
+  }
+  return ring.filter((_, i) => keep[i]);
+}
+
 function wireDraw() {
   const toolButtons = [...document.querySelectorAll(".map-btn.tool")];
   const doneBtn = el("drawDone");
@@ -148,10 +197,87 @@ function wireDraw() {
   const clearArea = () => {
     if (d.polygon) { map.removeLayer(d.polygon); d.polygon = null; }
     removePreviews();
+    if (state.countyLayer) { map.removeLayer(state.countyLayer); state.countyLayer = null; }
     d.areaPoints = null;
+    setAreaStatsTitle("Selected area");
+    const input = el("countySearch");
+    if (input) input.value = "";
     el("areaStats").hidden = true;
     setModeUI();
   };
+
+  /* County selection: search box with autocomplete over the 58 CA counties. */
+  const setAreaStatsTitle = (text) => {
+    const node = el("areaStatsTitle");
+    if (node) node.textContent = text;
+  };
+  const countyInput = el("countySearch");
+  const countyList = el("countyList");
+  const countyHint = el("countyHint");
+  if (countyInput && countyList) {
+    const feats = state.counties;
+    countyList.innerHTML = feats.map((f) => `<option value="${f.properties.name} County"></option>`).join("");
+    const byName = new Map();
+    for (const f of feats) {
+      const n = f.properties.name.toLowerCase();
+      byName.set(n, f);
+      byName.set(`${n} county`, f);
+    }
+    const findCounty = (raw) => {
+      const q = raw.trim().toLowerCase().replace(/\s+/g, " ");
+      if (!q) return null;
+      if (byName.has(q)) return byName.get(q);
+      const bare = q.replace(/ county$/, "");
+      if (byName.has(bare)) return byName.get(bare);
+      const starts = feats.filter((f) => f.properties.name.toLowerCase().startsWith(bare));
+      if (starts.length === 1) return starts[0];
+      const contains = feats.filter((f) => f.properties.name.toLowerCase().includes(bare));
+      return contains.length === 1 ? contains[0] : null;
+    };
+    const selectCounty = (feature) => {
+      // Same commit flow as finish(): drop any in-flight stroke or drawn area.
+      if (d.polygon) { map.removeLayer(d.polygon); d.polygon = null; }
+      removePreviews();
+      d.active = false;
+      d.mode = null;
+      setModeUI();
+      if (state.countyLayer) { map.removeLayer(state.countyLayer); state.countyLayer = null; }
+      const name = feature.properties.name;
+      state.countyLayer = L.geoJSON(feature, {
+        style: { color: "#c2452d", weight: 1.5, dashArray: "5 4", fillColor: "#c2452d", fillOpacity: 0.07, interactive: false },
+      }).addTo(map);
+      const rings = exteriorRings(feature.geometry);
+      d.areaPoints = rings.map((r) => simplifyRing(r, 0.0015));
+      let minLat = 90, maxLat = -90, minLng = 180, maxLng = -180;
+      for (const r of rings) {
+        for (const [lat, lng] of r) {
+          if (lat < minLat) minLat = lat;
+          if (lat > maxLat) maxLat = lat;
+          if (lng < minLng) minLng = lng;
+          if (lng > maxLng) maxLng = lng;
+        }
+      }
+      map.fitBounds([[minLat, minLng], [maxLat, maxLng]], { padding: [28, 28], maxZoom: 9 });
+      setAreaStatsTitle(`${name} County`);
+      if (countyHint) countyHint.textContent = "";
+      countyInput.removeAttribute("aria-invalid");
+      updateAreaStats();
+      el("areaStats").hidden = false;
+    };
+    countyInput.addEventListener("change", () => {
+      const raw = countyInput.value;
+      if (!raw.trim()) { clearArea(); return; }
+      const match = findCounty(raw);
+      if (match) { selectCounty(match); return; }
+      if (countyHint) countyHint.textContent = "No county by that name.";
+      countyInput.setAttribute("aria-invalid", "true");
+    });
+    countyInput.addEventListener("input", () => {
+      if (countyHint) countyHint.textContent = "";
+      countyInput.removeAttribute("aria-invalid");
+      if (!countyInput.value.trim() && state.countyLayer) clearArea();
+    });
+  }
 
   const finish = () => {
     if (d.points.length < (d.mode === "scribble" ? 8 : 3)) return;
@@ -179,6 +305,11 @@ function wireDraw() {
     strokeId = null;
     strokeOrigin = null;
     lastPx = null;
+    if (state.countyLayer) { map.removeLayer(state.countyLayer); state.countyLayer = null; }
+    const countyNode = el("countySearch");
+    if (countyNode) countyNode.value = "";
+    const titleNode = el("areaStatsTitle");
+    if (titleNode) titleNode.textContent = "Selected area";
     d.areaPoints = null;
     el("areaStats").hidden = true;
     d.active = true;
@@ -234,7 +365,8 @@ function wireDraw() {
   });
   map.on("dblclick", () => { if (d.active && d.mode === "polygon") finish(); });
   document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && d.active) cancel();
+    if (e.key === "Escape" && d.active) { cancel(); return; }
+    if (e.key === "Escape" && state.countyLayer) clearArea();
   });
 
   let strokeId = null;
@@ -305,7 +437,9 @@ function wireDraw() {
 
 function updateAreaStats() {
   const pts = state.draw.areaPoints;
-  if (!pts || pts.length < 3) return;
+  if (!pts || !pts.length) return;
+  // Drawn selections are a single ring; counties are an array of exterior rings.
+  const polys = typeof pts[0][0] === "number" ? [pts] : pts;
   const years = state.years;
   const i0 = years.indexOf(state.a);
   const i1 = years.indexOf(state.b);
@@ -317,7 +451,7 @@ function updateAreaStats() {
     for (let i = i0; i <= i1; i += 1) s += c[2 + i];
     if (s < 1.0) continue;
     stateTotal += s;
-    if (pointInPolygon(c[1], c[0], pts)) {
+    if (polys.some((ring) => pointInPolygon(c[1], c[0], ring))) {
       sum += s;
       cells += 1;
       for (let i = i0; i <= i1; i += 1) yrTotals[i - i0] += c[2 + i];

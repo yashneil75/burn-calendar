@@ -936,3 +936,14 @@ body {
   .dl-range .date-jump { flex: 1 1 140px; }
   .dl-range .date-jump input { width: 100%; }
 }
+
+/* ---------- Map county search ---------- */
+.county-row { display: flex; align-items: center; gap: 12px; margin: 0 0 12px; }
+.county-search { flex: 1 1 auto; min-width: 0; font: inherit; font-size: 13px; color: var(--ink); background: var(--paper); border: 1px solid var(--hairline); border-radius: 0; padding: 9px 12px; }
+.county-search::placeholder { color: var(--ink-2); }
+.county-search:focus-visible { outline: 2px solid var(--focus); outline-offset: 1px; }
+.county-hint { font-size: 12px; color: var(--ember); min-width: 0; }
+@media (max-width: 640px) {
+  .county-row { flex-wrap: wrap; }
+  .county-hint { flex-basis: 100%; }
+}

@@ -53,6 +53,13 @@
       <div class="range-ends"><span class="num">2000</span><span class="num">2026</span></div>
     </div>
 
+    <div class="county-row" role="search">
+      <span class="side-label" id="countyLabel">County</span>
+      <input type="text" id="countySearch" list="countyList" placeholder="Search 58 counties…" autocomplete="off" spellcheck="false" aria-labelledby="countyLabel" />
+      <datalist id="countyList"></datalist>
+      <span class="county-hint" id="countyHint" role="status"></span>
+    </div>
+
     <div class="map-tools" role="group" aria-label="Drawing tools">
       <button class="map-btn tool" type="button" data-tool="polygon" aria-pressed="false">Polygon</button>
       <button class="map-btn tool" type="button" data-tool="box" aria-pressed="false">Box</button>
@@ -66,7 +73,7 @@
 
     <div class="panel area-stats" id="areaStats" hidden aria-live="polite">
       <div class="area-stats-head">
-        <span class="side-label">Selected area</span>
+        <span class="side-label" id="areaStatsTitle">Selected area</span>
         <button id="areaClear" class="map-btn map-btn-quiet" type="button">Clear</button>
       </div>
       <dl class="kv area-stats-grid">
@@ -79,7 +86,7 @@
     </div>
 
     <div class="map-foot">
-      <p class="epoch-note" style="border:0;padding-top:0;margin:0">Each dot represents a 5 km grid cell containing California detections. Pass activity is distributed across cells in proportion to occupied 1 km cells. Cells with less than one unit in the selected range are omitted from the map total. The map and calendar refresh together. Boundary: Natural Earth. Fire detections: NASA FIRMS.</p>
+      <p class="epoch-note" style="border:0;padding-top:0;margin:0">Each dot represents a 5 km grid cell containing California detections. Pass activity is distributed across cells in proportion to occupied 1 km cells. Cells with less than one unit in the selected range are omitted from the map total. The map and calendar refresh together. Boundary: Natural Earth. County boundaries: US Census Bureau. Fire detections: NASA FIRMS.</p>
       <a class="textlink" href="methodology.html">Full methodology &rarr;</a>
     </div>
   </main>
@@ -90,6 +97,6 @@
   </footer>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="assets/map.js?v=20261116h"></script>
+  <script src="assets/map.js?v=20261116i"></script>
 </body>
 </html>
