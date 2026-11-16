@@ -228,7 +228,7 @@ async function loadForecast() {
       const caution = el("forecastCaution");
       const percent = Math.round(Math.abs(bias) * 100);
       const direction = bias < 0 ? "below" : "above";
-      caution.textContent = `Experimental forecast of detected activity, not fire risk. In the 2023–2025 test, summed medians were ${percent}% ${direction} reported activity.`;
+      caution.textContent = `Experimental forecast of detected activity, not fire risk. In the 2023–2025 test, summed medians were ${percent}% ${direction} reported activity (MAE ≈ 7.6; extreme outbreak days, which a week-ahead history cannot anticipate, drive the miss).`;
       el("forecastNote").hidden = false;
     }
   } catch (_) {
