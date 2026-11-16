@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Download the data · Califire</title>
+  <meta name="description" content="Download the Califire record as CSV: daily, monthly or yearly rows, filtered to any year and month range since 2000." />
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,500;0,600;0,650;0,700;1,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="index.html" aria-label="Califire, back to the calendar"><span class="brand-word">Califire</span></a>
+      <nav class="topnav" aria-label="Sections">
+        <a href="index.html#season">Calendar</a>
+        <a href="map.html">Map</a>
+        <a href="archive.html">Archive</a>
+        <a href="download.html" aria-current="page">Download</a>
+        <a href="methodology.html">Methodology</a>
+      </nav>
+      <span class="updated num" id="updatedAt">Refreshed …</span>
+    </div>
+  </header>
+
+  <main class="wrap archive-hero">
+    <h1 class="archive-title">Take the <em>data</em>.</h1>
+    <p class="lede">The whole record as CSV, filtered to the range you want. Everything the calendar shows, minus the pictures.</p>
+
+    <div class="panel archive dl-panel">
+      <div class="dl-block">
+        <span class="side-label" id="granularityLabel">Granularity</span>
+        <div class="dl-seg" role="radiogroup" aria-labelledby="granularityLabel">
+          <label><input type="radio" name="granularity" value="daily" checked /><span>Daily</span></label>
+          <label><input type="radio" name="granularity" value="monthly" /><span>Monthly</span></label>
+          <label><input type="radio" name="granularity" value="yearly" /><span>Yearly</span></label>
+        </div>
+      </div>
+
+      <div class="dl-block">
+        <span class="side-label" id="rangeLabel">Range</span>
+        <div class="dl-range" role="group" aria-labelledby="rangeLabel">
+          <label class="date-jump" for="fromMonth">
+            <span class="date-jump-label">From</span>
+            <input type="month" id="fromMonth" />
+          </label>
+          <span class="dl-range-sep" aria-hidden="true">&rarr;</span>
+          <label class="date-jump" for="toMonth">
+            <span class="date-jump-label">To</span>
+            <input type="month" id="toMonth" />
+          </label>
+        </div>
+        <div class="dl-presets" role="group" aria-label="Quick ranges">
+          <button class="map-btn" id="presetAll" type="button">All time</button>
+          <button class="map-btn" id="preset12" type="button">Last 12 months</button>
+          <button class="map-btn" id="preset5y" type="button">Last 5 years</button>
+        </div>
+        <label class="dl-check" for="fireSeasonOnly">
+          <input type="checkbox" id="fireSeasonOnly" />
+          <span>Fire season only (June&ndash;October)</span>
+        </label>
+        <p class="dl-error" id="rangeError" role="alert" hidden>The start month is after the end month. Pick a valid range.</p>
+      </div>
+
+      <div class="dl-summary" role="status" aria-live="polite">
+        <div>
+          <div class="side-label">Your file</div>
+          <dl class="kv dl-kv">
+            <dt>Rows</dt><dd class="num" id="sumRows">…</dd>
+            <dt>Coverage</dt><dd class="num" id="sumCoverage">…</dd>
+            <dt>Size</dt><dd class="num" id="sumSize">…</dd>
+          </dl>
+        </div>
+        <button class="btn-primary" id="downloadBtn" type="button" disabled>Download CSV</button>
+      </div>
+
+      <div class="dl-block">
+        <span class="side-label">Columns</span>
+        <p class="dl-cols" id="columnList"></p>
+      </div>
+
+      <p class="epoch-note" style="border:0;padding-top:0;margin:0">Only days with reported observations are listed; missing days are omitted, never zero. Figures are MODIS-Aqua-equivalent activity units on a 1 km equal-area grid, not burned area or fire counts. Forecasts are experimental and are not included. From November 3, 2026 the source is NOAA-20 and estimates are provisional. Source: NASA FIRMS. <a class="textlink" href="methodology.html">Unit &amp; sources</a>.</p>
+    </div>
+  </main>
+
+  <footer class="wrap footer">
+    <div>Source: NASA FIRMS, MODIS and VIIRS products.</div>
+    <div class="footer-right">Califire · Built by Yashneil Gajjala &amp; Shrihan Chada<br /><a href="methodology.html">Methodology &amp; sources</a></div>
+  </footer>
+
+  <script src="assets/download.js"></script>
+</body>
+</html>

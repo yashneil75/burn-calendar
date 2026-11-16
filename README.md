@@ -14,6 +14,7 @@ The narrow California coastal strip west of −124.4° was checked against the 2
 - An archive matrix: every year and month since 2000 at a glance
 - A map page: fire density, 2000 to present, pan and zoom limited to California
 - A day drawer: D/N breakdown, per-pass counts, percentile vs. the calendar month across years
+- A download page: daily, monthly or yearly CSV, filtered by year/month range
 - An open, rebuilt-daily data file: `docs/data/calendar.json`
 
 Units: MODIS‑Aqua-equivalent occupied 1 km² equal-area grid cells. This is an activity index: not burned area, not a fire count, not an early-warning system. Days without reported observations are blank, never zero.
@@ -24,6 +25,7 @@ Units: MODIS‑Aqua-equivalent occupied 1 km² equal-area grid cells. This is an
 docs/                  The static site (GitHub Pages serves from here)
   index.html           Month grid + archive + day drawer
   methodology.html     Methods, sources, validation results
+  download.html        CSV export, filtered by granularity and year/month range
   data/calendar.json   The product, rebuilt daily
 pipeline/              Everything that runs ahead of time (Python + numpy)
   build_calendar.py    Daily refresh: pull FIRMS, re-aggregate, rewrite calendar.json
