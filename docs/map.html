@@ -52,8 +52,29 @@
       <div class="range-ends"><span class="num">2000</span><span class="num">2026</span></div>
     </div>
 
+    <div class="map-tools" role="group" aria-label="Drawing tools">
+      <button class="map-btn tool" type="button" data-tool="polygon" aria-pressed="false">Polygon</button>
+      <button class="map-btn tool" type="button" data-tool="box" aria-pressed="false">Box</button>
+      <button class="map-btn tool" type="button" data-tool="scribble" aria-pressed="false">Scribble</button>
+      <button id="drawDone" class="map-btn" type="button" hidden disabled>Done</button>
+      <span class="draw-hint" id="drawHint" hidden></span>
+    </div>
     <div class="map-panel">
-      <div id="map" role="application" aria-label="Interactive map of California fire activity from 2000 to present. Pan and zoom are limited to California. The range slider filters which years are shown."></div>
+      <div id="map" role="application" aria-label="Interactive map of California fire activity from 2000 to present. Pan and zoom are limited to California. The range slider filters which years are shown. The draw tool lets you outline an area to see its statistics."></div>
+    </div>
+
+    <div class="panel area-stats" id="areaStats" hidden aria-live="polite">
+      <div class="area-stats-head">
+        <span class="side-label">Selected area</span>
+        <button id="areaClear" class="map-btn map-btn-quiet" type="button">Clear</button>
+      </div>
+      <dl class="kv area-stats-grid">
+        <dt>Cells plotted</dt><dd class="num" id="areaCells">…</dd>
+        <dt id="areaActivityLabel">Activity, 2000 to 2026</dt><dd class="num" id="areaActivity">…</dd>
+        <dt>Share of statewide</dt><dd class="num" id="areaShare">…</dd>
+        <dt>Peak year</dt><dd class="num" id="areaPeakYear">…</dd>
+        <dt>Avg activity per year</dt><dd class="num" id="areaAvg">…</dd>
+      </dl>
     </div>
 
     <div class="map-foot">
@@ -68,6 +89,6 @@
   </footer>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="assets/map.js"></script>
+  <script src="assets/map.js?v=20261116g"></script>
 </body>
 </html>
