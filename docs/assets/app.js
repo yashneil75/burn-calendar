@@ -214,8 +214,6 @@ async function loadForecast() {
     if (data.kind !== "experimental_forecast" || ![yesterday, dayBefore].includes(data.origin_utc_date) ||
         !data.calendar_generated_utc || data.calendar_generated_utc !== state.data.generated_utc ||
         !Number.isFinite(age) || age < -300000 || age > 36 * 3600000 || !Array.isArray(data.predictions)) return;
-    const bias = data.validation?.pooled?.timestral?.bias;
-    if (!Number.isFinite(bias)) return;
     state.forecast = data;
     const lastAllowed = new Date(Date.parse(`${today}T00:00:00Z`) + 7 * 86400000).toISOString().slice(0, 10);
     for (const f of data.predictions) {
@@ -225,10 +223,7 @@ async function loadForecast() {
       }
     }
     if (state.forecastByDate.size) {
-      const caution = el("forecastCaution");
-      const percent = Math.round(Math.abs(bias) * 100);
-      const direction = bias < 0 ? "below" : "above";
-      caution.textContent = `Experimental forecast of detected activity, not fire risk. In the 2023–2025 test, summed medians were ${percent}% ${direction} reported activity (MAE ≈ 7.6; extreme outbreak days, which a week-ahead history cannot anticipate, drive the miss).`;
+      el("forecastCaution").textContent = "Experimental forecast of detected activity, not fire risk.";
       el("forecastNote").hidden = false;
     }
   } catch (_) {

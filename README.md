@@ -43,7 +43,7 @@ pipeline/              Everything that runs ahead of time (Python + numpy)
 4. Score each pass with `pipeline/model/ca_model.json`; NOAA-20 estimates are provisional.
 5. Merge (SP wins over NRT; newest SP wins), then rebuild the calendar and map from their synchronized daily states.
 
-After a successful refresh, the experimental Timestral-5M workflow forecasts seven future days of the satellite-detected activity index and publishes them separately. Purple calendar cells are forecasts and are excluded from observed totals, the map and rankings. A 2023–2025 retrospective check found summed median forecasts 73% below reported activity. This is not a wildfire-risk, ignition, spread or emergency forecast. See [forecast evaluation](docs/forecast-experiment.md).
+After a successful refresh, the experimental Timestral-5M workflow forecasts seven future days of the satellite-detected activity index and publishes them separately. Purple calendar cells are forecasts and are excluded from observed totals, the map and rankings. This is not a wildfire-risk, ignition, spread or emergency forecast. See [forecast evaluation](docs/forecast-experiment.md).
 
 ## Local run
 
