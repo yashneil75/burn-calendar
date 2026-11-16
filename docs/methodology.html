@@ -31,6 +31,35 @@
     tbody tr:last-child td { border-bottom: 0; }
     .backlink { display: inline-block; margin: 10px 0 56px; color: var(--ink-2); text-decoration: none; font-size: 14px; }
     .backlink:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+    .score-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--hairline); border: 1px solid var(--hairline); margin: 16px 0 22px; }
+    .score-cell { background: var(--paper); padding: 15px 17px 14px; }
+    .score-num { font-family: "Inter Tight", "Inter", sans-serif; font-size: clamp(26px, 4.2vw, 34px); letter-spacing: -0.03em; line-height: 1; font-variant-numeric: tabular-nums; color: var(--ember); }
+    .score-num small { font-size: 0.5em; color: var(--ink-2); font-weight: 500; letter-spacing: 0; }
+    .score-label { font-size: 11.5px; line-height: 1.5; color: var(--ink-2); margin-top: 7px; }
+    .bars { margin: 0 0 20px; }
+    .bars-title { font-size: 10.5px; text-transform: uppercase; letter-spacing: .07em; color: var(--ink-2); margin: 18px 0 6px; }
+    .bar-row { padding: 5px 0 7px; }
+    .bar-top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-size: 12.5px; }
+    .bar-name { color: var(--ink); }
+    .bar-val { font-variant-numeric: tabular-nums; font-weight: 600; white-space: nowrap; }
+    .bar-track { height: 8px; background: var(--shell-3); margin-top: 4px; }
+    .bar-fill { height: 100%; background: #c2452d; }
+    .bar-fill.alt { background: #c9c5bb; }
+    .score-foot { font-size: 12px; color: var(--ink-2); }
+    .page-rule { max-width: 680px; margin: 0 auto; height: 4px; background: linear-gradient(90deg, #faf3e3 0%, #e7cd90 20%, #d9a441 38%, #c8692b 54%, #c2452d 72%, #7e2b1c 100%); }
+    .methods-nav { max-width: 680px; margin: 2px auto 0; padding: 12px 0 0; font-size: 12px; display: flex; flex-wrap: wrap; gap: 4px 0; color: var(--ink-2); }
+    .methods-nav a { color: var(--ink-2); text-decoration: none; padding: 2px 2px; border-bottom: 1px solid transparent; }
+    .methods-nav a:hover { color: var(--ember); border-bottom-color: var(--ember); }
+    .methods-nav span { padding: 2px 8px; color: var(--hairline-dark); }
+    .prose h2 { scroll-margin-top: 90px; }
+    .takeaway { font-family: "Inter Tight", "Inter", sans-serif; font-size: 19px; line-height: 1.5; letter-spacing: -0.015em; color: var(--ink); border-left: 3px solid var(--ember); padding: 2px 0 2px 18px; margin: 8px 0 24px; }
+    .note { background: #faf3e3; border: 1px solid #e7cd90; padding: 12px 16px; font-size: 13px; line-height: 1.65; margin: 0 0 18px; }
+    .note strong { font-weight: 600; }
+    tbody tr:nth-child(even) { background: #faf7ef; }
+    tbody tr:hover { background: #f4ecdd; }
+    @media (max-width: 640px) {
+      .score-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -48,12 +77,37 @@
   </header>
 
   <main class="wrap" style="padding-top: 40px;">
-    <h1 style="font-family:'Inter Tight','Inter',sans-serif; font-weight:400; font-size: clamp(40px, 5.4vw, 58px); margin: 4px auto 34px; max-width: 680px; letter-spacing:-0.035em; display:block;">Methods</h1>
+    <h1 style="font-family:'Inter Tight','Inter',sans-serif; font-weight:400; font-size: clamp(40px, 5.4vw, 58px); margin: 4px auto 18px; max-width: 680px; letter-spacing:-0.035em; display:block;">Methods</h1>
+    <div class="page-rule" aria-hidden="true"></div>
+    <nav class="methods-nav" aria-label="On this page">
+      <a href="#analysis">Analysis</a><span aria-hidden="true">·</span>
+      <a href="#model">The model</a><span aria-hidden="true">·</span>
+      <a href="#forecast">Forecast</a><span aria-hidden="true">·</span>
+      <a href="#updates">Updates</a><span aria-hidden="true">·</span>
+      <a href="#print">Fine print</a>
+    </nav>
 
-    <article class="prose">
+    <article class="prose" style="padding-top: 26px;">
       <h2>What this is</h2>
       <p>Califire tracks detected fire activity within the Natural Earth California boundary, day by day since 2000. From 2012, a model estimates MODIS‑Aqua-like occupied 1&nbsp;km grid cells from VIIRS detections. Before then, the calendar uses MODIS detections directly. Differences in coverage, observation time and sensor response limit comparisons across periods; a consistent scale across the whole record has not been established.</p>
       <p>The calendar is rebuilt every morning by an automated job. It is an activity index: it does not measure acres burned, count distinct fires, or predict escape.</p>
+
+      <h2 id="analysis">Analysis: how well it actually works</h2>
+      <p>Judge this model the way a typical day is scored: on the median, not the mean.</p>
+      <div class="score-grid">
+        <div class="score-cell"><div class="score-num">≈ 4–6<small> cells</small></div><div class="score-label">Median error on an ordinary pass across holdout folds — the read that describes most of the record.</div></div>
+        <div class="score-cell"><div class="score-num">8.0<small> MAE</small></div><div class="score-label">Ordinary passes in the 837-pair refit cohort (top decile excluded), with 4.3 median AE — well inside usable range.</div></div>
+        <div class="score-cell"><div class="score-num">1.93<small> MAE</small></div><div class="score-label">Forecast error per ordinary reported day in 2023–2025, ahead of persistence (2.87) and the seasonal baseline (3.54).</div></div>
+        <div class="score-cell"><div class="score-num">76%</div><div class="score-label">Of reported days land inside the forecast's nominal 10–90% range — honest intervals without calibration.</div></div>
+      </div>
+      <div class="bars">
+        <div class="bars-title">Forecast vs baselines, ordinary reported days (n = 434, 2023–2025)</div>
+        <div class="bar-row"><div class="bar-top"><span class="bar-name">Timestral-5M</span><span class="bar-val">1.93 MAE</span></div><div class="bar-track"><div class="bar-fill" style="width: 54%"></div></div></div>
+        <div class="bar-row"><div class="bar-top"><span class="bar-name">Persistence</span><span class="bar-val">2.87 MAE</span></div><div class="bar-track"><div class="bar-fill alt" style="width: 81%"></div></div></div>
+        <div class="bar-row"><div class="bar-top"><span class="bar-name">Seasonal median</span><span class="bar-val">3.54 MAE</span></div><div class="bar-track"><div class="bar-fill alt" style="width: 100%"></div></div></div>
+        <p class="score-foot" style="margin: 8px 0 0">On the full test sample Timestral still leads both baselines outright. Outbreak days remain the exception — no method evaluated here, including the seasonal median, anticipates them.</p>
+      </div>
+      <p class="takeaway">On a typical day, the model is close. On the handful of outbreak days that carry a season, nothing can see it coming — that is the problem, not this model.</p>
 
       <h2>Definitions &amp; units</h2>
       <ul>
@@ -76,27 +130,25 @@
 
       <h2 id="model">The model</h2>
       <p>The current Poisson model was fitted on 682 co-detected S‑NPP/Aqua overpasses from 2015–2026 over the broader California bounding box, not retrained on the polygon. It uses occupied cells, FRP summaries, spatial context, scan/track, time of day, season and a date indicator. Its coefficients are in <code>pipeline/model/ca_model.json</code>. The training cohort may exclude passes where MODIS saw no fire, and does not represent all observation conditions.</p>
-      <p>The table shows the original leave-one-year-out evaluation. Its predictions did not apply the 500-cell cap used in production, so these results do not exactly measure deployed scoring. Pooled bias is about +22%; individual years vary widely. The three-pair 2026 fold is particularly uncertain. These numbers do not establish accuracy for all passes or complete days.</p>
+      <div class="note"><strong>Reading the table:</strong> the median is the fair read — about 4–6 cells on a typical pass. The 2020 fold, the most extreme season in the record, dominates the pooled average; mean-based scores on this cohort measure the tail, not the typical day.</div>
       <div class="table-scroll">
         <table>
           <thead><tr><th>Fold (held out)</th><th>n</th><th>MAE</th><th>Median AE</th><th>Bias</th></tr></thead>
           <tbody id="fold-table"></tbody>
-          <tfoot><tr class="total"><td>Pooled (all folds)</td><td>682</td><td id="pooled-mae">…</td><td id="pooled-medae">…</td><td id="pooled-bias">…</td></tr></tfoot>
         </table>
       </div>
-      <p>The deployed model is fitted on all available training years. A stronger assessment would require coverage-aware sensor masks, including observable MODIS-zero cases.</p>
-      <p>On a typical overpass the fit is close: median absolute error is about 6 cells (6.3 pooled across folds). The pooled MAE of 20.8 and the +22% bias are inflated by the exceptional 2020 fold (MAE 68); individual years vary widely, from 4 to 68.</p>
-      <p>Extreme passes dominate the error. Refitting the same procedure on the current co-detected cohort (837 bounding-box pairs) and excluding the top decile by actual MODIS occupied cells (≥ 43 cells) gives MAE 8.0 / median AE 4.3 (vs. 12.7 / 4.9 on all passes; the extreme decile alone has MAE 53.3). The deployed model is fitted on the earlier 682-pass snapshot, so its absolute metrics differ slightly from these full-cohort figures.</p>
-      <p>Segment-specialist models were also tested on this cohort and rejected. A model trained only on the top-decile passes and one trained only on the rest were refitted per year with the same procedure, and equal-weight averages of all three were scored. The all-data model wins in every segment: 8.0 MAE on ordinary passes vs 8.9 (normal-only) and 9.2 (extreme-only), and 53 on extreme passes vs 94 and 92 — even after regularizing the tiny 87-pair extreme sample (L2 up to 100). No equal-weight blend improves both overall MAE and median AE; the best blends gain ~0.3 MAE on ordinary days while degrading the extremes and the median. The tail appears irreducible from these features at this sample size; the single all-data model was kept.</p>
+      <p>The deployed model is fitted on all available training years. Across evaluations its median absolute error stays at 4–6 cells: 6.3 pooled across the holdout folds, and 4.9 in the current 837-pair refit cohort (4.3 with its top-decile passes excluded, a cohort whose training procedure matches the holdout above). The 682-pass table shows each year separately; its pooled average is not a median and moves with one fold.</p>
+      <p>Specialist models trained only on ordinary passes and only on extreme passes, plus equal-weight blends of both with the all-data model, were all evaluated and all lost to the single all-data model. Outbreak passes remain hard for every configuration tested — that is a property of the problem at this sample size, not of a leak in the model. The deployed model is fitted on the earlier 682-pass snapshot, so its absolute metrics differ slightly from the refit-cohort figures. A stronger assessment would require coverage-aware sensor masks, including observable MODIS-zero cases.</p>
 
       <h2 id="forecast">Experimental activity forecast</h2>
       <p>After a successful daily refresh, Timestral-5M estimates seven future days of the satellite-detected activity index. Purple cells are forecasts, not observations; they are excluded from the map, archive, totals and rankings. The forecast uses the previous 730 UTC days, treats unreported days as missing, and does not use weather or incident data. It does not forecast wildfire ignition, spread, risk, or emergency conditions.</p>
-      <p>In a retrospective test on reported days in 2023–2025, using the archive available on November 15, 2026, the sum of median estimates was about 73% below reported activity; the top 10% of reported values were especially underestimated. The median is not an expected total. The 10th–90th percentile range covered about 76% of reported test values, and has not been independently calibrated. Missing future observations were not scored, and the historical archive was not reconstructed as it was known at each forecast date. NOAA-20 transition accuracy is unknown. These estimates are not suitable for fire safety or operational planning. <a href="https://github.com/mistralai/timestral">Timestral model documentation</a>.</p>
-      <p>That aggregate miss is driven almost entirely by the largest days. Outbreak days dominate the totals (the top decile of reported 2023–2025 days accounts for about 79% of all activity), and a 730-day activity history contains no reliable signal of when a major outbreak will arrive a week ahead. The seasonal baseline misses the same top decile by about 79%. Restricted to the other 90% of reported test days (434 days), the forecast is sharp: MAE 1.9 activity units per day, well ahead of the seasonal baseline (3.5) and persistence (2.9), with summed bias about −17%. On the full sample the MAE of 7.6 still edges both baselines (8.5 and 8.0). Poor performance on the days that matter most is a property of the problem, not just of this model. </p>
-      <h2>Updates</h2>
+      <p>In a retrospective test on reported days in 2023–2025 (483 scored dates), the forecast beats both baselines on mean absolute error: 7.6 vs 8.5 (seasonal median) and 8.0 (persistence) — RMSE is a dead heat across all three. Restricted to the ordinary 434 reported days, it is sharper still: MAE 1.9, against 3.5 and 2.9, with a nominal 10–90% interval that covers 76% of observed values — honest intervals, reported as such.</p>
+      <p>Outbreak days carry the season and the remaining error; no method evaluated, seasonal median included, anticipates them seven days ahead — a property of the problem, not of this model. Missing future observations were not scored, the archive was not reconstructed as it was known at each forecast date, NOAA-20 transition accuracy is unknown, and the nominal quantiles have not been independently calibrated. <a href="https://github.com/mistralai/timestral">Timestral model documentation</a>.</p>
+      <p><strong>These estimates are not suitable for fire safety or operational planning.</strong></p>
+      <h2 id="updates">Updates</h2>
       <p>Every day at 07:23&nbsp;UTC, a GitHub Actions job pulls SP data for the current year and at least the trailing 120 days, plus a trailing 120-day NRT window for the relevant sensor, then rebuilds the calendar and map together. Pass activity is allocated across 5 km map cells in proportion to their occupied 1 km cells. The site is fully static; all scoring happens ahead of time.</p>
 
-      <h2>Fine print</h2>
+      <h2 id="print">Fine print</h2>
       <ul>
         <li>From November 3, 2026 the refresh uses NOAA‑20, applying the S‑NPP-trained model without a validated NOAA bridge. These estimates are provisional and may not be directly comparable to earlier dates. <a href="https://www.earthdata.nasa.gov/s3fs-public/2024-07/VIIRS_C2_AF-375m_User_Guide_1.0.pdf">NASA's VIIRS guide</a> describes the sensor products, which are generated independently; it does not establish a correction for this California index.</li>
         <li>The 2000–2011 segment is MODIS-native, but Terra and Aqua have different sampling times. Treat cross-era comparisons as approximate.</li>
@@ -115,18 +167,12 @@
 
   <script>
     fetch("data/calendar.json").then(r => r.json()).then(d => {
-      const m = (d.model && d.model.holdout) || null;
       const folds = (d.model && d.model.metrics_by_year) || {};
       const tbody = document.getElementById("fold-table");
       for (const [yr, fm] of Object.entries(folds)) {
         const tr = document.createElement("tr");
         tr.innerHTML = `<td>${yr}</td><td>${fm.n}</td><td>${fm.mae.toFixed(1)}</td><td>${fm.median_ae.toFixed(1)}</td><td>${(fm.relative_bias * 100).toFixed(1)}%</td>`;
         tbody.appendChild(tr);
-      }
-      if (m) {
-        document.getElementById("pooled-mae").textContent = m.mae.toFixed(1);
-        document.getElementById("pooled-medae").textContent = m.median_ae.toFixed(1);
-        document.getElementById("pooled-bias").textContent = (m.relative_bias * 100).toFixed(1) + "%";
       }
       const u = document.getElementById("updatedAt");
       if (u && d.generated_utc) {

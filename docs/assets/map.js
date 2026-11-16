@@ -66,7 +66,7 @@ async function boot() {
   state.map = map;
 
   L.geoJSON(feature, {
-    style: { color: "#111111", weight: 2, fillOpacity: 0, interactive: false },
+    style: { color: "#7e2b1c", weight: 2, fillOpacity: 0, interactive: false },
   }).addTo(map);
 
   state.layer = L.layerGroup().addTo(map);
@@ -157,7 +157,7 @@ function wireDraw() {
     if (d.points.length < (d.mode === "scribble" ? 8 : 3)) return;
     d.areaPoints = d.points.slice();
     removePreviews();
-    d.polygon = L.polygon(d.areaPoints, { color: "#111111", weight: 1.5, dashArray: "5 4", fillColor: "#111111", fillOpacity: 0.06, interactive: false }).addTo(map);
+    d.polygon = L.polygon(d.areaPoints, { color: "#c2452d", weight: 1.5, dashArray: "5 4", fillColor: "#c2452d", fillOpacity: 0.07, interactive: false }).addTo(map);
     d.active = false;
     d.mode = null;
     setModeUI();
@@ -189,7 +189,7 @@ function wireDraw() {
   const refreshLine = () => {
     if (d.line) { map.removeLayer(d.line); d.line = null; }
     if (d.points.length >= 2) {
-      d.line = L.polyline([...d.points, d.points[0]], { color: "#111111", weight: 1.5, dashArray: "5 4", interactive: false }).addTo(map);
+      d.line = L.polyline([...d.points, d.points[0]], { color: "#c2452d", weight: 1.5, dashArray: "5 4", interactive: false }).addTo(map);
     }
     doneBtn.disabled = d.points.length < 3;
   };
@@ -249,11 +249,11 @@ function wireDraw() {
     const ll = toLatLng(e);
     if (d.mode === "box") {
       strokeOrigin = ll;
-      d.rect = L.rectangle([ll, ll], { color: "#111111", weight: 1.5, dashArray: "5 4", fillColor: "#111111", fillOpacity: 0.06, interactive: false }).addTo(map);
+      d.rect = L.rectangle([ll, ll], { color: "#c2452d", weight: 1.5, dashArray: "5 4", fillColor: "#c2452d", fillOpacity: 0.07, interactive: false }).addTo(map);
     } else {
       d.points = [[ll.lat, ll.lng]];
       lastPx = { x: e.clientX, y: e.clientY };
-      d.line = L.polyline(d.points, { color: "#111111", weight: 1.5, dashArray: "5 4", interactive: false }).addTo(map);
+      d.line = L.polyline(d.points, { color: "#c2452d", weight: 1.5, dashArray: "5 4", interactive: false }).addTo(map);
     }
   }, { passive: false });
 
@@ -398,15 +398,24 @@ function render() {
   const q = (p) => (acts.length ? acts[Math.min(acts.length - 1, Math.floor(p * acts.length))] : 0);
   const b50 = q(0.5), b80 = q(0.8), b95 = q(0.95);
 
+  // Calendar ramp, low end to high: gold, burnt orange, ember, coal.
+  const TIERS = [
+    { color: "#d9a441", opacity: 0.45, size: 6 },
+    { color: "#c8692b", opacity: 0.55, size: 9 },
+    { color: "#c2452d", opacity: 0.7, size: 12 },
+    { color: "#7e2b1c", opacity: 0.88, size: 16 },
+  ];
+  const tierOf = (a) => (a < b50 ? 0 : a < b80 ? 1 : a < b95 ? 2 : 3);
+
   state.layer.clearLayers();
   for (const [lon, lat, a] of slice) {
     const radius = Math.max(3.5, Math.min(16, 3 + Math.sqrt(a) * 0.72));
-    const opacity = a < b50 ? 0.22 : a < b80 ? 0.32 : a < b95 ? 0.45 : 0.62;
+    const tier = TIERS[tierOf(a)];
     L.circleMarker([lat, lon], {
       radius,
       color: "transparent",
-      fillColor: "#111111",
-      fillOpacity: opacity,
+      fillColor: tier.color,
+      fillOpacity: tier.opacity,
       weight: 0,
       bubblingMouseEvents: false,
     }).bindTooltip(
@@ -421,10 +430,10 @@ function render() {
   if (state.legendDiv) {
     state.legendDiv.innerHTML = `
       <div class="map-legend-title">Fire activity</div>
-      <div class="map-legend-row"><span class="dot" style="width:16px;height:16px;opacity:.62"></span>Severe<i>${fmt(b95, 0)}+</i></div>
-      <div class="map-legend-row"><span class="dot" style="width:12px;height:12px;opacity:.45"></span>Heavy<i>${fmt(b80, 0)}+</i></div>
-      <div class="map-legend-row"><span class="dot" style="width:9px;height:9px;opacity:.32"></span>Active<i>${fmt(b50, 0)}+</i></div>
-      <div class="map-legend-row"><span class="dot" style="width:6px;height:6px;opacity:.22"></span>Sparse</div>`;
+      <div class="map-legend-row"><span class="dot" style="width:16px;height:16px;background:${TIERS[3].color};opacity:${TIERS[3].opacity}"></span>Severe<i>${fmt(b95, 0)}+</i></div>
+      <div class="map-legend-row"><span class="dot" style="width:12px;height:12px;background:${TIERS[2].color};opacity:${TIERS[2].opacity}"></span>Heavy<i>${fmt(b80, 0)}+</i></div>
+      <div class="map-legend-row"><span class="dot" style="width:9px;height:9px;background:${TIERS[1].color};opacity:${TIERS[1].opacity}"></span>Active<i>${fmt(b50, 0)}+</i></div>
+      <div class="map-legend-row"><span class="dot" style="width:6px;height:6px;background:${TIERS[0].color};opacity:${TIERS[0].opacity}"></span>Sparse</div>`;
   }
   if (state.draw.areaPoints) updateAreaStats();
 }
