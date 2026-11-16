@@ -88,6 +88,7 @@ def run(calendar, local_only=False):
     mask = np.isfinite(actual) & np.isfinite(lo) & np.isfinite(hi)
     peak_threshold = float(np.quantile(actual[mask], .9))
     peak_mask = mask & (actual >= peak_threshold)
+    rest_mask = mask & ~peak_mask
     return {'model':MODEL_ID,'model_revision':MODEL_REVISION,'horizon_days':7,'context_days':730,
             'evaluation':'1st and 15th of each month 2023–2025; only reported future days are scored; inputs use latest available historical archive, not as-of snapshots.',
             'warning':'Activity index conditional on satellite detection; not a wildfire-risk or emergency forecast.',
@@ -95,7 +96,10 @@ def run(calendar, local_only=False):
                       'interval_10_90_coverage':float(np.mean((actual[mask]>=lo[mask]) & (actual[mask]<=hi[mask]))),
                       'top_10_percent_threshold':peak_threshold,
                       'top_10_percent_timestral':metrics(actual[peak_mask],pred[peak_mask]),
-                      'top_10_percent_seasonal':metrics(actual[peak_mask],base[peak_mask])},'by_year':yearly}
+                      'top_10_percent_seasonal':metrics(actual[peak_mask],base[peak_mask]),
+                      'non_top_10_percent_timestral':metrics(actual[rest_mask],pred[rest_mask]),
+                      'non_top_10_percent_seasonal':metrics(actual[rest_mask],base[rest_mask]),
+                      'non_top_10_percent_persistence':metrics(actual[rest_mask],persist[rest_mask])},'by_year':yearly}
 
 
 def main():
