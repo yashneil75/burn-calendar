@@ -13,7 +13,7 @@
  },
  "unit": "MODIS-Aqua-equivalent occupied 1 km² grid cells",
  "timezone": "UTC",
- "generated_utc": "2026-11-18T16:32:21+00:00",
+ "generated_utc": "2026-11-19T16:38:52+00:00",
  "model": {
   "name": "california-modis-aqua-poisson-glm",
   "target": "MODIS-Aqua occupied 1 km cells per co-detected overpass",
@@ -113,12 +113,12 @@
  },
  "warning": "Activity index in MODIS-Aqua-equivalent occupied cells; not burned area, not a fire count, and not a detection-precision estimate. Days without observations are absent, not zero.",
  "stats": {
-  "days_reported": 8611,
-  "total_activity": 135698.9,
+  "days_reported": 8612,
+  "total_activity": 135699.1,
   "peak_day": "2020-09-08",
   "peak_activity": 1920.527,
   "first_day": "2000-11-01",
-  "last_day": "2026-11-18"
+  "last_day": "2026-11-19"
  },
  "months": [
   {
@@ -2307,8 +2307,8 @@
   },
   {
    "month": "2026-11",
-   "activity": 119.689,
-   "days_reported": 18,
+   "activity": 119.935,
+   "days_reported": 19,
    "peak_day": "2026-11-12",
    "peak_activity": 34.166
   }
@@ -229534,10 +229534,36 @@
    "date": "2026-11-18",
    "status": "nrt",
    "sensor": "NOAA20",
-   "activity": 0.234,
-   "frp_mw": 44.9,
-   "viirs_cells": 24,
-   "viirs_detections": 27,
+   "activity": 0.422,
+   "frp_mw": 103.6,
+   "viirs_cells": 31,
+   "viirs_detections": 34,
+   "day": {
+    "activity": 0.188,
+    "passes": 1,
+    "frp_mw": 58.7,
+    "viirs_cells": 7,
+    "viirs_detections": 7
+   },
+   "night": {
+    "activity": 0.234,
+    "passes": 1,
+    "frp_mw": 44.9,
+    "viirs_cells": 24,
+    "viirs_detections": 27
+   },
+   "epochs": [
+    "2.0NRT"
+   ]
+  },
+  {
+   "date": "2026-11-19",
+   "status": "nrt",
+   "sensor": "NOAA20",
+   "activity": 0.058,
+   "frp_mw": 1.9,
+   "viirs_cells": 2,
+   "viirs_detections": 2,
    "day": {
     "activity": 0,
     "passes": 0,
@@ -229546,11 +229572,11 @@
     "viirs_detections": 0
    },
    "night": {
-    "activity": 0.234,
+    "activity": 0.058,
     "passes": 1,
-    "frp_mw": 44.9,
-    "viirs_cells": 24,
-    "viirs_detections": 27
+    "frp_mw": 1.9,
+    "viirs_cells": 2,
+    "viirs_detections": 2
    },
    "epochs": [
     "2.0NRT"
